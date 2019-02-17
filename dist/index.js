@@ -14,7 +14,7 @@ exports.default = {
         attributes = _objectWithoutProperties(inProps, ['children', 'isSelected', 'isFocused']);
 
     switch (inProps.node.type) {
-      case 'quote':
+      case 'code':
         return React.createElement(
           'pre',
           attributes,
