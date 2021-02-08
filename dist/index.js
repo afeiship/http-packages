@@ -4,28 +4,51 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+var _react = require('react');
 
-exports.default = {
-  renderNode: function renderNode(inProps, inEditor, inNext) {
-    var children = inProps.children,
-        isSelected = inProps.isSelected,
-        isFocused = inProps.isFocused,
-        attributes = _objectWithoutProperties(inProps, ['children', 'isSelected', 'isFocused']);
+var _react2 = _interopRequireDefault(_react);
 
-    switch (inProps.node.type) {
-      case 'code':
-        return React.createElement(
-          'pre',
-          attributes,
-          React.createElement(
-            'code',
-            null,
-            children
-          )
-        );
-      default:
-        return inNext();
+var _slateHyperscript = require('slate-hyperscript');
+
+var _nextSlatePlugin = require('@jswork/next-slate-plugin');
+
+var _nextSlatePlugin2 = _interopRequireDefault(_nextSlatePlugin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _nextSlatePlugin2.default.define({
+  id: 'code',
+  hotkey: 'mod+`',
+  serialize: {
+    input: function input(_ref, children) {
+      var el = _ref.el;
+
+      var nodeName = el.nodeName.toLowerCase();
+      if (nodeName === 'code') {
+        return (0, _slateHyperscript.jsx)('text', { code: true }, children);
+      }
+    },
+    output: function output(_ref2) {
+      var el = _ref2.el,
+          text = _ref2.text;
+
+      var code = document.createElement('code');
+      code.innerText = text;
+      return code;
     }
+  },
+  render: function render(_, _ref3) {
+    var attributes = _ref3.attributes,
+        children = _ref3.children,
+        leaf = _ref3.leaf;
+
+    return _react2.default.createElement(
+      'code',
+      attributes,
+      children
+    );
   }
-};
+}); /**
+     * @usage:
+     * Editor.addMark(editor,'code', true)
+     */
