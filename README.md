@@ -1,8 +1,2 @@
-# slate-plugin-code
-> SlateJS code plugin.
-
-
-## installation
-```bash
-npm install -S @jswork/slate-plugin-code
-```
+# fetch
+> Cross fetch with some extend feature.
