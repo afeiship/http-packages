@@ -1,2 +1,2 @@
-# fetch
-> Cross fetch with some extend feature.
+# fetch-packages
+> Fetch packages.
