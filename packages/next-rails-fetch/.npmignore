@@ -1,0 +1,24 @@
+.idea
+.DS_Store
+**/npm-debug.log
+**/node_modules
+test
+__tests__
+src
+build
+gulpfile.js
+
+.editorconfig
+.prettierrc
+Gemfile
+jest.config.js
+LICENSE.txt
+Rakefile
+.vscode
+.babelrc
+.release-it.json
+docs
+
+# vscode localhistory
+.history
+jest.setup.js

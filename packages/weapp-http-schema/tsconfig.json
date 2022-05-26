@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "declaration": true,
+    "pretty": true,
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "noImplicitAny": false
+  }
+}
