@@ -1,0 +1,52 @@
+{
+  "name": "@jswork/http-rest-config",
+  "version": "1.0.7",
+  "description": "A simple rest config for react project.",
+  "keywords": [
+    "http",
+    "config",
+    "curd",
+    "rest",
+    "schema"
+  ],
+  "repository": "git@github.com:afeiship/http-rest-config.git",
+  "license": "MIT",
+  "author": "feizheng <1290657123@qq.com>",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "gulp",
+    "test": "jest",
+    "release": "release-it"
+  },
+  "dependencies": {
+    "@jswork/next": "^1.0.2",
+    "@jswork/next-content-type": "^1.0.0",
+    "@jswork/next-data-transform": "^1.0.4",
+    "@jswork/next-deep-assign": "^1.0.2",
+    "@jswork/next-tmpl": "^1.0.0"
+  },
+  "devDependencies": {
+    "@jswork/gulp-pkg-header": "^1.0.3",
+    "del": "^6.0.0",
+    "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-debug": "^4.0.0",
+    "gulp-header": "^2.0.9",
+    "gulp-ignore": "^3.0.0",
+    "gulp-load-plugins": "^2.0.5",
+    "gulp-rename": "^2.0.0",
+    "gulp-size": "^3.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.0",
+    "release-it": "^14.2.1",
+    "uglify-js": "3.12.0",
+    "uglify-save-license": "^0.4.1",
+    "yargs": "^16.1.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
