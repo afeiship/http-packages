@@ -23,6 +23,7 @@ function slice2data(inKeys, inData: Data) {
   const tmpl = {};
   const data = {};
 
+  if (!inData || isEmpty(inData)) return [null, null];
   Object.keys(inData).forEach((key) => {
     const target = inKeys.includes(key) ? tmpl : data;
     target[key] = inData[key];

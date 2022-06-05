@@ -66,7 +66,7 @@ describe('test group', () => {
     const apiUpload = apiService.upload({ filename: 'test.txt' });
     // params:
     expect(apiDelete.url).toBe('http://dev.demo.com/api/vi/system/banner/123');
-    expect(apiDelete.data).toEqual(JSON.stringify({ id: 123 }));
+    expect(apiDelete.data).toBe(null);
     // normal:
     expect(apiUpload.url).toBe('http://dev.demo.com/api/vi/system/upload');
     expect(apiUpload.data).toEqual(JSON.stringify({ filename: 'test.txt' }));

@@ -19,6 +19,7 @@
     "release": "release-it"
   },
   "dependencies": {
+    "@jswork/http-data-parser": "^1.0.1",
     "@jswork/next": "^1.0.2",
     "@jswork/next-content-type": "^1.0.0",
     "@jswork/next-data-transform": "^1.0.4",
