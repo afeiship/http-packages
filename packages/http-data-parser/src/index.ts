@@ -20,17 +20,15 @@ function isEmpty(obj) {
 }
 
 function slice2data(inKeys, inData: Data) {
-  const tmplData = {};
-  const extraData = {};
+  const tmpl = {};
+  const data = {};
+
   Object.keys(inData).forEach((key) => {
-    if (inKeys.includes(key)) {
-      tmplData[key] = inData[key];
-    } else {
-      extraData[key] = inData[key];
-    }
+    const target = inKeys.includes(key) ? tmpl : data;
+    target[key] = inData[key];
   });
 
-  return [tmplData, extraData].map((item) => (isEmpty(item) ? null : item));
+  return [tmpl, data].map((item) => (isEmpty(item) ? null : item));
 }
 
 export = (inUrlTmpl: string, inData: Data) => {
