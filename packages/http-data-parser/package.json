@@ -1,6 +1,6 @@
 {
   "name": "@jswork/http-data-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Http client url and data parser.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -8,7 +8,8 @@
   "scripts": {
     "postbuild": "tsc --emitDeclarationOnly",
     "build": "node esbuild.config.js",
-    "test": "jest"
+    "test": "jest",
+    "release": "release-it"
   },
   "license": "MIT",
   "publishConfig": {
@@ -27,5 +28,15 @@
     "prettier": "^2.6.2",
     "release-it": "^15.0.0",
     "typescript": "^4.6.4"
-  }
+  },
+  "keywords": [
+    "cache",
+    "cross",
+    "fetch",
+    "timeout",
+    "compose",
+    "next",
+    "nx",
+    "plugin"
+  ]
 }
