@@ -6,7 +6,7 @@ interface Data {
 
 const TMPL_RE = /\{([^}]+)\}/g;
 
-function getTmplKeys(tmpl: string): string[] {
+function tmplKeys(tmpl: string): string[] {
   const keys: string[] = [];
   let match: RegExpExecArray | null;
   while ((match = TMPL_RE.exec(tmpl))) {
@@ -34,6 +34,6 @@ function slice2data(inKeys, inData: Data) {
 }
 
 export = (inUrlTmpl: string, inData: Data) => {
-  const keys = getTmplKeys(inUrlTmpl);
+  const keys = tmplKeys(inUrlTmpl);
   return slice2data(keys, inData);
 };
