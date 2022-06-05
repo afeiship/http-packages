@@ -1,0 +1,25 @@
+.idea
+.DS_Store
+**/npm-debug.log
+**/node_modules
+test
+__tests__
+src
+build
+gulpfile.js
+rollup.config.js
+
+.editorconfig
+.prettierrc
+.prettierignore
+esbuild.config.js
+tsconfig.json
+
+# vscode
+.vscode
+.history
+.github
+api
+docs
+.release-it.json
+.ncurc.json
