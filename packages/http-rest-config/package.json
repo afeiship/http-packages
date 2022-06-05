@@ -1,6 +1,6 @@
 {
   "name": "@jswork/http-rest-config",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A simple rest config for react project.",
   "keywords": [
     "http",
@@ -19,7 +19,7 @@
     "release": "release-it"
   },
   "dependencies": {
-    "@jswork/http-data-parser": "^1.0.1",
+    "@jswork/http-data-parser": "^1.0.2",
     "@jswork/next": "^1.0.2",
     "@jswork/next-content-type": "^1.0.0",
     "@jswork/next-data-transform": "^1.0.4",
