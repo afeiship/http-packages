@@ -6,7 +6,7 @@ interface Data {
 
 const TMPL_RE = /\{([^}]+)\}/g;
 
-function getTmplKeys(tmpl) {
+function getTmplKeys(tmpl: string): string[] {
   const keys: string[] = [];
   let match: RegExpExecArray | null;
   while ((match = TMPL_RE.exec(tmpl))) {
