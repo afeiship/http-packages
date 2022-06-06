@@ -32,7 +32,7 @@ function slice2data(inKeys, inData: Data) {
   return [tmpl, data].map((item) => (isEmpty(item) ? null : item));
 }
 
-export = (inUrlTmpl: string, inData: Data) => {
+module.exports = (inUrlTmpl: string, inData: Data) => {
   const keys = tmplKeys(inUrlTmpl);
   return slice2data(keys, inData);
 };
