@@ -1,6 +1,6 @@
 {
   "name": "@jswork/http-schema",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Http schema based on next-fetch.",
   "main": "dist/index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/http-rest-config": "^1.0.8",
+    "@jswork/http-rest-config": "^1.0.9",
     "@jswork/next-apply-fetch-middleware": "^1.0.0"
   }
 }
