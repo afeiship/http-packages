@@ -4,7 +4,7 @@
   var NxDataTransform = nx.DataTransform || require('@jswork/next-data-transform');
   var nxTmpl = nx.tmpl || require('@jswork/next-tmpl');
   var nxContentType = nx.contentType || require('@jswork/next-content-type');
-  var dp = require('@jswork/http-data-parser');
+  var dp = require('@jswork/http-data-parser').default;
 
   function httpRestConfg(inApiContext, inHttp, inConfig) {
     var host = inConfig.host;

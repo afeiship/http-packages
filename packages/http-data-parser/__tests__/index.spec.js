@@ -1,4 +1,4 @@
-var dp = require('../dist/index.cjs');
+var dp = require('../dist/index.cjs').default;
 
 require('@jswork/next-tmpl');
 
