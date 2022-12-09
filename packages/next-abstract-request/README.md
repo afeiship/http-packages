@@ -21,7 +21,7 @@ npm install -S @jswork/next-abstract-request
 | put     | (inUrl, inData, inOptions)           | The put api                 |
 | patch   | (inUrl, inData, inOptions)           | The patch api               |
 | head    | (inUrl, inData, inOptions)           | The head api                |
-| fetch   | (inConfig)                           | The only one args fetch api |
+| options | (inUrl, inData, inOptions)           | The options api             |
 
 
 
