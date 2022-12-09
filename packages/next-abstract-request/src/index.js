@@ -22,7 +22,7 @@
     methods: {
       init: function (inOptions) {
         this.options = nx.mix(null, defaults, this.defaults(), inOptions);
-        this.interceptor = new NxInterceptor({ items: this.options.interceptors, types: TYPES });
+        this.interceptor = new NxInterceptor({items: this.options.interceptors, types: TYPES});
         this.httpRequest =
           this.options.pipeStyle === 'fetch' ? nxFetchWithResponseType(this.options.fetch) : this.options.fetch;
       },
@@ -32,7 +32,7 @@
       request: function (inMethod, inUrl, inData, inOptions) {
         nx.error(MSG_IMPL);
       },
-      'get,post,put,patch,delete,head,fetch': function (inMethod) {
+      'get,post,put,patch,delete,head,options': function (inMethod) {
         return function () {
           var inputArgs = [inMethod].concat(nx.slice(arguments));
           var args = nxParseRequestArgs(inputArgs, true);
