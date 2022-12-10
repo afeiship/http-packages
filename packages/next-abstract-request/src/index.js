@@ -21,10 +21,10 @@
     statics: nx.mix(null, nxStubSingleton()),
     methods: {
       init: function (inOptions) {
-        this.options = nx.mix(null, defaults, this.defaults(), inOptions);
-        this.interceptor = new NxInterceptor({items: this.options.interceptors, types: TYPES});
+        this.opts = nx.mix(null, defaults, this.defaults(), inOptions);
+        this.interceptor = new NxInterceptor({items: this.opts.interceptors, types: TYPES});
         this.httpRequest =
-          this.options.pipeStyle === 'fetch' ? nxFetchWithResponseType(this.options.fetch) : this.options.fetch;
+          this.opts.pipeStyle === 'fetch' ? nxFetchWithResponseType(this.opts.fetch) : this.opts.fetch;
       },
       defaults: function () {
         return null;
