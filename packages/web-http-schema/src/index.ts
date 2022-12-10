@@ -4,10 +4,10 @@ import nxFetchWithDebug from '@jswork/next-fetch-with-debug';
 import nxFetchWithTimeout from '@jswork/next-fetch-with-timeout';
 import nxFetchWithCancelable from '@jswork/next-fetch-with-cancelable';
 import nxFetchWithResponseType from '@jswork/next-fetch-with-response-type';
-import nxApplyFetchMilddeware from '@jswork/next-apply-fetch-middleware';
+import nxApplyFetchMiddleware from '@jswork/next-apply-fetch-middleware';
 
 export default (inConfig, inOptions?) => {
-  const fetch = nxApplyFetchMilddeware([
+  const fetch = nxApplyFetchMiddleware([
     nxFetchWithTimeout,
     nxFetchWithCancelable,
     nxFetchWithResponseType,
