@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch-with-retry",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fetch with try for next.",
   "homepage": "https://github.com/afeiship/next-fetch-with-retry",
   "author": {
@@ -20,7 +20,7 @@
     "@babel/preset-env": "^7.13.12",
     "@jswork/gulp-pkg-header": "^1.0.3",
     "@jswork/next": "^1.0.5",
-    "@jswork/next-fetch-with-timeout": "^1.0.3",
+    "@jswork/next-fetch-with-timeout": "^1.0.4",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
