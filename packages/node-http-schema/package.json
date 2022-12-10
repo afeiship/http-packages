@@ -1,6 +1,6 @@
 {
   "name": "@jswork/node-http-schema",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Http schema for nodejs.",
   "main": "dist/index.js",
   "scripts": {
@@ -33,7 +33,7 @@
   "dependencies": {
     "@jswork/http-schema": "^1.0.4",
     "@jswork/next-apply-fetch-middleware": "^1.0.0",
-    "@jswork/next-fetch": "^1.1.11",
+    "@jswork/next-fetch": "^1.1.12",
     "@jswork/next-fetch-with-debug": "^1.0.1",
     "@jswork/next-fetch-with-delay": "^1.0.0",
     "@jswork/next-fetch-with-proxy": "^1.0.1",
