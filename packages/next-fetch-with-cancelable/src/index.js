@@ -1,7 +1,7 @@
 (function () {
   var global = typeof window !== 'undefined' ? window : this || Function('return this')();
   var nx = global.nx || require('@jswork/next');
-  var DEFAULT_OPTIONS = { cancelable: false };
+  var DEFAULT_OPTIONS = {cancelable: false};
   var CANCELED_MAP = {};
   var id = 0;
 
@@ -10,7 +10,7 @@
       var options = nx.mix(null, DEFAULT_OPTIONS, inOptions);
       if (!options.cancelable) return inFetch(inUrl, options);
       var ctrl = new AbortController();
-      var options = nx.mix(null, { signal: ctrl.signal }, inOptions);
+      options = nx.mix(null, {signal: ctrl.signal}, inOptions);
       id = id + 1;
 
       CANCELED_MAP[id] = function () {

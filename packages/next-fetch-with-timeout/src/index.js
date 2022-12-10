@@ -8,23 +8,20 @@
     return function (inUrl, inOptions) {
       var options = nx.mix(null, DEFAULT_OPTIONS, inOptions);
       if (!options.timeout) return inFetch(inUrl, options);
+      var ctrl = new AbortController();
+      options = nx.mix(null, { signal: ctrl.signal }, inOptions);
+      var timer = setTimeout(function () {
+        ctrl.abort();
+      }, options.timeout);
 
-      return new Promise(function (resolve, reject) {
-        var timer = setTimeout(function () {
-          reject(TIMEOUT_ERROR);
-        }, options.timeout);
-
-        // finally can optimize code - but: https://caniuse.com/?search=finally
-        inFetch(inUrl, options)
-          .then(function (res) {
-            clearTimeout(timer);
-            resolve(res);
-          })
-          .catch(function (error) {
-            clearTimeout(timer);
-            reject(error);
-          });
-      });
+      return inFetch(inUrl, options)
+        .finally(function () {
+          clearTimeout(timer);
+        })
+        .catch(function (err) {
+          if (err.type === 'aborted') throw TIMEOUT_ERROR;
+          throw err;
+        });
     };
   };
 
