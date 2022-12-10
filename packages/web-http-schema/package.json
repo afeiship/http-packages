@@ -1,6 +1,6 @@
 {
   "name": "@jswork/web-http-schema",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Http schema for web based on next-fetch.",
   "main": "dist/index.js",
   "scripts": {
@@ -34,7 +34,7 @@
   "dependencies": {
     "@jswork/http-schema": "^1.0.4",
     "@jswork/next-apply-fetch-middleware": "^1.0.0",
-    "@jswork/next-fetch": "^1.1.12",
+    "@jswork/next-fetch": "^1.1.13",
     "@jswork/next-fetch-with-cancelable": "^1.0.4",
     "@jswork/next-fetch-with-debug": "^1.0.1",
     "@jswork/next-fetch-with-response-type": "^1.0.0",
