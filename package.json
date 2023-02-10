@@ -1,5 +1,5 @@
 {
-  "name": "fetch-packages",
+  "name": "http-packages",
   "private": true,
   "workspaces": {
     "packages": [
@@ -21,6 +21,6 @@
   "homepage": "https://js.work",
   "repository": {
     "type": "git",
-    "url": "https://github.com/afeiship/fetch-packages.git"
+    "url": "https://github.com/afeiship/http-packages.git"
   }
 }
