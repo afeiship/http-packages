@@ -1,9 +1,19 @@
-(function () {
-  const fn = require('../dist').default;
+const fn = require('../dist').default;
 
-  describe('api.basic', () => {
-    test('package basic case', () => {
-      // fn();
+describe('api.basic', () => {
+  test('package basic case', () => {
+    const ctx = fn({
+      baseURL: 'https://api.github.com',
+      request: ['', 'json'],
+      items: [
+        {
+          items: {
+            profile: ['get', '/users/afeiship']
+          }
+        }
+      ]
     });
+
+    console.log(ctx);
   });
-})();
+});
