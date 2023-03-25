@@ -57,5 +57,17 @@
       ],
       "@babel/preset-typescript"
     ]
-  }
+  },
+  "keywords": [
+    "cache",
+    "cross",
+    "fetch",
+    "timeout",
+    "compose",
+    "next",
+    "nx",
+    "plugin",
+    "http",
+    "schema"
+  ]
 }
