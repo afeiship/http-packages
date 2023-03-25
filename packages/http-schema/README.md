@@ -11,6 +11,13 @@
 npm install @jswork/http-schema
 ```
 
+## usage
+```js
+import httpSchema from '@jswork/http-schema';
+
+// usage goes here.
+```
+
 ## license
 Code released under [the MIT license](https://github.com/afeiship/http-schema/blob/master/LICENSE.txt).
 

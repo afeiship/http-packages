@@ -1,5 +1,5 @@
 interface NxStatic {
-  NxDataTransform: {
+  DataTransform: {
     json: (data) => string;
     urlencoded: (data) => string;
     multipart: (data) => any;
