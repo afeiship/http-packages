@@ -17,6 +17,7 @@ export type Config = {
   request?: any[];
   interceptors?: Interceptor[];
   items: any[];
+  cancelable?: boolean;
 } & Pick<CreateAxiosDefaults, 'timeout' | 'headers' | 'transformRequest' | 'transformResponse'>;
 
 export const registInterceptors = (inInterceptors: Interceptor[], inClient: AxiosInstance) => {
@@ -32,8 +33,11 @@ export const registInterceptors = (inInterceptors: Interceptor[], inClient: Axio
 };
 
 export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
-  const { interceptors, timeout, headers, transformResponse, transformRequest } = inConfig;
+  const { interceptors, timeout, headers, cancelable, transformResponse, transformRequest } =
+    inConfig;
   const client = axios.create(inInitOptions);
+  const ctrl = cancelable ? new AbortController() : null;
+  const destroy = cancelable ? () => ctrl?.abort() : nx.noop;
 
   const api = {};
   const request = inConfig.request;
@@ -67,6 +71,7 @@ export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
         return client.request({
           url: (_host || baseUrl) + context + apiPath,
           method: action,
+          signal: ctrl?.signal,
           timeout,
           headers,
           transformRequest,
@@ -79,5 +84,5 @@ export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
     });
   });
 
-  return { api, client };
+  return { api, client, destroy };
 };
