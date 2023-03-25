@@ -11,13 +11,13 @@ export interface Interceptor {
   fn: (inData: any) => any;
 }
 
-export interface Config {
+export type Config = {
   baseURL?: string;
   prefix?: string;
   request?: any[];
   interceptors?: Interceptor[];
   items: any[];
-}
+} & Pick<CreateAxiosDefaults, 'timeout' | 'headers' | 'transformRequest' | 'transformResponse'>;
 
 export const registInterceptors = (inInterceptors: Interceptor[], inClient: AxiosInstance) => {
   const clientInterceptors = inClient.interceptors;
@@ -32,7 +32,7 @@ export const registInterceptors = (inInterceptors: Interceptor[], inClient: Axio
 };
 
 export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
-  const { interceptors } = inConfig;
+  const { interceptors, timeout, headers, transformResponse, transformRequest } = inConfig;
   const client = axios.create(inInitOptions);
 
   const api = {};
@@ -67,6 +67,10 @@ export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
         return client.request({
           url: (_host || baseUrl) + context + apiPath,
           method: action,
+          timeout,
+          headers,
+          transformRequest,
+          transformResponse,
           params,
           data: isGetStyle ? undefined : body,
           ...options,
