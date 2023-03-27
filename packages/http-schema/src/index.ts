@@ -14,6 +14,7 @@ export interface Interceptor {
 export type Config = {
   baseURL?: string;
   prefix?: string;
+  suffix?: string;
   request?: any[];
   interceptors?: Interceptor[];
   items: any[];
@@ -46,6 +47,7 @@ export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
   const items = inConfig.items;
   const baseUrl = inConfig.baseURL || `${location.protocol}//${location.host}`;
   const prefix = inConfig.prefix || '';
+  const suffix = inConfig.suffix || '';
 
   if (interceptors?.length) registInterceptors(interceptors, client);
 
@@ -53,10 +55,11 @@ export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
     const _request = item.request;
     const _items = item.items;
     const _prefix = item.prefix || prefix;
+    const _suffix = item.suffix || suffix;
     const _host = item.baseURL;
 
     nx.each(_items, function (key, _item) {
-      const apiKey = _prefix + key;
+      const apiKey = _prefix + key + _suffix;
       api[apiKey] = function (inData, inOptions) {
         const data = Array.isArray(inData) ? nx.mix.apply(nx, inData) : inData;
         const action = String(_item[0]).toLowerCase();
