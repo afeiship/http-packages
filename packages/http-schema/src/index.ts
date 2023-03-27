@@ -17,6 +17,7 @@ export type Config = {
   request?: any[];
   interceptors?: Interceptor[];
   items: any[];
+  harmony?: boolean;
 } & Pick<CreateAxiosDefaults, 'timeout' | 'headers' | 'transformRequest' | 'transformResponse'>;
 
 export const registInterceptors = (inInterceptors: Interceptor[], inClient: AxiosInstance) => {
@@ -32,7 +33,7 @@ export const registInterceptors = (inInterceptors: Interceptor[], inClient: Axio
 };
 
 export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
-  const { interceptors, timeout, headers, transformResponse, transformRequest } = inConfig;
+  const { harmony, interceptors, timeout, headers, transformResponse, transformRequest } = inConfig;
   const client = axios.create(inInitOptions);
 
   const api = {};
@@ -78,6 +79,9 @@ export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
       };
     });
   });
+
+  // harmony: inject to nx
+  if (harmony) nx.set(nx, '$api', api);
 
   return { api, client };
 };
