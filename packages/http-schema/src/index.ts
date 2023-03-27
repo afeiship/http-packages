@@ -32,6 +32,11 @@ export const registInterceptors = (inInterceptors: Interceptor[], inClient: Axio
   });
 };
 
+// harmony: inject to nx
+interface NxStatic {
+  $api: Record<string, any>;
+}
+
 export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
   const { harmony, interceptors, timeout, headers, transformResponse, transformRequest } = inConfig;
   const client = axios.create(inInitOptions);
