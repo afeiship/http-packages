@@ -11,6 +11,7 @@ export interface Interceptor {
   fn: (inData: any) => any;
 }
 
+// 初始化的时候，一次性的配置
 export type Config = {
   baseURL?: string;
   prefix?: string;
@@ -20,6 +21,12 @@ export type Config = {
   items: any[];
   harmony?: boolean;
 } & Pick<CreateAxiosDefaults, 'timeout' | 'headers' | 'transformRequest' | 'transformResponse'>;
+
+// 每次请求的时候，可选的配置
+export type Options = {
+  abortable?: boolean;
+  dataType?: 'json' | 'urlencoded' | 'multipart' | 'raw';
+};
 
 export const registInterceptors = (inInterceptors: Interceptor[], inClient: AxiosInstance) => {
   const clientInterceptors = inClient.interceptors;
@@ -45,22 +52,19 @@ export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
   const api = {};
   const request = inConfig.request;
   const items = inConfig.items;
-  const baseUrl = inConfig.baseURL || `${location.protocol}//${location.host}`;
-  const prefix = inConfig.prefix || '';
-  const suffix = inConfig.suffix || '';
 
   if (interceptors?.length) registInterceptors(interceptors, client);
 
   items.forEach(function (item) {
     const _request = item.request;
     const _items = item.items;
-    const _prefix = item.prefix || prefix;
-    const _suffix = item.suffix || suffix;
-    const _host = item.baseURL;
+    const _prefix = item.prefix || inConfig.prefix || '';
+    const _suffix = item.suffix || inConfig.suffix || '';
+    const baseURL = item.baseURL || inConfig.baseURL || `${location.protocol}//${location.host}`;
 
     nx.each(_items, function (key, _item) {
       const apiKey = _prefix + key + _suffix;
-      api[apiKey] = function (inData, inOptions) {
+      api[apiKey] = function (inData, inOptions?: Options) {
         const data = Array.isArray(inData) ? nx.mix.apply(nx, inData) : inData;
         const action = String(_item[0]).toLowerCase();
         const requestData = _request || request;
@@ -74,7 +78,7 @@ export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
         const body = nx.DataTransform[dataType](dpData[1]);
 
         return client.request({
-          url: (_host || baseUrl) + context + apiPath,
+          url: baseURL + context + apiPath,
           method: action,
           timeout,
           headers,
