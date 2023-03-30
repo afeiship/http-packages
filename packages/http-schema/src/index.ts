@@ -44,9 +44,8 @@ const registInterceptors = (inInterceptors: Interceptor[], inClient: AxiosInstan
 };
 
 module.exports = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
-  const { harmony, interceptors, timeout, headers, transformResponse, transformRequest } = inConfig;
+  const { harmony, interceptors } = inConfig;
   const client = axios.create(inInitOptions);
-
   const api = {};
   const request = inConfig.request;
   const items = inConfig.items;
@@ -59,6 +58,10 @@ module.exports = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any =>
     const _prefix = item.prefix || inConfig.prefix || '';
     const _suffix = item.suffix || inConfig.suffix || '';
     const baseURL = item.baseURL || inConfig.baseURL || `${location.protocol}//${location.host}`;
+    const transformRequest = item.transformRequest || inConfig.transformRequest;
+    const transformResponse = item.transformResponse || inConfig.transformResponse;
+    const timeout = item.timeout || inConfig.timeout;
+    const headers = nx.mix(null, inConfig.headers, item.headers);
 
     nx.each(_items, function (key, _item) {
       const apiKey = _prefix + key + _suffix;
