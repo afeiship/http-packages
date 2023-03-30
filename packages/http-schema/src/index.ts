@@ -53,7 +53,6 @@ module.exports = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any =>
   const api = {};
   const request = inConfig.request;
   const items = inConfig.items;
-  const transform = inConfig.transform || nx.stubValue;
 
   if (interceptors?.length) registInterceptors(interceptors, client);
 
@@ -67,6 +66,7 @@ module.exports = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any =>
     const transformResponse = item.transformResponse || inConfig.transformResponse;
     const timeout = item.timeout || inConfig.timeout;
     const headers = nx.mix(null, inConfig.headers, item.headers);
+    const transform = item.transform || inConfig.transform || nx.stubValue;
 
     nx.each(_items, function (key, _item) {
       const apiKey = _prefix + key + _suffix;
