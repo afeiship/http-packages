@@ -18,7 +18,11 @@ export type Config = {
   interceptors?: Interceptor[];
   items: any[];
   harmony?: boolean;
-} & Pick<CreateAxiosDefaults, 'timeout' | 'headers' | 'transformRequest' | 'transformResponse'>;
+  transform?: (res: any) => any;
+} & Pick<
+  CreateAxiosDefaults,
+  'timeout' | 'headers' | 'transformRequest' | 'transformResponse' | 'responseType'
+>;
 
 // 每次请求的时候，可选的配置
 export type Options = {
@@ -49,6 +53,7 @@ module.exports = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any =>
   const api = {};
   const request = inConfig.request;
   const items = inConfig.items;
+  const transform = inConfig.transform || nx.stubValue;
 
   if (interceptors?.length) registInterceptors(interceptors, client);
 
@@ -78,17 +83,19 @@ module.exports = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any =>
         const params = dpData[1];
         const body = nx.DataTransform[dataType](dpData[1]);
 
-        return client.request({
-          url: baseURL + context + apiPath,
-          method: action,
-          timeout,
-          headers,
-          transformRequest,
-          transformResponse,
-          params,
-          data: isGetStyle ? undefined : body,
-          ...options,
-        });
+        return client
+          .request({
+            url: baseURL + context + apiPath,
+            method: action,
+            timeout,
+            headers,
+            transformRequest,
+            transformResponse,
+            params,
+            data: isGetStyle ? undefined : body,
+            ...options,
+          })
+          .then((res) => transform!(res));
       };
     });
   });
