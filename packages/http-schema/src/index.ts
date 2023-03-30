@@ -48,7 +48,7 @@ const registInterceptors = (inInterceptors: Interceptor[], inClient: AxiosInstan
   });
 };
 
-export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
+const httpSchema = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
   const { harmony, interceptors } = inConfig;
   const client = axios.create(inInitOptions);
   const api = {};
@@ -98,3 +98,9 @@ export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
 
   return { api, client };
 };
+
+// for commonjs es5
+module.exports = httpSchema;
+
+// for es6
+export default httpSchema;
