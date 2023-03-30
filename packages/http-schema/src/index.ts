@@ -4,8 +4,6 @@ import '@jswork/next';
 import '@jswork/next-tmpl';
 import '@jswork/next-data-transform';
 
-const URL_ACTIONS = ['get', 'delete', 'head', 'options'];
-
 export interface Interceptor {
   type: 'request' | 'response' | 'error';
   fn: (inData: any) => any;
@@ -28,7 +26,13 @@ export type Options = {
   dataType?: 'json' | 'urlencoded' | 'multipart' | 'raw';
 };
 
-export const registInterceptors = (inInterceptors: Interceptor[], inClient: AxiosInstance) => {
+// harmony: inject to nx
+export interface NxStatic {
+  $api: Record<string, any>;
+}
+
+const URL_ACTIONS = ['get', 'delete', 'head', 'options'];
+const registInterceptors = (inInterceptors: Interceptor[], inClient: AxiosInstance) => {
   const clientInterceptors = inClient.interceptors;
   inInterceptors.forEach((item) => {
     const { type, fn } = item;
@@ -39,11 +43,6 @@ export const registInterceptors = (inInterceptors: Interceptor[], inClient: Axio
     }
   });
 };
-
-// harmony: inject to nx
-interface NxStatic {
-  $api: Record<string, any>;
-}
 
 module.exports = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
   const { harmony, interceptors, timeout, headers, transformResponse, transformRequest } = inConfig;
