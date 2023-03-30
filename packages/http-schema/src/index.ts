@@ -45,7 +45,7 @@ interface NxStatic {
   $api: Record<string, any>;
 }
 
-export default (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
+module.exports = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any => {
   const { harmony, interceptors, timeout, headers, transformResponse, transformRequest } = inConfig;
   const client = axios.create(inInitOptions);
 
