@@ -18,7 +18,6 @@ export type Config = {
   interceptors?: Interceptor[];
   items: any[];
   harmony?: boolean;
-  transform?: (res: any) => any;
 } & Pick<
   CreateAxiosDefaults,
   'timeout' | 'headers' | 'transformRequest' | 'transformResponse' | 'responseType'
@@ -63,10 +62,10 @@ module.exports = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any =>
     const _suffix = item.suffix || inConfig.suffix || '';
     const baseURL = item.baseURL || inConfig.baseURL || `${location.protocol}//${location.host}`;
     const transformRequest = item.transformRequest || inConfig.transformRequest;
-    const transformResponse = item.transformResponse || inConfig.transformResponse;
+    const transformResponse = item.transformResponse;
     const timeout = item.timeout || inConfig.timeout;
     const headers = nx.mix(null, inConfig.headers, item.headers);
-    const transform = item.transform || inConfig.transform || nx.stubValue;
+    const globalTransformResponse = inConfig.transformResponse || nx.stubValue;
 
     nx.each(_items, function (key, _item) {
       const apiKey = _prefix + key + _suffix;
@@ -95,7 +94,7 @@ module.exports = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any =>
             data: isGetStyle ? undefined : body,
             ...options,
           })
-          .then((res) => transform!(res));
+          .then((res) => globalTransformResponse!(res));
       };
     });
   });
