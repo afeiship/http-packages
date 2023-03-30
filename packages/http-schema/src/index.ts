@@ -1,4 +1,4 @@
-import axios, { CreateAxiosDefaults, AxiosInstance } from 'axios';
+import axios, { CreateAxiosDefaults, AxiosRequestConfig, AxiosInstance } from 'axios';
 import dp from '@jswork/http-data-parser';
 import '@jswork/next';
 import '@jswork/next-tmpl';
@@ -22,9 +22,8 @@ export type Config = {
 
 // 每次请求的时候，可选的配置
 export type Options = {
-  abortable?: boolean;
   dataType?: 'json' | 'urlencoded' | 'multipart' | 'raw';
-};
+} & AxiosRequestConfig;
 
 // harmony: inject to nx
 export interface NxStatic {
