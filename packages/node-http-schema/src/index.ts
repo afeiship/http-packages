@@ -1,4 +1,4 @@
-import httpSchema from '@jswork/http-schema';
+import httpRestConfig from '@jswork/http-rest-config';
 import NxFetch from '@jswork/next-fetch';
 import nxFetchWithDebug from '@jswork/next-fetch-with-debug';
 import nxFetchWithTimeout from '@jswork/next-fetch-with-timeout';
@@ -9,6 +9,7 @@ import nxApplyFetchMilddeware from '@jswork/next-apply-fetch-middleware';
 import nodeFetch from 'node-fetch';
 
 export default (inConfig, inOptions?) => {
+  const apiConfig = {};
   const fetch = nxApplyFetchMilddeware([
     nxFetchWithTimeout,
     nxFetchWithDelay,
@@ -22,5 +23,5 @@ export default (inConfig, inOptions?) => {
     ...inOptions
   });
 
-  return httpSchema(inConfig, http);
+  return httpRestConfig(apiConfig, http, inConfig);
 };

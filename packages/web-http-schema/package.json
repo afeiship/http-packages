@@ -32,7 +32,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/http-schema": "^1.0.4",
+    "@jswork/http-rest-config": "^1.0.10",
     "@jswork/next-apply-fetch-middleware": "^1.0.0",
     "@jswork/next-fetch": "^1.1.13",
     "@jswork/next-fetch-with-cancelable": "^1.0.4",

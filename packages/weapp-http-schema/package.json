@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "@jswork/http-rest-config": "^1.0.10",
-    "@jswork/http-schema": "^1.0.4",
     "@jswork/next-fetch": "^1.1.13",
     "@jswork/next-fetch-with-debug": "^1.0.1",
     "@jswork/next-fetch-with-response-type": "^1.0.0",
