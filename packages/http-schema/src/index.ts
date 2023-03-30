@@ -65,7 +65,7 @@ module.exports = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any =>
     const transformResponse = item.transformResponse;
     const timeout = item.timeout || inConfig.timeout;
     const headers = nx.mix(null, inConfig.headers, item.headers);
-    const globalTransformResponse = inConfig.transformResponse || nx.stubValue;
+    const globalTransformResponse: any = inConfig.transformResponse || nx.stubValue;
 
     nx.each(_items, function (key, _item) {
       const apiKey = _prefix + key + _suffix;
