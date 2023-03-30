@@ -1,6 +1,6 @@
 {
   "name": "@jswork/web-http-schema",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "Http schema for web based on next-fetch.",
   "main": "dist/index.js",
   "scripts": {
