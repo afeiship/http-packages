@@ -7,7 +7,6 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "gulp",
-    "postbuild": "npm pkg get name | cnpm sync",
     "test": "jest",
     "release": "release-it"
   },
