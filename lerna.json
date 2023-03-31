@@ -14,6 +14,7 @@
   ],
   "command": {
     "publish": {
+      "prePublish": "lerna exec --parallel -- npm run build",
       "message": "chore(release): publish",
       "registry": "https://registry.npmjs.org"
     }
