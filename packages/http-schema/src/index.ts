@@ -97,7 +97,7 @@ const httpSchema = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any 
 };
 
 // for commonjs es5
-module.exports = httpSchema;
+if (typeof module !== 'undefined' && module.exports) module.exports = httpSchema;
 
 // for es6
 export default httpSchema;
