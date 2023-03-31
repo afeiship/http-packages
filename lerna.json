@@ -2,21 +2,18 @@
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "packages": [
-    "packages/*"
-  ],
-  "ignoreChanges": [
-    "CHANGELOG.md",
-    "**/__tests__/**"
-  ],
-  "ignore": [
-    "packages/websites"
-  ],
+  "packages": ["packages/*"],
+  "ignoreChanges": ["CHANGELOG.md", "**/__tests__/**"],
+  "ignore": ["packages/websites"],
   "command": {
     "publish": {
-      "prePublish": "lerna exec --parallel -- npm run build",
       "message": "chore(release): publish",
       "registry": "https://registry.npmjs.org"
+    },
+    "prepublish": {
+      "ignore": ["packages/websites"],
+      "script": "build",
+      "args": ["--scope", "@jswork/*"]
     }
   }
 }
