@@ -36,10 +36,6 @@ export type Config = {
 
 export type Options = { dataType?: DataType } & AxiosRequestConfig;
 
-export interface NxStatic {
-  $api: Record<string, any>;
-}
-
 const URL_ACTIONS = ['get', 'delete', 'head', 'options'];
 const registInterceptors = (inInterceptors: Interceptor[], inClient: AxiosInstance) => {
   const { interceptors } = inClient;
@@ -56,27 +52,28 @@ const httpSchema = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any 
   if (interceptors?.length) registInterceptors(interceptors, client);
 
   inConfig.items.forEach(function (item) {
-    const request = item.request || inConfig.request;
     const prefix = item.prefix || inConfig.prefix || '';
     const suffix = item.suffix || inConfig.suffix || '';
     const baseURL = item.baseURL || inConfig.baseURL || `${location.protocol}//${location.host}`;
     const transform = item.transform || inConfig.transform || nx.stubValue;
     const timeout = item.timeout || inConfig.timeout;
     const headers = { ...inConfig.headers, ...item.headers };
+    const [basePath, baseDataType] = item.request || inConfig.request!;
 
     nx.each(item.items, function (key, _item) {
       const apiKey = prefix + key + suffix;
+      const [_method, _subpath, _opts] = _item;
+
       api[apiKey] = function (inData, inOptions?: Options) {
         const data = Array.isArray(inData) ? nx.mix.apply(nx, inData) : inData;
-        const method = String(_item[0]).toLowerCase();
+        const method = String(_method).toLowerCase();
         const isGetStyle = URL_ACTIONS.includes(method);
-        const dpData = dp(_item[1], data);
-        const apiPath = nx.tmpl(_item[1], dpData[0]);
-        const options = { ..._item[2], ...inOptions };
-        const dataType = options.dataType || request![1];
-        const params = dpData[1];
-        const body = nx.DataTransform[dataType](dpData[1]);
-        const url = baseURL + request![0] + apiPath;
+        const [extParams, extPayload] = dp(_subpath, data);
+        const apiPath = nx.tmpl(_subpath, extParams);
+        const options = { ..._opts, ...inOptions };
+        const dataType = options.dataType || baseDataType;
+        const body = nx.DataTransform[dataType](extPayload);
+        const url = baseURL + basePath + apiPath;
 
         return client
           .request({
@@ -84,7 +81,7 @@ const httpSchema = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any 
             method,
             timeout,
             headers,
-            params,
+            params: extPayload,
             data: isGetStyle ? undefined : body,
             ...options,
           })
