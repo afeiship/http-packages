@@ -10,8 +10,5 @@
       "message": "chore(release): publish",
       "registry": "https://registry.npmjs.org"
     }
-  },
-  "lifecycle": {
-    "version": "npm run build"
   }
 }
