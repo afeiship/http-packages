@@ -9,11 +9,9 @@
     "publish": {
       "message": "chore(release): publish",
       "registry": "https://registry.npmjs.org"
-    },
-    "prepublish": {
-      "ignore": ["packages/websites"],
-      "script": "build",
-      "args": ["--scope", "@jswork/*"]
     }
+  },
+  "lifecycle": {
+    "version": "npm run build"
   }
 }
