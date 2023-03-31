@@ -93,7 +93,7 @@ const httpSchema = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any 
     });
   });
 
-  // harmony: inject to nx
+  // harmony: inject to nx(ts not work)
   if (harmony) nx.set(nx, '$api', api);
 
   return { api, client };
