@@ -46,7 +46,7 @@ describe.skip('interceptor', () => {
 
   // 1. test with params
   test('get case with params', async () => {
-    const { api, context } = httpSchema({
+    const { api, client } = httpSchema({
       baseURL: 'https://api.github.com',
       request: ['', 'json'],
       interceptors,
