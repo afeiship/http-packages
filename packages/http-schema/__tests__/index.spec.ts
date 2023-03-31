@@ -2,7 +2,7 @@ import httpSchema from '../src';
 
 jest.setTimeout(50 * 1000);
 
-describe.skip('api.basic', () => {
+describe('api.basic', () => {
   test('get-started case', async () => {
     const { api } = httpSchema({
       baseURL: 'https://api.github.com',
@@ -23,7 +23,7 @@ describe.skip('api.basic', () => {
 
   // 1. test with params
   test('get case with params', async () => {
-    const { api, context } = httpSchema({
+    const { api, client } = httpSchema({
       baseURL: 'https://api.github.com',
       request: ['', 'json'],
       items: [

@@ -1,7 +1,7 @@
 import httpSchema from '../src';
 
 jest.setTimeout(50 * 1000);
-describe.skip('httpbin basic', () => {
+describe.only('httpbin basic', () => {
   // 测试单个 API 的请求
   test('test single api request', async () => {
     const { api } = httpSchema({

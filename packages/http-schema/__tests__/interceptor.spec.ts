@@ -24,7 +24,7 @@ const interceptors = [
   },
 ] as Interceptor[];
 
-describe.skip('interceptor', () => {
+describe('interceptor', () => {
   test('get-started case', async () => {
     const { api } = httpSchema({
       baseURL: 'https://api.github.com',

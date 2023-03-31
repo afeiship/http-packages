@@ -24,7 +24,7 @@ export type ConfigItem = {
   suffix?: string;
   request?: RequestPair;
   transform?: (res) => any;
-  items: Record<string, [string, string]>;
+  items: Record<string, [string, string, any?]>;
 } & ExtendAxiosConfig;
 
 export type Config = {
@@ -62,7 +62,7 @@ const httpSchema = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any 
     const baseURL = item.baseURL || inConfig.baseURL || `${location.protocol}//${location.host}`;
     const transform = item.transform || inConfig.transform || nx.stubValue;
     const timeout = item.timeout || inConfig.timeout;
-    const headers = nx.mix(null, inConfig.headers, item.headers);
+    const headers = { ...inConfig.headers, ...item.headers };
 
     nx.each(item.items, function (key, _item) {
       const apiKey = prefix + key + suffix;
@@ -72,7 +72,7 @@ const httpSchema = (inConfig: Config, inInitOptions?: CreateAxiosDefaults): any 
         const isGetStyle = URL_ACTIONS.includes(method);
         const dpData = dp(_item[1], data);
         const apiPath = nx.tmpl(_item[1], dpData[0]);
-        const options = nx.mix(null, _item[2], inOptions);
+        const options = { ..._item[2], ...inOptions };
         const dataType = options.dataType || request![1];
         const params = dpData[1];
         const body = nx.DataTransform[dataType](dpData[1]);
