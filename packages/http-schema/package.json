@@ -36,7 +36,7 @@
   "dependencies": {
     "@jswork/http-data-parser": "^1.0.4",
     "@jswork/next-data-transform": "^1.0.5",
-    "@jswork/next-tmpl": "^1.0.4",
+    "@jswork/next-tmpl": "^1.0.6",
     "axios": "^1.3.2"
   },
   "publishConfig": {

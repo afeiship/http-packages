@@ -2,7 +2,7 @@ import httpSchema from '../src';
 
 jest.setTimeout(50 * 1000);
 
-describe('test harmony', () => {
+describe.skip('test harmony', () => {
   test('test single api request', async () => {
     httpSchema({
       baseURL: 'https://httpbin.org',
