@@ -8,32 +8,14 @@
 
 ## installation
 ```bash
-npm install -S @jswork/next-parse-request-args
+yarn add @jswork/next-parse-request-args
 ```
 
 ## usage
 ```js
 import '@jswork/next-parse-request-args';
 
-// input:
-// 1. (config)
-// 2. (url)
-// 3. (url, config)
-// 4. (method, config)
-// 5. (method, url)
-// 6. (method, url, config)
-// 7. (method, url, data, config)
-
-// output:
-{
-  url: '/api/v1',
-  method:'get',
-  data: { query:1, zx:1 },
-  headers: { 
-    'Authorization': 'eyJhbGciOiJIUzUxMiJ9',
-    'Content-Type': 'application/json' 
-  }
-}
+//DOCS here!
 ```
 
 ## license
