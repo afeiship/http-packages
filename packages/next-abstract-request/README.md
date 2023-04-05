@@ -8,58 +8,14 @@
 
 ## installation
 ```bash
-npm install -S @jswork/next-abstract-request
+yarn add @jswork/next-abstract-request
 ```
-
-## apis
-| api     | params                               | description                 |
-| ------- | ------------------------------------ | --------------------------- |
-| request | (inUrl, inMethod, inData, inOptions) | The entry api               |
-| get     | (inUrl, inData, inOptions)           | The get api                 |
-| post    | (inUrl, inData, inOptions)           | The post api                |
-| delete  | (inUrl, inData, inOptions)           | The delete api              |
-| put     | (inUrl, inData, inOptions)           | The put api                 |
-| patch   | (inUrl, inData, inOptions)           | The patch api               |
-| head    | (inUrl, inData, inOptions)           | The head api                |
-| options | (inUrl, inData, inOptions)           | The options api             |
-
-
 
 ## usage
 ```js
-import NxAbstractRequest from '@jswork/next-abstract-request';
-// https://github.com/afeiship/next-fetch/blob/master/src/index.js
+import '@jswork/next-abstract-request';
 
-var DEFAULT_OPTIONS = {
-  pipeStyle: 'fetch',
-  dataType: 'json',
-  responseType: 'json',
-  interceptors: [],
-  transformRequest: nx.stubValue,
-  transformResponse: nx.stubValue,
-  transformError: nx.stubValue
-};
-
-var BetterFetch = nx.declare('nx.BetterFetch', {
-  extends: NxAbstractRequest,
-  methods: {
-    defaults: function () {
-      return DEFAULT_OPTIONS;
-    },
-    request: function (inMethod, inUrl, inData, inOptions) {
-      var options = nx.mix(null, this.options, inOptions);
-      var isGET = inMethod === 'get';
-      var body = isGET ? null : NxDataTransform[options.dataType](inData);
-      var url = isGET ? nxParam(inData, inUrl) : inUrl;
-      var headers = { 'Content-Type': nxContentType(options.dataType) };
-      var config = nxDeepAssign({ method: inMethod, body: body, headers: headers }, options);
-      var responseHandler = options.responseType
-        ? nxToAction(options.responseType)
-        : nx.stubValue;
-      return options.fetch(url, config).then(responseHandler);
-    }
-  }
-});
+//DOCS here!
 ```
 
 ## license

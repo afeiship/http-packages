@@ -1,10 +1,9 @@
-(function() {
-  const NxAbstractRequest = require('../src');
+require('../src');
 
-  describe('NxAbstractRequest.methods', function() {
-    test('init', function() {
-      const data = { key: 1, value: 2 };
-      expect(!!data).toBe(true);
-    });
+jest.setTimeout(60 * 1000);
+
+describe('api.basic test', () => {
+  test('nx.boilerplatePackage', function () {
+    console.log('hello next');
   });
-})();
+});

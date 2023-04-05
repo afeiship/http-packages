@@ -1,0 +1,3 @@
+interface NxStatic {
+  AbstractRequest: any;
+}

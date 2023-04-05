@@ -1,48 +1,37 @@
-(function () {
-  var global = typeof window !== 'undefined' ? window : this || Function('return this')();
-  var nx = global.nx || require('@jswork/next');
-  var nxStubSingleton = nx.stubSingleton || require('@jswork/next-stub-singleton');
-  var nxParseRequestArgs = nx.parseArgs || require('@jswork/next-parse-request-args');
-  var NxInterceptor = nx.Interceptor || require('@jswork/next-interceptor');
-  var nxFetchWithResponseType = nx.fetchWithResponseType || require('@jswork/next-fetch-with-response-type');
-  var TYPES = ['request', 'response', 'error'];
-  var MSG_IMPL = 'Must be implement.';
-  var defaults = {
-    pipeStyle: 'fetch',
-    dataType: 'json',
-    responseType: 'json',
-    interceptors: [],
-    transformRequest: nx.stubValue,
-    transformResponse: nx.stubValue,
-    transformError: nx.stubValue
-  };
+import nx from '@jswork/next';
 
-  var NxAbstractRequest = nx.declare('nx.AbstractRequest', {
-    statics: nx.mix(null, nxStubSingleton()),
-    methods: {
-      init: function (inOptions) {
-        this.opts = nx.mix(null, defaults, this.defaults(), inOptions);
-        this.interceptor = new NxInterceptor({items: this.opts.interceptors, types: TYPES});
-        this.httpRequest =
-          this.opts.pipeStyle === 'fetch' ? nxFetchWithResponseType(this.opts.fetch) : this.opts.fetch;
-      },
-      defaults: function () {
-        return null;
-      },
-      request: function (inMethod, inUrl, inData, inOptions) {
-        nx.error(MSG_IMPL);
-      },
-      'get,post,put,patch,delete,head,options': function (inMethod) {
-        return function () {
-          var inputArgs = [inMethod].concat(nx.slice(arguments));
-          var args = nxParseRequestArgs(inputArgs, true);
-          return this.request.apply(this, args);
-        };
-      }
+import '@jswork/next-stub-singleton';
+import '@jswork/next-parse-request-args';
+import '@jswork/next-interceptor';
+
+const MSG_IMPL = 'Must be implement.';
+const defaults = {
+  dataType: 'json',
+  responseType: 'json',
+  interceptors: [],
+  transformRequest: nx.stubValue,
+  transformResponse: nx.stubValue,
+  transformError: nx.stubValue
+};
+
+const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
+  statics: nx.mix(null, nx.stubSingleton()),
+  methods: {
+    init: function (inOptions) {
+      this.opts = nx.mix(null, defaults, this.defaults(), inOptions);
+      this.interceptor = new nx.Interceptor({ items: this.opts.interceptors });
+    },
+    defaults: function () {
+      return null;
+    },
+    request: function (inMethod, inUrl, inData, inOptions) {
+      nx.error(MSG_IMPL);
     }
-  });
-
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = NxAbstractRequest;
   }
-})();
+});
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = NxAbstractRequest;
+}
+
+export default NxAbstractRequest;
