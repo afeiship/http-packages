@@ -40,6 +40,8 @@ const httpRestConfig = (inHttpClient, inConfig) => {
       };
     });
   });
+
+  return apiConfig;
 };
 
 // for commonjs es5 require
