@@ -32,7 +32,7 @@ const httpRestConfig = (inHttpClient, inConfig) => {
         const contentType = nx.contentType(dataType);
 
         // when headers is null
-        nx.mix(options, { headers: options.headers || {}, dataType: dataType });
+        nx.mix(options, { headers: options.headers || {}, dataType });
         nx.mix(options.headers, { 'Content-Type': nx.contentType(dataType) });
         if (!contentType) delete options.headers['Content-Type'];
 
