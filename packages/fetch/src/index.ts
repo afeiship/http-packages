@@ -14,7 +14,7 @@ let stdFetch;
 if (typeof fetch !== 'undefined') stdFetch = fetch;
 
 try {
-  stdFetch = require('node-fetch');
+  stdFetch = require('node-fetch').default;
 } catch (error) {
   console.error('To use fetch in Node.js environment, please install "node-fetch" package:');
   console.error('yarn add node-fetch@2.6.7');
