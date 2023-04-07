@@ -1,5 +1,8 @@
 type FetchFn = (inUrl: string, inOptions: RequestInit) => Response;
+type Middleware = (inFetch: FetchFn) => FetchFn;
 
 interface NxStatic {
-  applyFetchMiddleware: (fns: FetchFn[]) => FetchFn;
+  applyFetchMiddleware: (
+    middlewares: Middleware[]
+  ) => (inUrl: string, inOptions: RequestInit) => Response;
 }
