@@ -1,18 +1,17 @@
-(function () {
-  var global = global || this || window || Function('return this')();
-  var nx = global.nx || require('@jswork/next');
-  var nxCompose = nx.compose || require('@jswork/next-compose');
+import nx from '@jswork/next';
+import '@jswork/next-compose';
 
-  nx.applyFetchMiddleware = function (inMiddlewares) {
-    return function (inFetch) {
-      return function (url, options) {
-        var composeFetch = nxCompose.apply(null, inMiddlewares)(inFetch);
-        return composeFetch(url, options);
-      };
+nx.applyFetchMiddleware = function (inMiddlewares) {
+  return function (inFetch) {
+    return function (url, options) {
+      const composedFetch = nx.compose.apply(null, inMiddlewares)(inFetch);
+      return composedFetch(url, options);
     };
   };
+};
 
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = nx.applyFetchMiddleware;
-  }
-})();
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = nx.applyFetchMiddleware;
+}
+
+export default nx.applyFetchMiddleware;
