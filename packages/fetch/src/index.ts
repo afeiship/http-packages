@@ -15,14 +15,13 @@ if (typeof fetch !== 'undefined') stdFetch = fetch;
 
 try {
   stdFetch = require('node-fetch').default;
+  globalObject['fetch'] = stdFetch;
 } catch (error) {
   console.error('To use fetch in Node.js environment, please install "node-fetch" package:');
   console.error('yarn add node-fetch@2.6.7');
   process.exit(1);
 }
 
-// override default fetch
-globalObject['fetch'] = stdFetch;
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = stdFetch;
