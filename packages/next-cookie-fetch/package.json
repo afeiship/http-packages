@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-cookie-fetch",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Node fetch meet cookie.",
   "homepage": "https://github.com/afeiship/next-cookie-fetch",
   "author": {
@@ -38,7 +38,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.1",
+    "@jswork/fetch": "^1.0.2",
     "fetch-cookie": "^0.11.0",
     "node-fetch": "^2.6.1",
     "tough-cookie": "^4.0.0"

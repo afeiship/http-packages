@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch-with-cancelable",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Cancelable fetch middleware for next.",
   "homepage": "https://github.com/afeiship/next-fetch-with-cancelable",
   "author": {
@@ -51,7 +51,7 @@
     "destory"
   ],
   "dependencies": {
-    "@jswork/fetch": "^1.0.1"
+    "@jswork/fetch": "^1.0.2"
   },
   "gitHead": "d669b2f198b5ac8016ad48dd5d24d8367797b237"
 }

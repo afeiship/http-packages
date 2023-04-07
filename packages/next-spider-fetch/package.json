@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-spider-fetch",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Fetch special for spider.",
   "homepage": "https://github.com/afeiship/next-spider-fetch",
   "author": {
@@ -38,14 +38,14 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.1",
-    "@jswork/next-apply-fetch-middleware": "^1.0.3",
-    "@jswork/next-fetch-with-debug": "^1.0.2",
-    "@jswork/next-fetch-with-delay": "^1.0.1",
+    "@jswork/fetch": "^1.0.2",
+    "@jswork/next-apply-fetch-middleware": "^1.0.4",
+    "@jswork/next-fetch-with-debug": "^1.0.3",
+    "@jswork/next-fetch-with-delay": "^1.0.2",
     "@jswork/next-fetch-with-node-timeout": "^1.0.0",
-    "@jswork/next-fetch-with-proxy": "^1.0.2",
-    "@jswork/next-fetch-with-random-ua": "^1.0.2",
-    "@jswork/next-fetch-with-retry": "^1.0.3",
+    "@jswork/next-fetch-with-proxy": "^1.0.3",
+    "@jswork/next-fetch-with-random-ua": "^1.0.3",
+    "@jswork/next-fetch-with-retry": "^1.0.4",
     "node-fetch": "^2.6.1"
   },
   "keywords": [
