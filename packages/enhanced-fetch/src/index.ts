@@ -21,6 +21,8 @@ const defaults = {
 const middlewareResponseType =
   (inFetch) => (inUrl: RequestInfo | URL, inInit?: EnhancedRequestInit) => {
     const { responseType, ...options } = { ...defaults, ...inInit };
+    console.log('inInit', inInit);
+
     return inFetch(inUrl, options).then((response) => {
       if (responseType) {
         return response[responseType]();
@@ -73,9 +75,9 @@ const destroyFetch = (inFetch) => (inUrl: RequestInfo | URL, inInit?: EnhancedRe
 const enhancedFetch = (inUrl: RequestInfo | URL, inInit?: EnhancedRequestInit) => {
   const { timeout, destroyable, responseType, ...options } = { ...defaults, ...inInit };
   const betterFetch = nx.applyFetchMiddleware([
+    middlewareResponseType,
     middlewareTimeout,
     destroyFetch,
-    middlewareResponseType,
   ])(fetch as any) as any;
 
   return betterFetch(inUrl, options);
