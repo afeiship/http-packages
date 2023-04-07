@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-apply-fetch-middleware",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fetch meet middlewares.",
   "homepage": "https://js.work",
   "author": {
@@ -46,5 +46,17 @@
   },
   "dependencies": {
     "@jswork/next-compose": "^1.1.3"
-  }
+  },
+  "keywords": [
+    "cache",
+    "cross",
+    "fetch",
+    "timeout",
+    "compose",
+    "next",
+    "nx",
+    "plugin",
+    "http",
+    "schema"
+  ]
 }
