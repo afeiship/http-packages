@@ -1,6 +1,6 @@
 {
   "name": "@jswork/weapp-http-schema",
-  "version": "1.0.15",
+  "version": "2.0.0",
   "description": "Http schema for weapp.",
   "main": "dist/index.js",
   "scripts": {
@@ -33,6 +33,7 @@
   "dependencies": {
     "@jswork/fetch": "^1.0.0",
     "@jswork/http-rest-config": "^1.0.10",
+    "@jswork/next-apply-fetch-middleware": "^1.0.2",
     "@jswork/next-fetch": "^1.1.14",
     "@jswork/next-fetch-with-debug": "^1.0.1",
     "@jswork/next-fetch-with-response-type": "^1.0.0",
