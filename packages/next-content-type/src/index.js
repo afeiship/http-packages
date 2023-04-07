@@ -5,6 +5,11 @@ const TYPES = {
   multipart: 'multipart/form-data',
   json: 'application/json;charset=utf-8',
   raw: 'text/plain',
+  text: 'text/plain',
+  blob: 'application/octet-stream',
+  arraybuffer: 'application/octet-stream',
+  stream: 'application/octet-stream',
+  document: 'application/xml',
   auto: null
 };
 
