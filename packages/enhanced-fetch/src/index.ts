@@ -22,12 +22,11 @@ const defaults: EnhancedRequestInit = {
 const enhancedFetch = (inUrl: RequestInfo | URL, inInit?: EnhancedRequestInit) => {
   const options = { ...defaults, ...inInit };
   const enhanced = nx.applyFetchMiddleware([
+    // Must be in first: because override promise method.
+    middlewareDebug,
+    middlewareDestroy,
     middlewareResponseType,
     middlewareTimeout,
-    middlewareDebug,
-
-    // Must be in last: because override promise method.
-    middlewareDestroy,
   ])(fetch);
 
   return enhanced(inUrl, options);
