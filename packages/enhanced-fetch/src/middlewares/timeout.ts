@@ -1,0 +1,28 @@
+import { MiddleWareFunction } from '../types';
+
+const defaults = { timeout: 0 };
+
+export const middlewareTimeout: MiddleWareFunction = (inFetch) => (inUrl, inInit?) => {
+  const { timeout, ...options } = { ...defaults, ...inInit };
+  if (timeout <= 0) return inFetch(inUrl, options);
+  const controller = new AbortController();
+  const { signal } = controller;
+
+  // set timeout timer.
+  const timeoutId = setTimeout(() => {
+    controller.abort();
+  }, timeout);
+
+  return inFetch(inUrl, { ...options, signal })
+    .then((response) => {
+      clearTimeout(timeoutId);
+      return response;
+    })
+    .catch((error) => {
+      if (error.name === 'AbortError') {
+        throw new Error('Timeout');
+      } else {
+        throw error;
+      }
+    });
+};

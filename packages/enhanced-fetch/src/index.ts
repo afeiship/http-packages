@@ -1,86 +1,25 @@
 import nx from '@jswork/next';
+import { EnhancedRequestInit, ResponseType } from './types';
 import '@jswork/next-apply-fetch-middleware';
 import '@jswork/fetch';
 
-export type ResponseType = 'json' | 'text' | 'blob' | 'arrayBuffer' | null;
-export type FetchFn = (input: RequestInfo | URL, init?: RequestInit) => Response;
+import { middlewareResponseType, middlewareTimeout, middlewareDestroy } from './middlewares';
 
-export interface EnhancedRequestInit extends RequestInit {
-  timeout?: number;
-  destroyable?: boolean;
-  responseType?: ResponseType;
-}
-
-const defaults = {
+const defaults: EnhancedRequestInit = {
   timeout: 0,
   destroyable: false,
   responseType: 'json',
 };
-// input: RequestInfo | URL, init?: RequestInit
-
-const middlewareResponseType =
-  (inFetch) => (inUrl: RequestInfo | URL, inInit?: EnhancedRequestInit) => {
-    const { responseType, ...options } = { ...defaults, ...inInit };
-    console.log('inInit', inInit);
-
-    return inFetch(inUrl, options).then((response) => {
-      if (responseType) {
-        return response[responseType]();
-      } else {
-        return response;
-      }
-    });
-  };
-
-const middlewareTimeout = (inFetch) => (inUrl: RequestInfo | URL, inInit?: EnhancedRequestInit) => {
-  const { timeout, ...options } = { ...defaults, ...inInit };
-  if (timeout <= 0) return inFetch(inUrl, options);
-  const controller = new AbortController();
-  const { signal } = controller;
-
-  // set timeout timer.
-  const timeoutId = setTimeout(() => {
-    controller.abort();
-  }, timeout);
-
-  return inFetch(inUrl, { ...options, signal })
-    .then((response) => {
-      clearTimeout(timeoutId);
-      return response;
-    })
-    .catch((error) => {
-      if (error.name === 'AbortError') {
-        throw new Error('Timeout');
-      } else {
-        throw error;
-      }
-    });
-};
-
-const destroyFetch = (inFetch) => (inUrl: RequestInfo | URL, inInit?: EnhancedRequestInit) => {
-  const { destroyable, ...options } = { ...defaults, ...inInit };
-  if (!destroyable) return inFetch(inUrl, options);
-
-  const controller = new AbortController();
-  const signal = controller.signal;
-  const promise = fetch(inUrl, { signal, ...options });
-
-  promise['destroy'] = () => {
-    controller.abort();
-  };
-
-  return promise;
-};
 
 const enhancedFetch = (inUrl: RequestInfo | URL, inInit?: EnhancedRequestInit) => {
-  const { timeout, destroyable, responseType, ...options } = { ...defaults, ...inInit };
-  const betterFetch = nx.applyFetchMiddleware([
+  const options = { ...defaults, ...inInit };
+  const enhanced = nx.applyFetchMiddleware([
     middlewareResponseType,
     middlewareTimeout,
-    destroyFetch,
-  ])(fetch as any) as any;
+    middlewareDestroy,
+  ])(fetch);
 
-  return betterFetch(inUrl, options);
+  return enhanced(inUrl, options);
 };
 
 // for commonjs es5 require
