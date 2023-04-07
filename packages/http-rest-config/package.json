@@ -12,7 +12,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@jswork/next-content-type": "^1.0.7"
+    "@jswork/next-content-type": "^1.0.7",
+    "@jswork/next-difference": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
