@@ -1,4 +1,4 @@
-type FetchFn = (inUrl: string, inOptions: RequestInit) => Response;
+type FetchFn = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 type Middleware = (inFetch: FetchFn) => FetchFn;
 
 interface NxStatic {
