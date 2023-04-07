@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch-with-content-type",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Request middleware for contentType.",
   "homepage": "https://github.com/afeiship/next-fetch-with-content-type",
   "author": {
