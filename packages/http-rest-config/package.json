@@ -1,6 +1,6 @@
 {
   "name": "@jswork/http-rest-config",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A simple rest config for react project.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -12,8 +12,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@jswork/fetch": "^1.0.0",
-    "@jswork/next-content-type": "^1.0.2"
+    "@jswork/fetch": "^1.0.1",
+    "@jswork/next-content-type": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",

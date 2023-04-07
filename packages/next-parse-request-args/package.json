@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-parse-request-args",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Request arguments parser.",
   "homepage": "https://js.work",
   "author": {
@@ -45,6 +45,6 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.0"
+    "@jswork/fetch": "^1.0.1"
   }
 }

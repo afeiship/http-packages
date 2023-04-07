@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch-with-proxy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fetch with proxy options.",
   "homepage": "https://github.com/afeiship/next-fetch-with-proxy",
   "author": {
@@ -38,7 +38,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.0",
+    "@jswork/fetch": "^1.0.1",
     "proxy-agent": "^4.0.0"
   },
   "keywords": [

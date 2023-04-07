@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch-with-debug",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Debug middleware for next fetch.",
   "homepage": "https://github.com/afeiship/next-fetch-with-debug",
   "author": {
@@ -44,6 +44,6 @@
     "middleware"
   ],
   "dependencies": {
-    "@jswork/fetch": "^1.0.0"
+    "@jswork/fetch": "^1.0.1"
   }
 }

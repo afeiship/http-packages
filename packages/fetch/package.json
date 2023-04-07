@@ -1,6 +1,6 @@
 {
   "name": "@jswork/fetch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get standard fetch from any environment.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

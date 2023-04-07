@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch-with-timeout",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Fetch with timeout options.",
   "homepage": "https://github.com/afeiship/next-fetch-with-timeout",
   "author": {
@@ -46,6 +46,6 @@
     "timeout"
   ],
   "dependencies": {
-    "@jswork/fetch": "^1.0.0"
+    "@jswork/fetch": "^1.0.1"
   }
 }
