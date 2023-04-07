@@ -40,5 +40,6 @@
     "@jswork/next-fetch-with-debug": "^1.0.2",
     "@jswork/next-fetch-with-response-type": "^1.0.1",
     "@jswork/next-fetch-with-timeout": "^1.0.6"
-  }
+  },
+  "gitHead": "d669b2f198b5ac8016ad48dd5d24d8367797b237"
 }

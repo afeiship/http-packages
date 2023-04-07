@@ -53,5 +53,6 @@
   "dependencies": {
     "@jswork/fetch": "^1.0.1",
     "@jswork/next-json": "^1.0.2"
-  }
+  },
+  "gitHead": "d669b2f198b5ac8016ad48dd5d24d8367797b237"
 }

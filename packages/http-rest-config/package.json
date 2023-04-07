@@ -54,5 +54,6 @@
       ],
       "@babel/preset-typescript"
     ]
-  }
+  },
+  "gitHead": "d669b2f198b5ac8016ad48dd5d24d8367797b237"
 }
