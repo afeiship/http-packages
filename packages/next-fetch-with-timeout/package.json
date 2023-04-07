@@ -45,8 +45,5 @@
     "middleware",
     "timeout"
   ],
-  "dependencies": {
-    "@jswork/fetch": "^1.0.3"
-  },
   "gitHead": "5995e004fbc20bb63e28c70fa66bb741b99f75d9"
 }

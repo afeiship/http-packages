@@ -51,7 +51,6 @@
     "@tarojs/taro": "^3.2.8"
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.3",
     "@jswork/next-json": "^1.0.2"
   },
   "gitHead": "5995e004fbc20bb63e28c70fa66bb741b99f75d9"

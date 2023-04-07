@@ -38,7 +38,6 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.3",
     "proxy-agent": "^4.0.0"
   },
   "keywords": [

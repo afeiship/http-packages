@@ -33,7 +33,6 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.3",
     "@jswork/http-data-parser": "^1.0.7",
     "@jswork/next-data-transform": "^1.0.8",
     "@jswork/next-tmpl": "^1.0.6",

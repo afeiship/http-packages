@@ -9,8 +9,5 @@
   },
   "keywords": [],
   "author": "afeiship",
-  "license": "MIT",
-  "dependencies": {
-    "@jswork/fetch": "^1.0.0"
-  }
+  "license": "MIT"
 }
