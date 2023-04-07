@@ -1,5 +1,5 @@
 import nx from '@jswork/next';
-import { EnhancedRequestInit } from './types';
+import { EnhancedRequestInit, FetchFn } from './types';
 import '@jswork/next-apply-fetch-middleware';
 import '@jswork/fetch';
 
@@ -19,7 +19,7 @@ const defaults: EnhancedRequestInit = {
   responseType: 'json',
 };
 
-const enhancedFetch = (inUrl: RequestInfo | URL, inInit?: EnhancedRequestInit) => {
+const enhancedFetch: FetchFn = (inUrl, inInit?) => {
   const options = { ...defaults, ...inInit };
   const enhanced = nx.applyFetchMiddleware([
     // Must be in first: because override promise method.
