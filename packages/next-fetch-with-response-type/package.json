@@ -43,7 +43,6 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.6",
     "@jswork/next-to-action": "^1.0.0"
   },
   "keywords": [
