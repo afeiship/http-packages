@@ -8,7 +8,7 @@ export const middlewareDestroy: MiddleWareFunction = (inFetch) => (inUrl, inInit
 
   const controller = new AbortController();
   const signal = controller.signal;
-  const promise = fetch(inUrl, { signal, ...options });
+  const promise = inFetch(inUrl, { signal, ...options });
 
   promise['destroy'] = () => {
     controller.abort();
