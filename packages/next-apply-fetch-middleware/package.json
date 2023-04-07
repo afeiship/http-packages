@@ -45,6 +45,6 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/next-compose": "^1.1.2"
+    "@jswork/next-compose": "^1.1.3"
   }
 }
