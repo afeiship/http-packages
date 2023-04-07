@@ -1,6 +1,6 @@
 {
   "name": "@jswork/http-data-parser",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Http client url and data parser.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -40,7 +40,7 @@
     "plugin"
   ],
   "dependencies": {
-    "@jswork/fetch": "^1.0.2"
+    "@jswork/fetch": "^1.0.3"
   },
   "gitHead": "f6913dccf51d6cd5bee395a9a32a8a6e999b5b40"
 }

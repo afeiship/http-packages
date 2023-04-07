@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch-with-response-type",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Request middleware for responseType.",
   "homepage": "https://github.com/afeiship/next-fetch-with-response-type",
   "author": {
@@ -43,7 +43,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.2",
+    "@jswork/fetch": "^1.0.3",
     "@jswork/next-to-action": "^1.0.0"
   },
   "keywords": [

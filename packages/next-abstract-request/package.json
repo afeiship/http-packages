@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-abstract-request",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Standard abstract request.",
   "homepage": "https://js.work",
   "author": {
@@ -45,7 +45,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.2"
+    "@jswork/fetch": "^1.0.3"
   },
   "gitHead": "f6913dccf51d6cd5bee395a9a32a8a6e999b5b40"
 }

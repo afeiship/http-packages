@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "description": "Abstract for browser or node.",
   "homepage": "https://github.com/afeiship/next-fetch",
   "author": {
@@ -41,10 +41,10 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.2",
-    "@jswork/next-abstract-request": "^1.0.14",
-    "@jswork/next-content-type": "^1.0.4",
-    "@jswork/next-data-transform": "^1.0.7",
+    "@jswork/fetch": "^1.0.3",
+    "@jswork/next-abstract-request": "^1.0.15",
+    "@jswork/next-content-type": "^1.0.5",
+    "@jswork/next-data-transform": "^1.0.8",
     "@jswork/next-deep-assign": "^1.0.2",
     "@jswork/next-param": "^1.0.2",
     "@jswork/next-to-action": "^1.0.0"

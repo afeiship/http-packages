@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-data-transform",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Data transform for next.",
   "homepage": "https://github.com/afeiship/next-data-transform",
   "author": {
@@ -36,7 +36,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.2",
+    "@jswork/fetch": "^1.0.3",
     "@jswork/next-param": "^1.0.0"
   },
   "keywords": [
