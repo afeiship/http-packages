@@ -39,7 +39,7 @@
     "@jswork/next-fetch-with-proxy": "^1.0.5",
     "@jswork/next-fetch-with-random-ua": "^1.0.5",
     "@jswork/next-fetch-with-timeout": "^1.0.9",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "2.6.7"
   },
   "gitHead": "5995e004fbc20bb63e28c70fa66bb741b99f75d9"
 }

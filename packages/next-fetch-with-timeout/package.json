@@ -29,9 +29,7 @@
     "gulp-uglify": "^3.0.2",
     "jest": "^26.6.3",
     "node-abort-controller": "^2.0.0",
-    "node-fetch": "^2.6.1",
-    "prettier": "^2.1.2",
-    "release-it": "^14.2.1",
+    "node-fetch": "2.6.7",
     "uglify-js": "3.11.6",
     "uglify-save-license": "^0.4.1"
   },
