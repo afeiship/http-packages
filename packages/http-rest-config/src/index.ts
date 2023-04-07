@@ -16,6 +16,7 @@ const STD_RESOURCE_ACTIONS = {
 
 const STD_KEYS = Object.keys(STD_RESOURCE_ACTIONS);
 const normalizeResource = (inResources) => {
+  if (!inResources?.length) return [];
   return inResources.map((resource) => {
     const { name, only, except, ...others } = resource;
     const items = {};
