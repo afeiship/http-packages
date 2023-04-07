@@ -12,10 +12,18 @@ npm install @jswork/enhanced-fetch
 ```
 
 ## usage
+<img src="https://tva1.js.work/large/da432263ly1hcrexb1a6mj212g0jy794.jpg" width="800" alt="snapshot" />
+
 ```js
 import enhancedFetch from '@jswork/enhanced-fetch';
 
-// usage goes here.
+const opts = {
+  debug: true,
+  timeout: 1000,
+  resposneType: 'json'
+};
+
+const res = await enhancedFetch('https://api.github.com/users/afeiship', opts);
 ```
 
 ## license

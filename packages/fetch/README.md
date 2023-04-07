@@ -8,14 +8,20 @@
 
 ## installation
 ```shell
-npm install @jswork/fetch
+# browser + bun
+yarn add @jswork/fetch
+
+# nodejs
+yarn add @jswork/fetch node-fetch@2.6.7
 ```
 
 ## usage
 ```js
 import fetch from '@jswork/fetch';
 
-// usage goes here.
+// as usually
+const res = await fetch('https://api.github.com/users/afeiship');
+console.log(res);
 ```
 
 ## license
