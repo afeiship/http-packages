@@ -4,5 +4,6 @@ export type MiddleWareFunction = (inFetch: FetchFn) => FetchFn;
 export interface EnhancedRequestInit extends RequestInit {
   timeout?: number;
   destroyable?: boolean;
+  debug?: boolean;
   responseType?: ResponseType;
 }

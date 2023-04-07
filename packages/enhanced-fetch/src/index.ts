@@ -1,12 +1,20 @@
 import nx from '@jswork/next';
-import { EnhancedRequestInit, ResponseType } from './types';
+import { EnhancedRequestInit } from './types';
 import '@jswork/next-apply-fetch-middleware';
 import '@jswork/fetch';
 
-import { middlewareResponseType, middlewareTimeout, middlewareDestroy } from './middlewares';
+// import middlewares
+import {
+  middlewareResponseType,
+  middlewareTimeout,
+  middlewareDestroy,
+  middlewareDebug,
+} from './middlewares';
 
+// default value
 const defaults: EnhancedRequestInit = {
   timeout: 0,
+  debug: false,
   destroyable: false,
   responseType: 'json',
 };
@@ -17,6 +25,7 @@ const enhancedFetch = (inUrl: RequestInfo | URL, inInit?: EnhancedRequestInit) =
     middlewareResponseType,
     middlewareTimeout,
     middlewareDestroy,
+    middlewareDebug,
   ])(fetch);
 
   return enhanced(inUrl, options);
