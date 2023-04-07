@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@jswork/fetch": "^1.0.0",
     "@jswork/next-content-type": "^1.0.2"
   },
   "devDependencies": {

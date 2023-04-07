@@ -39,6 +39,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
+    "@jswork/fetch": "^1.0.0",
     "@jswork/next-compose": "^1.0.0"
   },
   "keywords": [

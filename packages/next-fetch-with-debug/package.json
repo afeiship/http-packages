@@ -42,5 +42,8 @@
     "fetch",
     "debug",
     "middleware"
-  ]
+  ],
+  "dependencies": {
+    "@jswork/fetch": "^1.0.0"
+  }
 }

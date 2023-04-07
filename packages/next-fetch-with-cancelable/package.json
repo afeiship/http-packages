@@ -49,5 +49,8 @@
     "request",
     "cancel",
     "destory"
-  ]
+  ],
+  "dependencies": {
+    "@jswork/fetch": "^1.0.0"
+  }
 }
