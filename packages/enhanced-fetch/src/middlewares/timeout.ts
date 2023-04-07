@@ -19,10 +19,7 @@ export const middlewareTimeout: MiddleWareFunction = (inFetch) => (inUrl, inInit
       return response;
     })
     .catch((error) => {
-      if (error.name === 'AbortError') {
-        throw new Error('Timeout');
-      } else {
-        throw error;
-      }
+      const isAbortErr = error.name === 'AbortError';
+      throw isAbortErr ? new Error('Timeout') : error;
     });
 };
