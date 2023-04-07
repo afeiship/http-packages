@@ -13,7 +13,7 @@ export const middlewareTimeout: MiddleWareFunction = (inFetch) => (inUrl, inInit
     controller.abort();
   }, timeout);
 
-  return inFetch(inUrl, { ...options, signal })
+  return inFetch(inUrl, { signal, ...options })
     .then((response) => {
       clearTimeout(timeoutId);
       return response;
