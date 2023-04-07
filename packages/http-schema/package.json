@@ -1,6 +1,6 @@
 {
   "name": "@jswork/http-schema",
-  "version": "2.0.22",
+  "version": "2.0.23",
   "description": "Http schema based on next-fetch.",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -33,8 +33,8 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "@jswork/http-data-parser": "^1.0.7",
-    "@jswork/next-data-transform": "^1.0.8",
+    "@jswork/http-data-parser": "^1.0.8",
+    "@jswork/next-data-transform": "^1.0.9",
     "@jswork/next-tmpl": "^1.0.6",
     "axios": "^1.3.2"
   },

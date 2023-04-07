@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch-with-request-id",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Fetch with request id.",
   "homepage": "https://github.com/afeiship/next-fetch-with-request-id",
   "author": {

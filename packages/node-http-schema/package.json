@@ -1,6 +1,6 @@
 {
   "name": "@jswork/node-http-schema",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Http schema for nodejs.",
   "main": "dist/index.js",
   "scripts": {
@@ -32,13 +32,13 @@
   },
   "dependencies": {
     "@jswork/http-rest-config": "^1.0.10",
-    "@jswork/next-apply-fetch-middleware": "^1.0.5",
-    "@jswork/next-fetch": "^1.1.17",
-    "@jswork/next-fetch-with-debug": "^1.0.4",
-    "@jswork/next-fetch-with-delay": "^1.0.3",
-    "@jswork/next-fetch-with-proxy": "^1.0.4",
-    "@jswork/next-fetch-with-random-ua": "^1.0.4",
-    "@jswork/next-fetch-with-timeout": "^1.0.8",
+    "@jswork/next-apply-fetch-middleware": "^1.0.6",
+    "@jswork/next-fetch": "^1.1.18",
+    "@jswork/next-fetch-with-debug": "^1.0.5",
+    "@jswork/next-fetch-with-delay": "^1.0.4",
+    "@jswork/next-fetch-with-proxy": "^1.0.5",
+    "@jswork/next-fetch-with-random-ua": "^1.0.5",
+    "@jswork/next-fetch-with-timeout": "^1.0.9",
     "node-fetch": "^2.6.1"
   },
   "gitHead": "5995e004fbc20bb63e28c70fa66bb741b99f75d9"
