@@ -1,8 +1,3 @@
 interface NxStatic {
-  DataTransform: {
-    json: (data) => string;
-    urlencoded: (data) => string;
-    multipart: (data) => any;
-    raw: (data) => any;
-  };
+  // your codes goes here.
 }

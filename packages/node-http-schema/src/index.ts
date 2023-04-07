@@ -10,7 +10,6 @@ import '@jswork/next-apply-fetch-middleware';
 import nodeFetch from 'node-fetch';
 
 export default (inConfig, inOptions?) => {
-  const apiConfig = {};
   const fetch = nx.applyFetchMiddleware([
     nxFetchWithTimeout,
     nxFetchWithDelay,
@@ -24,5 +23,5 @@ export default (inConfig, inOptions?) => {
     ...inOptions
   });
 
-  return httpRestConfig(apiConfig, http, inConfig);
+  return httpRestConfig(http, inConfig);
 };
