@@ -24,8 +24,10 @@ const enhancedFetch = (inUrl: RequestInfo | URL, inInit?: EnhancedRequestInit) =
   const enhanced = nx.applyFetchMiddleware([
     middlewareResponseType,
     middlewareTimeout,
-    middlewareDestroy,
     middlewareDebug,
+
+    // Must be in last: because override promise method.
+    middlewareDestroy,
   ])(fetch);
 
   return enhanced(inUrl, options);
