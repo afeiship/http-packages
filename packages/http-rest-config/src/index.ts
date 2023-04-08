@@ -6,7 +6,7 @@ import '@jswork/next-content-type';
 import '@jswork/next-difference';
 
 const GET_STYLE = ['get', 'delete', 'head', 'options'];
-const STD_RESOURCE_ACTIONS = {
+const STD_TEMPLATES = {
   index: ['get', '@'],
   show: ['get', '@/{id}'],
   create: ['post', '@'],
@@ -14,9 +14,10 @@ const STD_RESOURCE_ACTIONS = {
   destroy: ['delete', '@/{id}'],
 } as const;
 
-const STD_KEYS = Object.keys(STD_RESOURCE_ACTIONS);
-const normalizeResource = (inResources) => {
+const normalizeResource = (inResources, inTemplates) => {
   if (!inResources?.length) return [];
+  const templates = inTemplates || STD_TEMPLATES;
+  const STD_KEYS = Object.keys(STD_TEMPLATES);
   return inResources.map((resource) => {
     const { name, only, except, ...others } = resource;
     const items = {};
@@ -29,7 +30,7 @@ const normalizeResource = (inResources) => {
 
     current.forEach((item) => {
       const key = `${name}_${item}`;
-      items[key] = STD_RESOURCE_ACTIONS[item];
+      items[key] = templates[item];
     });
 
     return { ...others, items };
@@ -38,10 +39,10 @@ const normalizeResource = (inResources) => {
 
 const httpRestConfig = (inHttpClient, inConfig) => {
   const apiConfig = {};
-  const { items, resources } = inConfig;
+  const { items, resources, templates } = inConfig;
 
   // api resources
-  const resourceItems = normalizeResource(resources);
+  const resourceItems = normalizeResource(resources, templates);
   const target = items.concat(resourceItems);
 
   target.forEach(function (item) {
