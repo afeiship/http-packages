@@ -16,11 +16,20 @@ yarn add @jswork/fetch node-fetch@2.6.7
 ```
 
 ## usage
+> Usage1: import package.
 ```js
 import fetch from '@jswork/fetch';
 
 // as usually
 const res = await fetch('https://api.github.com/users/afeiship');
+console.log(res);
+```
+
+> Usage2: Or import to global(recommend)
+```js
+import '@jswork/fetch';
+
+const res = await fetch('https://httpbin.org/get').then(r=>r.json())
 console.log(res);
 ```
 
