@@ -70,7 +70,7 @@ const httpRestConfig = (inHttpClient, inConfig) => {
         nx.mix(options.headers, { 'Content-Type': nx.contentType(dataType) });
         if (!contentType) delete options.headers['Content-Type'];
 
-        return inHttpClient.request(method, url, data, options);
+        return inHttpClient[method](url, data, options);
       };
     });
   });
