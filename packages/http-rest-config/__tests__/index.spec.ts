@@ -119,12 +119,10 @@ describe('test group', () => {
   test('get with qs in url should not stringify data', () => {
     apiService = httpRestConfig(http, config);
     const apiLogin1 = apiService.profile({ page: 1, size: 10 });
-    const apiLogin2 = apiService.profile([{ page: 1 }, { size: 10 }]);
     const expected = {
       url: 'http://dev2.demo.com/api/vi/system/profile',
       data: { page: 1, size: 10 },
     };
     expect(apiLogin1).toEqual(expected);
-    expect(apiLogin2).toEqual(expected);
   });
 });

@@ -54,15 +54,14 @@ const httpRestConfig = (inHttpClient, inConfig) => {
     nx.each(item.items, function (key, _item) {
       const apiKey = prefix + key + suffix;
       apiConfig[apiKey] = function (inData, inOptions) {
-        const data = Array.isArray(inData) ? nx.mix.apply(null, inData) : inData;
         const method = String(_item[0]).toLowerCase();
         const isGetStyle = GET_STYLE.includes(method);
         const [_subpath, _dataType] = request;
-        const [urldata, payload] = dp(_item[1], data);
-        const apiPath = nx.tmpl(_item[1], urldata);
+        const [params, payload] = dp(_item[1], inData);
+        const apiPath = nx.tmpl(_item[1], params);
         const options = nx.mix(null, _item[2], inOptions);
         const dataType = nx.get(options, 'dataType', _dataType);
-        const params = isGetStyle ? payload : nx.DataTransform[dataType](payload);
+        const data = isGetStyle ? payload : nx.DataTransform[dataType](payload);
         const url = baseURL + _subpath + apiPath;
         const contentType = nx.contentType(dataType);
 
@@ -71,7 +70,7 @@ const httpRestConfig = (inHttpClient, inConfig) => {
         nx.mix(options.headers, { 'Content-Type': nx.contentType(dataType) });
         if (!contentType) delete options.headers['Content-Type'];
 
-        return inHttpClient[method](url, params, options);
+        return inHttpClient.request(method, url, data, options);
       };
     });
   });
