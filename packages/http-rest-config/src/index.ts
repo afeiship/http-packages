@@ -1,11 +1,8 @@
-import dp from '@jswork/http-data-parser';
 import nx from '@jswork/next';
-import '@jswork/next-data-transform';
+import dp from '@jswork/http-data-parser';
 import '@jswork/next-tmpl';
-import '@jswork/next-content-type';
 import '@jswork/next-difference';
 
-const GET_STYLE = ['get', 'delete', 'head', 'options'];
 const STD_TEMPLATES = {
   index: ['get', '@'],
   show: ['get', '@/{id}'],
@@ -50,15 +47,18 @@ const httpRestConfig = (inHttpClient, inConfig) => {
     const prefix = item.prefix || inConfig.prefix || '';
     const suffix = item.suffix || inConfig.suffix || '';
     const baseURL = item.baseURL || inConfig.baseURL || `${location.protocol}//${location.host}`;
+
     // api items
     nx.each(item.items, function (key, _item) {
+      const [_method, _path, _opts] = _item;
       const apiKey = prefix + key + suffix;
+
       apiConfig[apiKey] = function (inData, inOptions) {
-        const method = String(_item[0]).toLowerCase();
+        const method = String(_method).toLowerCase();
         const [subpath, dataType] = request;
-        const [params, data] = dp(_item[1], inData);
-        const apiPath = nx.tmpl(_item[1], params);
-        const options = nx.mix({ dataType }, _item[2], inOptions);
+        const [params, data] = dp(_path, inData);
+        const apiPath = nx.tmpl(_path, params);
+        const options = nx.mix({ dataType }, _opts, inOptions);
         const url = baseURL + subpath + apiPath;
 
         return inHttpClient[method](url, data, options);
