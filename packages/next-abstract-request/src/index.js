@@ -26,6 +26,13 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
     },
     request: function (inMethod, inUrl, inData, inOptions) {
       nx.error(MSG_IMPL);
+    },
+    'get,post,put,patch,delete,head,options': function (inMethod) {
+      return function () {
+        const inputArgs = [inMethod].concat(nx.slice(arguments));
+        const args = nx.parseRequestArgs(inputArgs, true);
+        return this.request.apply(this, args);
+      };
     }
   }
 });

@@ -31,6 +31,7 @@
     "gulp-uglify": "^3.0.2",
     "jest": "^29.5.0",
     "jest-location-mock": "^1.0.9",
+    "node-fetch": "2.6.7",
     "uglify-save-license": "^0.4.1"
   },
   "babel": {
@@ -44,5 +45,10 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "gitHead": "5995e004fbc20bb63e28c70fa66bb741b99f75d9"
+  "gitHead": "5995e004fbc20bb63e28c70fa66bb741b99f75d9",
+  "dependencies": {
+    "@jswork/next-interceptor": "^1.0.9",
+    "@jswork/next-parse-request-args": "^1.0.5",
+    "@jswork/next-stub-singleton": "^1.0.6"
+  }
 }
