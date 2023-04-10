@@ -42,14 +42,14 @@ describe('test group', () => {
         },
       },
       {
-        host: 'http://dev2.demo.com',
+        baseURL: 'http://dev2.demo.com',
         items: {
           login: ['post', '/system/login'],
           profile: ['get', '/system/profile'],
         },
       },
       {
-        host: 'http://dev3.demo.com',
+        baseURL: 'http://dev3.demo.com',
         prefix: 'dev3_',
         items: {
           login: ['post', '/system/login'],
@@ -103,7 +103,7 @@ describe('test group', () => {
     apiService = httpRestConfig(http, config);
     const apiUpload = apiService.upload();
     const apiLogin = apiService.login();
-    expect(apiLogin.url).toBe('http://dev.demo.com/api/vi/system/login');
+    expect(apiLogin.url).toBe('http://dev2.demo.com/api/vi/system/login');
     expect(apiUpload.url).toBe('http://dev.demo.com/api/vi/system/upload');
   });
 
@@ -111,7 +111,7 @@ describe('test group', () => {
     apiService = httpRestConfig(http, config);
     const apiLogin = apiService.dev3_login({ abc: 111 });
     expect(apiLogin).toEqual({
-      url: 'http://dev.demo.com/api/vi/system/login',
+      url: 'http://dev3.demo.com/api/vi/system/login',
       data: JSON.stringify({ abc: 111 }),
     });
   });
@@ -121,7 +121,7 @@ describe('test group', () => {
     const apiLogin1 = apiService.profile({ page: 1, size: 10 });
     const apiLogin2 = apiService.profile([{ page: 1 }, { size: 10 }]);
     const expected = {
-      url: 'http://dev.demo.com/api/vi/system/profile',
+      url: 'http://dev2.demo.com/api/vi/system/profile',
       data: { page: 1, size: 10 },
     };
     expect(apiLogin1).toEqual(expected);
