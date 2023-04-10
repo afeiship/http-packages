@@ -55,20 +55,11 @@ const httpRestConfig = (inHttpClient, inConfig) => {
       const apiKey = prefix + key + suffix;
       apiConfig[apiKey] = function (inData, inOptions) {
         const method = String(_item[0]).toLowerCase();
-        const isGetStyle = GET_STYLE.includes(method);
-        const [_subpath, _dataType] = request;
-        const [params, payload] = dp(_item[1], inData);
+        const [subpath, dataType] = request;
+        const [params, data] = dp(_item[1], inData);
         const apiPath = nx.tmpl(_item[1], params);
-        const options = nx.mix(null, _item[2], inOptions);
-        const dataType = nx.get(options, 'dataType', _dataType);
-        const data = isGetStyle ? payload : nx.DataTransform[dataType](payload);
-        const url = baseURL + _subpath + apiPath;
-        const contentType = nx.contentType(dataType);
-
-        // when headers is null
-        nx.mix(options, { headers: options.headers || {}, dataType });
-        nx.mix(options.headers, { 'Content-Type': nx.contentType(dataType) });
-        if (!contentType) delete options.headers['Content-Type'];
+        const options = nx.mix({ dataType }, _item[2], inOptions);
+        const url = baseURL + subpath + apiPath;
 
         return inHttpClient[method](url, data, options);
       };

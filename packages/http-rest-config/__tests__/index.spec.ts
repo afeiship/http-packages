@@ -96,7 +96,7 @@ describe('test group', () => {
     expect(apiDelete.data).toBe(null);
     // normal:
     expect(apiUpload.url).toBe('http://dev.demo.com/api/vi/system/upload');
-    expect(apiUpload.data).toEqual(JSON.stringify({ filename: 'test.txt' }));
+    expect(apiUpload.data).toEqual({ filename: 'test.txt' });
   });
 
   test('items can change host', () => {
@@ -112,7 +112,7 @@ describe('test group', () => {
     const apiLogin = apiService.dev3_login({ abc: 111 });
     expect(apiLogin).toEqual({
       url: 'http://dev3.demo.com/api/vi/system/login',
-      data: JSON.stringify({ abc: 111 }),
+      data: { abc: 111 },
     });
   });
 
