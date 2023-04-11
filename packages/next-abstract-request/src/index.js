@@ -42,14 +42,16 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       const contentType = nx.contentType(dataType);
       const headers = dataType && contentType ? { 'Content-Type': contentType } : {};
       const requestConfig = { url: inUrl, method: inMethod, headers, ...payload, ...options };
+      const _transformRequest = options.transformRequest || transformRequest;
+      const _transformResponse = options.transformResponse || transformResponse;
 
       // compose request:
-      const requestTransformConfig = transformRequest(requestConfig);
+      const requestTransformConfig = _transformRequest(requestConfig);
       const requestComposeConfig = interceptor.compose(requestTransformConfig, 'request');
 
       return this.httpRequest(requestComposeConfig)
         .then((res) => {
-          const responseTransformConfig = transformResponse(res);
+          const responseTransformConfig = _transformResponse(res);
           const compose4response = { config: requestComposeConfig, ...responseTransformConfig };
           return interceptor.compose(compose4response, 'response');
         })

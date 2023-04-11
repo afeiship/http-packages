@@ -98,12 +98,71 @@ describe('api.basic test', () => {
     expect(res.status).toBe(200);
   });
 
-  test.only('http std response ok or not ok', async () => {
+  test('http std response ok or not ok', async () => {
     const client = MyRequest.getInstance();
     const res_404 = await client.get('https://httpbin.org/get111');
     const res_200 = await client.get('https://httpbin.org/get');
 
     expect(res_404.status).toBe(404);
     expect(res_200.status).toBe(200);
+  });
+
+  test('interceptor: request', async () => {
+    const client = MyRequest.getInstance({
+      interceptors: [
+        {
+          type: 'request',
+          fn: (opts) => {
+            opts.headers['X-Test'] = 'test';
+            return opts;
+          }
+        }
+      ]
+    });
+
+    const res1 = await client.get('https://httpbin.org/get');
+    expect(res1.data.headers['X-Test']).toBe('test');
+  });
+
+  test('interceptor: response', async () => {
+    const client = MyRequest.getInstance({
+      interceptors: [
+        {
+          type: 'response',
+          fn: (res) => {
+            res.data = { ...res.data, test: 'test' };
+            return res;
+          }
+        }
+      ]
+    });
+
+    const res1 = await client.get('https://httpbin.org/get');
+    expect(res1.data.test).toBe('test');
+  });
+
+  test('transformRequest: override', async () => {
+    const API_GET_URL = 'https://httpbin.org/get';
+    const client = MyRequest.getInstance({
+      transformRequest: (opts) => {
+        opts.headers['Authorization'] = 'token';
+        return opts;
+      }
+    });
+
+    // with token, use default transformRequest
+    const res1 = await client.get(API_GET_URL);
+    expect(res1.data.headers['Authorization']).toBe('token');
+
+    // without token ,use custom transformRequest
+    const res2 = await client.get(API_GET_URL, {
+      transformRequest: (opts) => {
+        opts.headers['X-Test'] = 'test-key';
+        return opts;
+      }
+    });
+
+    expect(res2.data.headers['Authorization']).toBe(undefined);
+    expect(res2.data.headers['X-Test']).toBe('test-key');
   });
 });
