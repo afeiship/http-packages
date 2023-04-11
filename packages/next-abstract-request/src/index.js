@@ -20,10 +20,6 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
     init: function (inOptions) {
       this.opts = nx.mix(null, defaults, this.defaults(), inOptions);
       this.interceptor = new nx.Interceptor({ items: this.opts.interceptors });
-      this.initClient();
-    },
-    initClient: function () {
-      this.client = null;
     },
     defaults: function () {
       return null;
