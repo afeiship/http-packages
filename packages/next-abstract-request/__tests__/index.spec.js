@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const FormData = require('form-data');
 
 require('../src');
 
@@ -7,12 +8,11 @@ jest.setTimeout(60 * 1000);
 const MyRequest = nx.declare({
   extends: nx.AbstractRequest,
   methods: {
-    request: function (inMethod, inUrl, inData, inOptions) {
-      return fetch(inUrl, {
-        method: inMethod,
-        body: inData,
-        ...inOptions
-      });
+    initClient: function () {
+      this.httpRequest = (inOptions) => {
+        const { url, ...opts } = inOptions;
+        return fetch(url, opts);
+      };
     }
   }
 });
@@ -46,5 +46,47 @@ describe('api.basic test', () => {
     const res = await client.get('https://api.github.com/users/afeiship');
     const data = await res.json();
     expect(data.login).toBe('afeiship');
+  });
+
+  test('options: dataType - normal type', async () => {
+    const client = MyRequest.getInstance();
+    const TYPES = {
+      urlencoded: 'application/x-www-form-urlencoded',
+      json: 'application/json;charset=utf-8',
+      text: 'text/plain',
+      blob: 'application/octet-stream',
+      document: 'application/xml'
+    };
+
+    const types = Object.keys(TYPES);
+
+    for (let i = 0; i < types.length; i++) {
+      const type = types[i];
+      const res = await client
+        .post('https://httpbin.org/post', {
+          data: { a: 1 },
+          dataType: type
+        })
+        .then((r) => r.json());
+      const resType = res.headers['Content-Type'];
+      console.log('res/resType: ', resType);
+      expect(resType).toContain(TYPES[type]);
+    }
+  });
+
+  test('dataType: auto -> null(file/or normal)', async () => {
+    const client = MyRequest.getInstance();
+    const fd = new FormData();
+    fd.append('file', 'test');
+
+    // post file
+    const res1 = await client
+      .post('https://httpbin.org/post', {
+        data: { file: fd },
+        headers: { ...fd.getHeaders() }
+      })
+      .then((r) => r.json());
+    const res1Type = res1.headers['Content-Type'];
+    expect(res1Type).toContain('multipart/form-data');
   });
 });

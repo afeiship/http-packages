@@ -63,8 +63,9 @@ describe('api.basic test', () => {
         data: { a: 1 },
         dataType: type
       });
-
       const resType = res.data.headers['Content-Type'];
+
+      console.log('type/resType: ', type, resType);
       if (type !== 'auto') {
         expect(resType).toContain(TYPES[type]);
       }

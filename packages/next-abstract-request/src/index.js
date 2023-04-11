@@ -3,8 +3,12 @@ import nx from '@jswork/next';
 import '@jswork/next-stub-singleton';
 import '@jswork/next-parse-request-args';
 import '@jswork/next-interceptor';
+import '@jswork/next-abstract-request';
+import '@jswork/next-content-type';
 
 const MSG_IMPL = 'Must be implement.';
+const GET_STYLE_ACTION = ['get', 'delete', 'head', 'options'];
+const isGetStyle = (inMethod) => GET_STYLE_ACTION.includes(inMethod);
 const defaults = {
   dataType: 'json',
   responseType: 'json',
@@ -20,12 +24,28 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
     init: function (inOptions) {
       this.opts = nx.mix(null, defaults, this.defaults(), inOptions);
       this.interceptor = new nx.Interceptor({ items: this.opts.interceptors });
+      this.initClient();
+    },
+    initClient: function () {
+      this.httpRequest = null;
+      nx.error(MSG_IMPL);
     },
     defaults: function () {
       return null;
     },
     request: function (inMethod, inUrl, inData, inOptions) {
-      nx.error(MSG_IMPL);
+      const payload = isGetStyle(inMethod) ? { params: inData } : { data: inData };
+      const { dataType, ...options } = inOptions;
+      const contentType = nx.contentType(dataType);
+      const headers = dataType && contentType ? { 'Content-Type': contentType } : {};
+
+      return this.httpRequest({
+        url: inUrl,
+        method: inMethod,
+        headers,
+        ...payload,
+        ...options
+      });
     },
     'get,post,put,patch,delete,head,options': function (inMethod) {
       return function () {
