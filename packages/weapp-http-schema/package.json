@@ -1,6 +1,7 @@
 {
   "name": "@jswork/weapp-http-schema",
   "version": "2.0.13",
+  "private": true,
   "description": "Http schema for weapp.",
   "main": "dist/index.js",
   "scripts": {
