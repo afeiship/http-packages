@@ -87,7 +87,7 @@ describe('api.basic test', () => {
     expect(res1Type).toContain('multipart/form-data');
   });
 
-  test.only('interceptor: request', async () => {
+  test('interceptor: request', async () => {
     const httpClient = new nx.Axios({
       interceptors: [
         {
@@ -101,7 +101,23 @@ describe('api.basic test', () => {
     });
 
     const { status, data } = await httpClient.get('https://httpbin.org/get');
-    console.log('data.url: ', typeof data);
-    // expect(data.url).toContain('_=');
+    expect(data.url).toContain('_=');
+  });
+
+  test('interceptor: response', async () => {
+    const httpClient = new nx.Axios({
+      interceptors: [
+        {
+          fn: (res) => {
+            res.data = res.data + ' - 1';
+            return res;
+          },
+          type: 'response'
+        }
+      ]
+    });
+
+    const { status, data } = await httpClient.get('https://httpbin.org/get');
+    expect(data).toContain(' - 1');
   });
 });

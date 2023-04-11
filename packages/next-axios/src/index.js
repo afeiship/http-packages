@@ -7,7 +7,7 @@ const NxAxios = nx.declare('nx.Axios', {
   extends: nx.AbstractRequest,
   methods: {
     initClient: function () {
-      this.httpRequest = (inOptions) => {
+      this.httpRequest = function (inOptions) {
         return axios
           .request(inOptions)
           .then((res) => {
