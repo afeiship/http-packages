@@ -13,8 +13,8 @@ const ALL_MIDDLEWARES = {
 describe('api.basic', () => {
   test('API: normal fetch should get data', async () => {
     const res = await enhancedFetch('https://api.github.com/users/afeiship');
-    expect(typeof res).toBe('object');
-    expect(res['login']).toBe('afeiship');
+    expect(typeof res.data).toBe('object');
+    expect(res.data['login']).toBe('afeiship');
   });
 
   test('middleware: debug', async () => {
@@ -62,11 +62,11 @@ describe('api.basic', () => {
     // default: json
     const apiURL = 'https://httpbin.org/get';
     const res = await enhancedFetch(apiURL);
-    expect(typeof res).toBe('object');
-    expect(res['url']).toBe(apiURL);
+    expect(typeof res.data).toBe('object');
+    expect(res.data.url).toBe(apiURL);
     // responseType: text
     const res2 = await enhancedFetch(apiURL, { responseType: 'text' });
-    expect(typeof res2).toBe('string');
-    expect(res2).toContain(apiURL);
+    expect(typeof res2.data).toBe('string');
+    expect(res2.data).toContain(apiURL);
   });
 });

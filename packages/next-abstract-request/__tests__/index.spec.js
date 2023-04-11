@@ -10,8 +10,16 @@ const MyRequest = nx.declare({
   methods: {
     initClient: function () {
       this.httpRequest = (inOptions) => {
-        const { url, ...opts } = inOptions;
-        return fetch(url, opts);
+        const { url, responseType, ...opts } = inOptions;
+        return fetch(url, opts).then((r) => {
+          const { ok, status } = r;
+          const resType = ok ? responseType || 'json' : 'text';
+          return r[resType]().then((data) => {
+            // compose response:
+            const payload = { ok, status, data };
+            return Promise.resolve(payload);
+          });
+        });
       };
     }
   }
@@ -44,8 +52,7 @@ describe('api.basic test', () => {
   test('get api should get data', async function () {
     const client = MyRequest.getInstance();
     const res = await client.get('https://api.github.com/users/afeiship');
-    const data = await res.json();
-    expect(data.login).toBe('afeiship');
+    expect(res.data.login).toBe('afeiship');
   });
 
   test('options: dataType - normal type', async () => {
@@ -62,13 +69,11 @@ describe('api.basic test', () => {
 
     for (let i = 0; i < types.length; i++) {
       const type = types[i];
-      const res = await client
-        .post('https://httpbin.org/post', {
-          data: { a: 1 },
-          dataType: type
-        })
-        .then((r) => r.json());
-      const resType = res.headers['Content-Type'];
+      const res = await client.post('https://httpbin.org/post', {
+        data: { a: 1 },
+        dataType: type
+      });
+      const resType = res.data.headers['Content-Type'];
       console.log('res/resType: ', resType);
       expect(resType).toContain(TYPES[type]);
     }
@@ -80,19 +85,26 @@ describe('api.basic test', () => {
     fd.append('file', 'test');
 
     // post file
-    const res1 = await client
-      .post('https://httpbin.org/post', {
-        data: { file: fd },
-        headers: { ...fd.getHeaders() }
-      })
-      .then((r) => r.json());
-    const res1Type = res1.headers['Content-Type'];
+    const res1 = await client.post('https://httpbin.org/post', {
+      data: { file: fd },
+      headers: { ...fd.getHeaders() }
+    });
+    const res1Type = res1.data.headers['Content-Type'];
     expect(res1Type).toContain('multipart/form-data');
   });
 
-  test.only('http status code is ok', async () => {
+  test('http status code is ok', async () => {
     const client = MyRequest.getInstance();
     const res = await client.get('https://api.github.com/users/afeiship');
     expect(res.ok).toBe(true);
+  });
+
+  test('http std response ok or not ok', async () => {
+    const client = MyRequest.getInstance();
+    const res_404 = await client.get('https://httpbin.org/get111');
+    const res_200 = await client.get('https://httpbin.org/get');
+
+    expect(res_404.ok).toBe(false);
+    expect(res_200.ok).toBe(true);
   });
 });
