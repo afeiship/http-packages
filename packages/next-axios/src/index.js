@@ -7,7 +7,24 @@ const NxAxios = nx.declare('nx.Axios', {
   extends: nx.AbstractRequest,
   methods: {
     initClient: function () {
-      this.httpRequest = axios.request;
+      this.httpRequest = (inOptions) => {
+        return axios
+          .request(inOptions)
+          .then((res) => {
+            return Promise.resolve({
+              status: res.status,
+              data: res.data,
+              original: res
+            });
+          })
+          .catch((err) => {
+            return Promise.resolve({
+              status: err.response.status,
+              data: err.response.data,
+              original: err
+            });
+          });
+      };
     }
   }
 });

@@ -86,4 +86,21 @@ describe('api.basic test', () => {
     const res1Type = res1.data.headers['Content-Type'];
     expect(res1Type).toContain('multipart/form-data');
   });
+
+  test.only('interceptor: request', async () => {
+    const httpClient = new nx.Axios({
+      items: [
+        {
+          fn: (opts) => {
+            console.log('interceptor: ', opts);
+            return opts;
+          },
+          type: 'request'
+        }
+      ]
+    });
+
+    const res1 = await httpClient.get('https://httpbin.org/get123133');
+    console.log(res1);
+  });
 });

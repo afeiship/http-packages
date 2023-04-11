@@ -2,9 +2,9 @@ export type ResponseType = 'json' | 'text' | 'blob' | 'arrayBuffer' | null;
 export type DestroyablePromise<T> = { destroy?: () => void } & Promise<T>;
 
 export interface EnhancedRequestResponse extends Response {
-  ok: boolean;
   status: number;
   data: any;
+  original: any;
 }
 
 export interface EnhancedRequestInit extends RequestInit {

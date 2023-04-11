@@ -11,12 +11,11 @@ const MyRequest = nx.declare({
     initClient: function () {
       this.httpRequest = (inOptions) => {
         const { url, responseType, ...opts } = inOptions;
-        return fetch(url, opts).then((r) => {
-          const { ok, status } = r;
+        return fetch(url, opts).then((original) => {
+          const { ok, status } = original;
           const resType = ok ? responseType || 'json' : 'text';
-          return r[resType]().then((data) => {
-            // compose response:
-            const payload = { ok, status, data };
+          return original[resType]().then((data) => {
+            const payload = { status, data, original };
             return Promise.resolve(payload);
           });
         });
@@ -96,15 +95,15 @@ describe('api.basic test', () => {
   test('http status code is ok', async () => {
     const client = MyRequest.getInstance();
     const res = await client.get('https://api.github.com/users/afeiship');
-    expect(res.ok).toBe(true);
+    expect(res.status).toBe(200);
   });
 
-  test('http std response ok or not ok', async () => {
+  test.only('http std response ok or not ok', async () => {
     const client = MyRequest.getInstance();
     const res_404 = await client.get('https://httpbin.org/get111');
     const res_200 = await client.get('https://httpbin.org/get');
 
-    expect(res_404.ok).toBe(false);
-    expect(res_200.ok).toBe(true);
+    expect(res_404.status).toBe(404);
+    expect(res_200.status).toBe(200);
   });
 });

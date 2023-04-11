@@ -62,7 +62,8 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       return this.httpRequest(requestComposeConfig)
         .then((res) => {
           const responseTransformConfig = transformResponse(res);
-          return interceptor.compose(responseTransformConfig, 'response');
+          const compose4response = { config: requestComposeConfig, ...responseTransformConfig };
+          return interceptor.compose(compose4response, 'response');
         })
         .catch((err) => {
           // compose error:
