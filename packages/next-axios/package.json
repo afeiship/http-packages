@@ -46,6 +46,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/next-abstract-request": "^1.0.18"
+    "@jswork/next-abstract-request": "^1.0.18",
+    "@jswork/next-content-type": "^1.0.7"
   }
 }
