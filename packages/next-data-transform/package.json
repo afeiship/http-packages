@@ -21,7 +21,7 @@
     "@babel/preset-env": "^7.20.2",
     "@jswork/gulp-pkg-header": "^1.0.8",
     "@jswork/gulp-registry": "^1.0.20",
-    "@jswork/next": "^1.1.6",
+    "@jswork/next": "^1.1.7",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",

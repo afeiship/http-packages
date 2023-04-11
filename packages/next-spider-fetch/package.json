@@ -17,7 +17,7 @@
   "license": "MIT",
   "devDependencies": {
     "@jswork/gulp-pkg-header": "^1.0.2",
-    "@jswork/next": "^1.0.2",
+    "@jswork/next": "^1.1.7",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-debug": "^4.0.0",

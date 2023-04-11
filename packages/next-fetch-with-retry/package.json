@@ -19,7 +19,7 @@
     "@babel/core": "^7.13.14",
     "@babel/preset-env": "^7.13.12",
     "@jswork/gulp-pkg-header": "^1.0.3",
-    "@jswork/next": "^1.0.5",
+    "@jswork/next": "^1.1.7",
     "@jswork/next-fetch-with-timeout": "^1.0.10",
     "del": "^6.0.0",
     "gulp": "^4.0.2",

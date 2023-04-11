@@ -1,5 +1,5 @@
 # node-http-schema
-> Http schema for nodejs..
+> Http schema for nodejs.
 
 [![version][version-image]][version-url]
 [![license][license-image]][license-url]
@@ -13,32 +13,9 @@ npm install @jswork/node-http-schema
 
 ## usage
 ```js
-import httpSchema from '@jswork/node-http-schema';
+import nodeHttpSchema from '@jswork/node-http-schema';
 
-const options = {
-  transformResponse: ({ data }) => {
-    return data;
-  }
-};
-
-const $api = httpSchema(
-  {
-    host: 'https://api.github.com',
-    request: ['', 'json'],
-    items: [
-      {
-        items: {
-          login: ['get', '/users/afeiship']
-        }
-      }
-    ]
-  },
-  options
-);
-
-$api.login().then((res) => {
-  // res
-});
+// usage goes here.
 ```
 
 ## license
