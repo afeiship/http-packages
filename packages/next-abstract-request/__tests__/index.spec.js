@@ -89,4 +89,10 @@ describe('api.basic test', () => {
     const res1Type = res1.headers['Content-Type'];
     expect(res1Type).toContain('multipart/form-data');
   });
+
+  test.only('http status code is ok', async () => {
+    const client = MyRequest.getInstance();
+    const res = await client.get('https://api.github.com/users/afeiship');
+    expect(res.ok).toBe(true);
+  });
 });
