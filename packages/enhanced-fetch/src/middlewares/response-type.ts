@@ -9,7 +9,7 @@ export const middlewareResponseType: MiddleWareFunction = (inFetch) => (inUrl, i
     const { ok, status } = original;
     const resType = ok ? responseType : 'text';
     return original[resType]().then((data) => {
-      const payload = { status, original, data };
+      const payload = { status, data, original };
       return Promise.resolve(payload);
     });
   });

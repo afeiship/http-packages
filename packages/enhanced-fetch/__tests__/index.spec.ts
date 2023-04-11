@@ -1,5 +1,5 @@
 import enhancedFetch from '../src';
-import { EnhancedRequestInit } from '../src/types';
+import { EnhancedRequestResponse, EnhancedRequestInit } from '../src/types';
 
 jest.setTimeout(60 * 1000);
 
@@ -12,7 +12,9 @@ const ALL_MIDDLEWARES = {
 
 describe('api.basic', () => {
   test('API: normal fetch should get data', async () => {
-    const res = await enhancedFetch('https://api.github.com/users/afeiship');
+    const res = (await enhancedFetch(
+      'https://api.github.com/users/afeiship'
+    )) as EnhancedRequestResponse;
     expect(typeof res.data).toBe('object');
     expect(res.data['login']).toBe('afeiship');
   });
@@ -61,11 +63,11 @@ describe('api.basic', () => {
   test('middleware: responseType', async () => {
     // default: json
     const apiURL = 'https://httpbin.org/get';
-    const res = await enhancedFetch(apiURL);
+    const res = (await enhancedFetch(apiURL)) as EnhancedRequestResponse;
     expect(typeof res.data).toBe('object');
     expect(res.data.url).toBe(apiURL);
     // responseType: text
-    const res2 = await enhancedFetch(apiURL, { responseType: 'text' });
+    const res2 = await enhancedFetch(apiURL, { responseType: 'text' }) as EnhancedRequestResponse;
     expect(typeof res2.data).toBe('string');
     expect(res2.data).toContain(apiURL);
   });
