@@ -36,8 +36,8 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
     },
     request: function (inMethod, inUrl, inData, inOptions) {
       const payload = isGetStyle(inMethod) ? { params: inData } : { data: inData };
-      const { dataType, ...options } = { ...this.opts, ...inOptions };
-      const { transformRequest, transformResponse, transformError } = this.opts;
+      const { transformRequest, transformResponse, transformError, ...others } = this.opts;
+      const { dataType, ...options } = { ...others, ...inOptions };
       const interceptor = this.interceptor;
       const contentType = nx.contentType(dataType);
       const headers = dataType && contentType ? { 'Content-Type': contentType } : {};

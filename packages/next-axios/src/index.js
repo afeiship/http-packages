@@ -8,7 +8,6 @@ const NxAxios = nx.declare('nx.Axios', {
   methods: {
     initClient: function () {
       this.httpRequest = (inOptions) => {
-        console.log('httpRequest opts: ', inOptions);
         return axios
           .request(inOptions)
           .then((res) => {
