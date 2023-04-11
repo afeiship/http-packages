@@ -13,6 +13,7 @@ describe('api.basic test', () => {
   test('NxAxios instance should have get/post/put/delete/head/options method', function () {
     const httpClient = new nx.Axios();
     const methods = 'get/post/put/delete/head/options';
+
     methods.split('/').forEach((method) => {
       expect(httpClient[method]).toBeDefined();
     });
