@@ -6,19 +6,21 @@ test
 __tests__
 src
 build
+docs
 gulpfile.js
 
 .editorconfig
 .prettierrc
-.babelrc
 Gemfile
 jest.config.js
+jest.setup.js
 LICENSE.txt
 Rakefile
+express.js
+.babelrc
 .vscode
 .release-it.json
-docs
-sites
+
 
 # vscode localhistory
 .history

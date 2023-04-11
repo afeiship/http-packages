@@ -1,3 +1,3 @@
 interface NxStatic {
-  Fetch: any;
+  // your codes goes here.
 }

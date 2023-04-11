@@ -1,5 +1,5 @@
 # next-fetch
-> Abstract for browser or node.
+> Fetch for browser or node.
 
 [![version][version-image]][version-url]
 [![license][license-image]][license-url]
@@ -8,37 +8,14 @@
 
 ## installation
 ```bash
-npm install -S @jswork/next-fetch
+yarn add @jswork/next-fetch
 ```
-
-## options
-| option            | type        | default      | description                                          |
-| ----------------- | ----------- | ------------ | ---------------------------------------------------- |
-| fetch             | Function    | window.fetch | Defult fetch implement                               |
-| dataType          | String      | json         | json/raw/urlencoded/multipart                        |
-| responseType      | String/Null | json         | json/text/blob/null                                  |
-| interceptors      | Array       | []           | Multiple interceptors. eg: { type:'request', fn: xx} |
-| transformRequest  | Function    | nx.stubValue | A special interceptor for only current request.      |
-| transformResponse | Function    | nx.stubValue | A special interceptor for only current response.     |
-| transformError    | Function    | nx.stubValue | A special interceptor for only current error.        |
 
 ## usage
 ```js
-import NxFetch from '@jswork/next-fetch';
+import '@jswork/next-fetch';
 
-const http = NxFetch.getInstance({ responseType:'json' });
-
-http.get('https://api.github.com/users/afeiship').then(res=>{
-  console.log(res);
-});
-
-// {
-//   login: 'afeiship',
-//   id: 3038631,
-//   node_id: 'MDQ6VXNlcjMwMzg2MzE=',
-//   avatar_url: 'https://avatars2.githubusercontent.com/u/3038631?v=4',
-    // .....
-// }
+//DOCS here!
 ```
 
 ## license
