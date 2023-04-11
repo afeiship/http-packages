@@ -17,5 +17,5 @@ export interface EnhancedRequestInit extends RequestInit {
 export type FetchFn = (
   input: RequestInfo | URL,
   init?: EnhancedRequestInit
-) => DestroyablePromise<EnhancedRequestResponse>;
+) => DestroyablePromise<EnhancedRequestResponse | Response>;
 export type MiddleWareFunction = (inFetch: FetchFn) => FetchFn;
