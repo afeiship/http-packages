@@ -89,10 +89,10 @@ describe('api.basic test', () => {
 
   test.only('interceptor: request', async () => {
     const httpClient = new nx.Axios({
-      items: [
+      interceptors: [
         {
           fn: (opts) => {
-            console.log('interceptor: ', opts);
+            opts.url = opts.url + '?_=' + Date.now();
             return opts;
           },
           type: 'request'
@@ -100,7 +100,8 @@ describe('api.basic test', () => {
       ]
     });
 
-    const res1 = await httpClient.get('https://httpbin.org/get123133');
-    console.log(res1);
+    const { status, data } = await httpClient.get('https://httpbin.org/get');
+    console.log('data.url: ', typeof data);
+    // expect(data.url).toContain('_=');
   });
 });

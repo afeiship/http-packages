@@ -10,18 +10,6 @@ const MSG_IMPL = 'Must be implement.';
 const GET_STYLE_ACTION = ['get', 'delete', 'head', 'options'];
 const isGetStyle = (inMethod) => GET_STYLE_ACTION.includes(inMethod);
 
-// type ResponseType =
-// | 'urlencoded'
-// | 'json'
-// | 'formdata'
-// | 'text'
-// | 'raw'
-// | 'blob'
-// | 'arraybuffer'
-// | 'document'
-// | 'stream'
-// | 'auto';
-
 const defaults = {
   dataType: 'json',
   responseType: 'json',
@@ -48,7 +36,7 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
     },
     request: function (inMethod, inUrl, inData, inOptions) {
       const payload = isGetStyle(inMethod) ? { params: inData } : { data: inData };
-      const { dataType, responseType, ...options } = { ...this.opts, ...inOptions };
+      const { dataType, ...options } = { ...this.opts, ...inOptions };
       const { transformRequest, transformResponse, transformError } = this.opts;
       const interceptor = this.interceptor;
       const contentType = nx.contentType(dataType);
