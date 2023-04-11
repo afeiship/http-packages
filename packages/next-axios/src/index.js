@@ -10,10 +10,11 @@ const NxAxios = nx.declare('nx.Axios', {
   methods: {
     request: function (inMethod, inUrl, inData, inOptions) {
       const extData = isGetStyle(inMethod) ? { params: inData } : { data: inData };
+      console.log('extData:', inMethod, inUrl, inData, inOptions);
       return axios.request({
         url: inUrl,
         method: inMethod,
-        data: extData,
+        ...extData,
         ...inOptions
       });
     }

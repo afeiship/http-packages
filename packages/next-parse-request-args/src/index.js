@@ -6,7 +6,7 @@ const HTTP_METHOD = ['GET', 'POST', 'DELETE', 'PUT', 'CONNECT', 'HEAD', 'OPTIONS
 const isValidMethod = (arg) => HTTP_METHOD.includes(arg.toUpperCase());
 
 nx.parseRequestArgs = function (inArguments, inIsArray) {
-  const args = inArguments;
+  const args = nx.slice(inArguments);
   const length = args.length;
   let options = null;
 
@@ -17,7 +17,8 @@ nx.parseRequestArgs = function (inArguments, inIsArray) {
   // 4. (method, config)
   // 5. (method, url)
   // 6. (method, url, config)
-  // 7. (method, url, data, config)
+  // 7. (method, url, undefined, data) --- 这种其实是第6种情况，但 config 实际是 data 得到的
+  // 8. (method, url, data, config)
 
   switch (length) {
     case 1:
@@ -34,6 +35,7 @@ nx.parseRequestArgs = function (inArguments, inIsArray) {
       options = nx.mix({ method: args[0], url: args[1] }, args[2]);
       break;
     case 4:
+      if (args[2] === undefined) (args[2] = args[3]), delete args[3];
       options = nx.mix({ method: args[0], url: args[1], data: args[2] }, args[3]);
       break;
     default:

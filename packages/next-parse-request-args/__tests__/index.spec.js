@@ -83,7 +83,7 @@ describe('api.basic test', () => {
   });
 
   test('nx.parseRequestArgs 4 args', () => {
-    var args = [
+    const args1 = [
       'get',
       '/github/api/v1/afeiship',
       { query: 1 },
@@ -95,7 +95,14 @@ describe('api.basic test', () => {
       }
     ];
 
-    expect(nx.parseRequestArgs(args)).toEqual(expected);
+    expect(nx.parseRequestArgs(args1)).toEqual(expected);
+
+    const arg2 = ['get', '/github/api/v1/afeiship', undefined, { query: 1 }];
+    expect(nx.parseRequestArgs(arg2)).toEqual({
+      method: 'get',
+      url: '/github/api/v1/afeiship',
+      data: { query: 1 }
+    });
   });
 
   test('nx.parseRequestArgs 1 args & return array', () => {

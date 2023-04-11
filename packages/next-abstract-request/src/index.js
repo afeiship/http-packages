@@ -30,7 +30,9 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
     'get,post,put,patch,delete,head,options': function (inMethod) {
       return function () {
         const inputArgs = [inMethod].concat(nx.slice(arguments));
+        console.log('input args: ', inputArgs)
         const args = nx.parseRequestArgs(inputArgs, true);
+        console.log('target args: ', args)
         return this.request.apply(this, args);
       };
     }
