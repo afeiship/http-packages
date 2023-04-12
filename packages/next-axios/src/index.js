@@ -1,7 +1,6 @@
 import axios from 'axios';
 import nx from '@jswork/next';
 import '@jswork/next-abstract-request';
-import '@jswork/next-content-type';
 
 const NxAxios = nx.declare('nx.Axios', {
   extends: nx.AbstractRequest,
