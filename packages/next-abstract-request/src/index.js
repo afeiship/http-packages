@@ -36,6 +36,7 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       return null;
     },
     request: function (inMethod, inUrl, inData, inOptions) {
+      // transformRequest, transformResponse only use once
       const { dataType, transformRequest, transformResponse, transformError, ...options } = {...this.opts, ...inOptions };
       const interceptor = this.interceptor;
       const contentType = nx.contentType(dataType);
