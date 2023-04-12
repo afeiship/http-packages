@@ -43,7 +43,6 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       const headers = dataType && contentType ? { 'Content-Type': contentType } : {};
       const data = nx.DataTransform.transform(dataType, inData);
       const payload = isGetStyle(inMethod) ? { params: inData } : { data };
-      const requestConfig = { url: inUrl, method: inMethod, headers, ...payload, ...options };
       const _transformRequest = options.transformRequest || transformRequest;
       const _transformResponse = options.transformResponse || transformResponse;
 
@@ -52,6 +51,7 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       if (options.transformResponse) delete options.transformResponse;
 
       // compose request:
+      const requestConfig = { url: inUrl, method: inMethod, headers, ...payload, ...options };
       const requestTransformConfig = _transformRequest(requestConfig);
       const requestComposeConfig = interceptor.compose(requestTransformConfig, 'request');
 
