@@ -24,7 +24,8 @@ yarn add @jswork/next-fetch
 ```js
 import httpSchema from '@jswork/http-schema';
 
-const $api = httpSchema({
+// use Axios
+const $api1 = httpSchema({
   baseURL: "https://api.github.com",
   request: ["", "json"],
   resources: [
@@ -48,6 +49,38 @@ const $api = httpSchema({
     },
   ],
 }, { adapter: 'Axios'});
+
+// use Fetch
+import httpSchema from "@jswork/http-schema";
+import "@jswork/next-fetch";
+
+const $api2 = httpSchema(
+  {
+    baseURL: "https://api.github.com",
+    request: ["", "json"],
+    resources: [
+      {
+        host: "http://dev2.demo.com",
+        prefix: "v1_",
+        name: "users",
+        only: ["index"],
+      },
+      { prefix: "v2_", name: "posts" },
+      { name: "roles", except: ["destroy"] },
+      { name: "tags" },
+      { name: "categories" },
+      { name: "pictures" },
+    ],
+    items: [
+      {
+        items: {
+          login: ["get", "/users/afeiship"],
+        },
+      },
+    ],
+  },
+  { adapter: "Fetch" }
+);
 ```
 
 ## license
