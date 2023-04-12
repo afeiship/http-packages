@@ -34,7 +34,7 @@ const normalizeResource = (inResources, inTemplates) => {
   });
 };
 
-const httpRestConfig = (inHttpClient, inConfig) => {
+const httpRestConfig = (inHttpClient, inConfig): any => {
   const apiConfig = {};
   const { items, resources, templates } = inConfig;
 

@@ -9,13 +9,45 @@
 ## installation
 ```shell
 npm install @jswork/http-schema
+
+// adapter: axios
+yarn add axios @jswork/next-axios
+
+// adapter: fetch(nodejs)
+yarn add node-fetch @jswork/next-fetch
+
+// adapter: fetch(bun/browser)
+yarn add @jswork/next-fetch
 ```
 
 ## usage
 ```js
 import httpSchema from '@jswork/http-schema';
 
-// usage goes here.
+const $api = httpSchema({
+  baseURL: "https://api.github.com",
+  request: ["", "json"],
+  resources: [
+    {
+      host: "http://dev2.demo.com",
+      prefix: "v1_",
+      name: "users",
+      only: ["index"],
+    },
+    { prefix: "v2_", name: "posts" },
+    { name: "roles", except: ["destroy"] },
+    { name:'tags'},
+    { name:'categories'},
+    { name:'pictures'},
+  ],
+  items: [
+    {
+      items: {
+        login: ["get", "/users/afeiship"],
+      },
+    },
+  ],
+}, { adapter: 'Axios'});
 ```
 
 ## license

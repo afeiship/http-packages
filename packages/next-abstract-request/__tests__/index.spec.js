@@ -15,8 +15,7 @@ const MyRequest = nx.declare({
           const { ok, status } = original;
           const resType = ok ? responseType || 'json' : 'text';
           return original[resType]().then((data) => {
-            const payload = { status, data, original };
-            return Promise.resolve(payload);
+            return { status, data, original };
           });
         });
       };
