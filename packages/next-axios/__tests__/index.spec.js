@@ -120,4 +120,23 @@ describe('api.basic test', () => {
     const { status, data } = await httpClient.get('https://httpbin.org/get');
     expect(data).toContain(' - 1');
   });
+
+  test('customize transformResponse should get json data(Axios)', async () => {
+    const httpClient = new nx.Axios({
+      transformResponse: (opts) => {
+        return opts.data;
+      }
+    });
+
+    const res1 = await httpClient.get('https://httpbin.org/get');
+    expect(res1.url).toBe('https://httpbin.org/get');
+    expect(typeof res1).toBe('object');
+
+    // I want to get original data for this request
+    const res2 = await httpClient.get('https://httpbin.org/get', {
+      transformResponse: (opts) => opts
+    });
+    expect(res2.status).toBe(200);
+    expect(res2.data.url).toBe('https://httpbin.org/get');
+  });
 });
