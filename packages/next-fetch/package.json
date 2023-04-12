@@ -47,6 +47,6 @@
   "dependencies": {
     "@jswork/enhanced-fetch": "^1.0.20",
     "@jswork/next-abstract-request": "^1.0.20",
-    "@jswork/next-param": "^1.0.7"
+    "@jswork/next-param": "^1.0.8"
   }
 }

@@ -9,7 +9,7 @@ const NxFetch = nx.declare('nx.Fetch', {
     initClient: function () {
       this.httpRequest = function (inOptions) {
         const { url, params, data, ...opts } = inOptions;
-        const _url = params ? nx.param(params, url) : url;
+        const _url = nx.param(params, url);
         return enhancedFetch(_url, {
           body: data,
           ...opts

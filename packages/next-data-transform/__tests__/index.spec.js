@@ -30,5 +30,13 @@
       const res = NxDataTransform.urlencoded(data);
       expect(res).toBe(null);
     });
+
+    test('transform json', () => {
+      const data = { title: 'the title' };
+      const res1 = NxDataTransform.transform('json', data);
+      const res2 = NxDataTransform.transform('unsupported', data);
+      expect(res1).toBe('{"title":"the title"}');
+      expect(res2).toBe(data);
+    });
   });
 })();

@@ -23,6 +23,10 @@ const NxDataTransform = nx.declare('nx.DataTransform', {
         if (!inData || typeof inData !== 'object') return inData;
         return this['__' + inName + '__'].call(this, inData);
       };
+    },
+    transform: function (inDataType, inData) {
+      const fn = this[inDataType];
+      return fn ? fn.call(this, inData) : inData;
     }
   }
 });

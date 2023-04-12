@@ -45,7 +45,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/next-param": "^1.0.6"
+    "@jswork/next-param": "^1.0.8"
   },
   "gitHead": "f1b57a6b15528643c12457e2bfce2e754f10e887"
 }
