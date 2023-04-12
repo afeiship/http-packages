@@ -36,28 +36,21 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       return null;
     },
     request: function (inMethod, inUrl, inData, inOptions) {
-      const { transformRequest, transformResponse, transformError, ...others } = this.opts;
-      const { dataType, ...options } = { ...others, ...inOptions };
+      const { dataType, transformRequest, transformResponse, transformError, ...options } = {...this.opts, ...inOptions };
       const interceptor = this.interceptor;
       const contentType = nx.contentType(dataType);
       const headers = dataType && contentType ? { 'Content-Type': contentType } : {};
       const data = nx.DataTransform.transform(dataType, inData);
       const payload = isGetStyle(inMethod) ? { params: inData } : { data };
-      const _transformRequest = options.transformRequest || transformRequest;
-      const _transformResponse = options.transformResponse || transformResponse;
-
-      // delete original transformRequest/transformResponse if options.transformRequest exist
-      if (options.transformRequest) delete options.transformRequest;
-      if (options.transformResponse) delete options.transformResponse;
 
       // compose request:
       const requestConfig = { url: inUrl, method: inMethod, headers, ...payload, ...options };
-      const requestTransformConfig = _transformRequest(requestConfig);
+      const requestTransformConfig = transformRequest(requestConfig);
       const requestComposeConfig = interceptor.compose(requestTransformConfig, 'request');
 
       return this.httpRequest(requestComposeConfig)
         .then((res) => {
-          const responseTransformConfig = _transformResponse(res);
+          const responseTransformConfig = transformResponse(res);
           const compose4response = { config: requestComposeConfig, ...responseTransformConfig };
           const { config, ...result } = interceptor.compose(compose4response, 'response');
           return result;

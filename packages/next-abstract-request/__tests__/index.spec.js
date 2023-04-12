@@ -53,7 +53,7 @@ describe('api.basic test', () => {
     expect(res.data.login).toBe('afeiship');
   });
 
-  test.only('options: dataType - normal type', async () => {
+  test('options: dataType - normal type', async () => {
     const client = MyRequest.getInstance();
     const TYPES = {
       urlencoded: 'application/x-www-form-urlencoded',
