@@ -139,4 +139,12 @@ describe('api.basic test', () => {
     expect(res2.status).toBe(200);
     expect(res2.data.url).toBe('https://httpbin.org/get');
   });
+
+  test('slim response', async () => {
+    const httpClient = new nx.Axios({ slim: true });
+    const res1 = await httpClient.get('https://httpbin.org/get');
+    expect(res1.status).toBe(200);
+    expect(res1.data).toBeDefined();
+    expect(res1.original).toBeUndefined();
+  });
 });

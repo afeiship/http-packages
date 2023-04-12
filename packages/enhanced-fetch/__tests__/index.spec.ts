@@ -67,8 +67,16 @@ describe('api.basic', () => {
     expect(typeof res.data).toBe('object');
     expect(res.data.url).toBe(apiURL);
     // responseType: text
-    const res2 = await enhancedFetch(apiURL, { responseType: 'text' }) as EnhancedRequestResponse;
+    const res2 = (await enhancedFetch(apiURL, { responseType: 'text' })) as EnhancedRequestResponse;
     expect(typeof res2.data).toBe('string');
     expect(res2.data).toContain(apiURL);
+  });
+
+  test('slim for responseType', async () => {
+    const apiURL = 'https://httpbin.org/get';
+    const res = await enhancedFetch(apiURL, { slim: true });
+    expect(res.status).toBeDefined();
+    expect(res.data).toBeDefined();
+    expect(res.original).toBeUndefined();
   });
 });

@@ -12,6 +12,7 @@ export interface EnhancedRequestInit extends RequestInit {
   destroyable?: boolean;
   debug?: boolean;
   responseType?: ResponseType;
+  slim?: boolean;
 }
 
 export type FetchFn = (input: RequestInfo | URL, init?: EnhancedRequestInit) => any;
