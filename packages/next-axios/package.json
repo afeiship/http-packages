@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-axios",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Axios common features based on next toolkit.",
   "homepage": "https://js.work",
   "author": {
@@ -46,7 +46,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/next-abstract-request": "^1.0.21",
+    "@jswork/next-abstract-request": "^1.0.22",
     "@jswork/next-json": "^1.0.4"
   }
 }
