@@ -47,6 +47,10 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       const _transformRequest = options.transformRequest || transformRequest;
       const _transformResponse = options.transformResponse || transformResponse;
 
+      // delete original transformRequest/transformResponse if options.transformRequest exist
+      if (options.transformRequest) delete options.transformRequest;
+      if (options.transformResponse) delete options.transformResponse;
+
       // compose request:
       const requestTransformConfig = _transformRequest(requestConfig);
       const requestComposeConfig = interceptor.compose(requestTransformConfig, 'request');
