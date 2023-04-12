@@ -5,6 +5,7 @@ import '@jswork/next-parse-request-args';
 import '@jswork/next-interceptor';
 import '@jswork/next-abstract-request';
 import '@jswork/next-content-type';
+import '@jswork/next-data-transform';
 
 const MSG_IMPL = 'Must be implement.';
 const GET_STYLE_ACTION = ['get', 'delete', 'head', 'options'];
@@ -35,12 +36,13 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       return null;
     },
     request: function (inMethod, inUrl, inData, inOptions) {
-      const payload = isGetStyle(inMethod) ? { params: inData } : { data: inData };
       const { transformRequest, transformResponse, transformError, ...others } = this.opts;
       const { dataType, ...options } = { ...others, ...inOptions };
       const interceptor = this.interceptor;
       const contentType = nx.contentType(dataType);
       const headers = dataType && contentType ? { 'Content-Type': contentType } : {};
+      const data = dataType && inData ? nx.DataTransform[dataType](inData) : inData;
+      const payload = isGetStyle(inMethod) ? { params: inData } : { data };
       const requestConfig = { url: inUrl, method: inMethod, headers, ...payload, ...options };
       const _transformRequest = options.transformRequest || transformRequest;
       const _transformResponse = options.transformResponse || transformResponse;

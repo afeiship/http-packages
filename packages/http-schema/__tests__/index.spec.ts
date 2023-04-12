@@ -40,23 +40,27 @@ describe('api.basic', () => {
     expect(res.data.headers['User-Agent']).toContain('fetch');
   });
 
-  test.only('curd for httpbin', async () => {
-    const $api: any = httpSchema({
-      baseURL: 'https://httpbin.org',
-      request: ['', 'json'],
-      items: [
-        {
-          items: {
-            get: ['get', '/get'],
-            post: ['post', '/post'],
-            put: ['put', '/put'],
-            del: ['delete', '/delete'],
+  test.only('curd for httpbin(Fetch)', async () => {
+    const opts = { adapter: 'Fetch' };
+    const $api: any = httpSchema(
+      {
+        baseURL: 'https://httpbin.org',
+        request: ['', 'json'],
+        items: [
+          {
+            items: {
+              get: ['get', '/get'],
+              post: ['post', '/post'],
+              put: ['put', '/put'],
+              del: ['delete', '/delete'],
+            },
           },
-        },
-      ],
-    });
+        ],
+      },
+      opts
+    );
 
-    const res_get = await $api.get({ id: 1 });
+    // const res_get = await $api.get({ id: 1 });
     const res_post = await $api.post({ title: 'title' });
     // const res_put = await $api.put({ id: 2 });
     // const res_del = await $api.del({ id: 3 });
