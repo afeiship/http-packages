@@ -47,6 +47,7 @@
   },
   "gitHead": "5995e004fbc20bb63e28c70fa66bb741b99f75d9",
   "dependencies": {
+    "@jswork/next-content-type": "^1.0.8",
     "@jswork/next-data-transform": "^1.0.14",
     "@jswork/next-interceptor": "^1.0.10",
     "@jswork/next-parse-request-args": "^1.0.6",
