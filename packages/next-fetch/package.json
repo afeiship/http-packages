@@ -43,5 +43,9 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
+  },
+  "dependencies": {
+    "@jswork/enhanced-fetch": "^1.0.20",
+    "@jswork/next-abstract-request": "^1.0.20"
   }
 }
