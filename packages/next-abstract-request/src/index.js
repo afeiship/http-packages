@@ -38,7 +38,7 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
     },
     request: function (inMethod, inUrl, inData, inOptions) {
       // transformRequest, transformResponse only use once
-      const { dataType, transformRequest, transformResponse, transformError, ...options } = {
+      const { slim, dataType, transformRequest, transformResponse, transformError, ...options } = {
         ...this.opts,
         ...inOptions
       };

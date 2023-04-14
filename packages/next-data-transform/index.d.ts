@@ -4,5 +4,6 @@ interface NxStatic {
     urlencoded: (data) => string;
     multipart: (data) => any;
     raw: (data) => any;
+    transform: (dataType: string, data) => any;
   };
 }

@@ -164,4 +164,23 @@ describe('api.basic test', () => {
     expect(res2.data.headers['Authorization']).toBe(undefined);
     expect(res2.data.headers['X-Test']).toBe('test-key');
   });
+
+  test.only('slim for response', async () => {
+    const API_GET_URL = 'https://httpbin.org/get';
+    const client1 = MyRequest.getInstance({ slim: true });
+    const client2 = MyRequest.getInstance();
+
+    // with token, use default transformRequest
+    const res1 = await client1.get(API_GET_URL);
+    // slim: true, response only have status/data
+    expect(res1.status).toBeDefined();
+    expect(res1.data).toBeDefined();
+    expect(res1.original).toBeUndefined();
+
+    // slim: false, response will have status/data/original
+    const res2 = await client2.get(API_GET_URL);
+    expect(res2.status).toBeDefined();
+    expect(res2.data).toBeDefined();
+    expect(res2.original).toBeDefined();
+  });
 });
