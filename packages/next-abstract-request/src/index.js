@@ -57,8 +57,8 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
         .then((res) => {
           const responseTransformConfig = transformResponse(res);
           const compose4response = { config: requestComposeConfig, ...responseTransformConfig };
-          const { config, ...result } = interceptor.compose(compose4response, 'response');
-          return result;
+          const { status, data, original } = interceptor.compose(compose4response, 'response');
+          return slim ? { status, data } : { status, data, original };
         })
         .catch((err) => {
           // compose error:

@@ -165,7 +165,7 @@ describe('api.basic test', () => {
     expect(res2.data.headers['X-Test']).toBe('test-key');
   });
 
-  test.only('slim for response', async () => {
+  test('slim for response', async () => {
     const API_GET_URL = 'https://httpbin.org/get';
     const client1 = MyRequest.getInstance({ slim: true });
     const client2 = MyRequest.getInstance();
