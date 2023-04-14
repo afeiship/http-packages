@@ -71,12 +71,4 @@ describe('api.basic', () => {
     expect(typeof res2.data).toBe('string');
     expect(res2.data).toContain(apiURL);
   });
-
-  test('slim for responseType', async () => {
-    const apiURL = 'https://httpbin.org/get';
-    const res = await enhancedFetch(apiURL, { slim: true });
-    expect(res.status).toBeDefined();
-    expect(res.data).toBeDefined();
-    expect(res.original).toBeUndefined();
-  });
 });

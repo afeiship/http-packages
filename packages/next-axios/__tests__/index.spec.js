@@ -121,7 +121,7 @@ describe('api.basic test', () => {
     expect(data).toContain(' - 1');
   });
 
-  test.only('customize transformResponse should get json data(Axios)', async () => {
+  test('customize transformResponse should get json data(Axios)', async () => {
     const httpClient = new nx.Axios({
       transformResponse: (opts) => {
         return opts.data;

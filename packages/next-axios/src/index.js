@@ -7,24 +7,21 @@ const NxAxios = nx.declare('nx.Axios', {
   methods: {
     initClient: function () {
       this.httpRequest = function (inOptions) {
-        const { slim, ...options } = inOptions;
         return axios
-          .request(options)
+          .request(inOptions)
           .then((res) => {
-            const extra = slim ? null : { original: res };
-            return Promise.resolve({
+            return {
               status: res.status,
               data: res.data,
-              ...extra
-            });
+              original: res
+            };
           })
           .catch((err) => {
-            const extra = slim ? null : { original: err };
-            return Promise.resolve({
+            return {
               status: err.response.status,
               data: err.response.data,
-              ...extra
-            });
+              original: err
+            };
           });
       };
     }

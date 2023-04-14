@@ -16,8 +16,7 @@ const defaults: EnhancedRequestInit = {
   timeout: 0,
   debug: false,
   destroyable: false,
-  responseType: 'json',
-  slim: false,
+  responseType: 'json'
 };
 
 const enhancedFetch: FetchFn = (inUrl, inInit?) => {
