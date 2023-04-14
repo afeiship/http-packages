@@ -12,6 +12,7 @@ const GET_STYLE_ACTION = ['get', 'delete', 'head', 'options'];
 const isGetStyle = (inMethod) => GET_STYLE_ACTION.includes(inMethod);
 
 const defaults = {
+  slim: false,
   dataType: 'json',
   responseType: 'json',
   interceptors: [],
@@ -37,7 +38,10 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
     },
     request: function (inMethod, inUrl, inData, inOptions) {
       // transformRequest, transformResponse only use once
-      const { dataType, transformRequest, transformResponse, transformError, ...options } = {...this.opts, ...inOptions };
+      const { dataType, transformRequest, transformResponse, transformError, ...options } = {
+        ...this.opts,
+        ...inOptions
+      };
       const interceptor = this.interceptor;
       const contentType = nx.contentType(dataType);
       const headers = dataType && contentType ? { 'Content-Type': contentType } : {};
