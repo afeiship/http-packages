@@ -47,5 +47,6 @@
   },
   "dependencies": {
     "@jswork/next-abstract-request": "^1.0.29"
-  }
+  },
+  "gitHead": "eac8fb8384182e3955879d2136d77f81dcbb53a5"
 }

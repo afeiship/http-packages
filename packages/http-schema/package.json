@@ -63,7 +63,7 @@
     "http",
     "schema"
   ],
-  "gitHead": "a3b8ccb34741a3e52630c28399cef38955c026c1",
+  "gitHead": "eac8fb8384182e3955879d2136d77f81dcbb53a5",
   "dependencies": {
     "@jswork/http-rest-config": "^2.0.12",
     "@jswork/next-axios": "^1.2.14"
