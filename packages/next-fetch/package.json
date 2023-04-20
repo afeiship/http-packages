@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch",
-  "version": "1.2.16",
+  "version": "1.2.17",
   "description": "Fetch for browser or node.",
   "homepage": "https://js.work",
   "author": {
@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@jswork/enhanced-fetch": "^1.0.23",
-    "@jswork/next-abstract-request": "^1.0.33",
+    "@jswork/next-abstract-request": "^1.0.34",
     "@jswork/next-param": "^1.0.8"
   },
   "gitHead": "385b20fd1e067c8e95a5b92157bbdd44782597e6"
