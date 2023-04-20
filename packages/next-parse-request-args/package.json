@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-parse-request-args",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Request arguments parser.",
   "homepage": "https://js.work",
   "author": {

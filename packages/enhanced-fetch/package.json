@@ -1,6 +1,6 @@
 {
   "name": "@jswork/enhanced-fetch",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "Enhanced-fetch is a utility library that enriches the built-in fetch API with features such as support for response types, timeouts, and destroyable requests.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -54,8 +54,8 @@
     ]
   },
   "dependencies": {
-    "@jswork/fetch": "^1.0.10",
-    "@jswork/next-apply-fetch-middleware": "^1.0.7"
+    "@jswork/fetch": "^1.0.11",
+    "@jswork/next-apply-fetch-middleware": "^1.0.8"
   },
   "keywords": [
     "cache",
