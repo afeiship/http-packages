@@ -62,6 +62,7 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
           return slim && typeof original !== 'undefined' ? { status, data } : result;
         })
         .catch((err) => {
+          // compose error:
           const errorComposeConfig = interceptor.compose(err, 'error');
           return transformError(errorComposeConfig);
         });
