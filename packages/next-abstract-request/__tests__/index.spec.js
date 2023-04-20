@@ -47,10 +47,9 @@ describe('api.basic test', () => {
     expect(client.options).toBeInstanceOf(Function);
   });
 
-  test.only('get api should get data', async function () {
+  test('get api should get data', async function () {
     const client = MyRequest.getInstance();
     const res = await client.get('https://api.github.com/users/afeiship');
-    console.log('res:', res);
     expect(res.data.login).toBe('afeiship');
   });
 
