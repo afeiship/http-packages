@@ -4,8 +4,9 @@ import '@jswork/next-axios';
 
 const defaults = { adapter: 'Axios' };
 const FETCH_IMPORT_MSG = 'Please import @jswork/next-fetch first.';
-const isFetchAdapterNil = (inAdapter) =>
-  inAdapter === 'Fetch' && typeof nx[inAdapter] === 'undefined';
+const isFetchAdapterNil = (inAdapter) => {
+  return inAdapter === 'Fetch' && typeof nx[inAdapter] === 'undefined';
+};
 
 const httpSchema = (inConfig, inOptions?) => {
   const { adapter, ...options } = { ...defaults, ...inOptions } satisfies { adapter: string };
