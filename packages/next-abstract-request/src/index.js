@@ -58,7 +58,7 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
           const compose4response = { config: requestComposeConfig, ...res };
           const composedResponse = interceptor.compose(compose4response, 'response');
           const result = transformResponse(composedResponse);
-          const hasTransform = transformResponse === nx.stubValue;
+          const hasTransform = transformResponse !== nx.stubValue;
           if (hasTransform) return result;
           const { status, data, original } = result;
           return slim ? { status, data } : result;
