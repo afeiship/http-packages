@@ -60,7 +60,7 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
           const result = transformResponse(composedResponse);
           const hasTransform = transformResponse !== nx.stubValue;
           if (hasTransform) return result;
-          const { status, data, original } = result;
+          const { status, data } = result;
           return slim ? { status, data } : result;
         })
         .catch((err) => {
