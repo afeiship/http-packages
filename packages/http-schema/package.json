@@ -3,7 +3,7 @@
   "version": "2.0.39",
   "description": "Http schema based on next-fetch.",
   "main": "dist/index.js",
-  "module": "dist/esm/index.js",
+  "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "gulp",
