@@ -45,7 +45,6 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       const interceptor = this.interceptor;
       const contentType = nx.contentType(dataType);
       const headers = dataType && contentType ? { 'Content-Type': contentType } : {};
-      // const data = nx.DataTransform.transform(dataType, inData);
       const payload = isGetStyle(inMethod) ? { params: inData } : { data: inData };
 
       // compose request:
