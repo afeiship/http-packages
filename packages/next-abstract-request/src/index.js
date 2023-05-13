@@ -45,15 +45,19 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       const interceptor = this.interceptor;
       const contentType = nx.contentType(dataType);
       const headers = dataType && contentType ? { 'Content-Type': contentType } : {};
-      const data = nx.DataTransform.transform(dataType, inData);
-      const payload = isGetStyle(inMethod) ? { params: inData } : { data };
+      // const data = nx.DataTransform.transform(dataType, inData);
+      const payload = isGetStyle(inMethod) ? { params: inData } : { data: inData };
 
       // compose request:
       const requestConfig = { url: inUrl, method: inMethod, headers, ...payload, ...options };
       const requestTransformConfig = transformRequest(requestConfig);
       const requestComposeConfig = interceptor.compose(requestTransformConfig, 'request');
+      const lastRequestComposeConfig = {
+        ...requestComposeConfig,
+        data: nx.DataTransform.transform(dataType, requestComposeConfig.data)
+      };
 
-      return this.httpRequest(requestComposeConfig)
+      return this.httpRequest(lastRequestComposeConfig)
         .then((res) => {
           const compose4response = { config: requestComposeConfig, ...res };
           const composedResponse = interceptor.compose(compose4response, 'response');
