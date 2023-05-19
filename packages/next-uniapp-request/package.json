@@ -45,6 +45,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/next-abstract-request": "^1.0.39"
+    "@jswork/next-abstract-request": "^1.0.39",
+    "@jswork/normalize-mina-options": "^1.0.1"
   }
 }

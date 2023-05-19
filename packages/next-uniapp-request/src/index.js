@@ -1,25 +1,13 @@
 import nx from '@jswork/next';
 import '@jswork/next-abstract-request';
-
-const normalize = function (inOptions) {
-  const headers = inOptions.headers;
-  const responseType = inOptions.responseType;
-  headers['content-type'] = headers['Content-Type'];
-  inOptions.data = inOptions.body;
-  inOptions.header = headers;
-  inOptions.responseType = responseType === 'json' ? 'text' : responseType;
-  delete headers['Content-Type'];
-  delete inOptions.headers;
-  delete inOptions.body;
-  return inOptions;
-};
+import normalizeMinaOptions from '@jswork/normalize-mina-options';
 
 const NxUniappRequest = nx.declare('nx.UniappRequest', {
   extends: nx.AbstractRequest,
   methods: {
     initClient: function () {
       this.httpRequest = function (inOptions) {
-        const opts = normalize(inOptions);
+        const opts = normalizeMinaOptions({ minaFramework: 'uniapp', ...inOptions });
         return uni.request
           .request(opts)
           .then((res) => {
