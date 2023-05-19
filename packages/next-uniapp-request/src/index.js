@@ -1,4 +1,5 @@
 import nx from '@jswork/next';
+import '@jswork/next-abstract-request';
 
 const normalize = function (inOptions) {
   const headers = inOptions.headers;
