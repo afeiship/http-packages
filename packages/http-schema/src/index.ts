@@ -1,6 +1,5 @@
 import nx from '@jswork/next';
 import httpRestConfig from '@jswork/http-rest-config';
-import '@jswork/next-axios';
 
 const defaults = { adapter: 'Axios' };
 const FETCH_IMPORT_MSG = 'Please import @jswork/next-fetch first.';
