@@ -11,15 +11,15 @@ const NxUniappRequest = nx.declare('nx.UniappRequest', {
         return uni.request(opts)
           .then((res) => {
             return {
-              status: res.status,
+              status: res.statusCode,
               data: res.data,
               original: res
             };
           })
           .catch((err) => {
             return {
-              status: err.response.status,
-              data: err.response.data,
+              status: err.statusCode,
+              data: err.data,
               original: err
             };
           });
