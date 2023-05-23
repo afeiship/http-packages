@@ -8,8 +8,7 @@ const NxUniappRequest = nx.declare('nx.UniappRequest', {
     initClient: function () {
       this.httpRequest = function (inOptions) {
         const opts = normalizeMinaOptions({ minaFramework: 'uniapp', ...inOptions });
-        return uni.request
-          .request(opts)
+        return uni.request(opts)
           .then((res) => {
             return {
               status: res.status,
