@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch-with-random-ua",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Random user-agent for fetch.",
   "homepage": "https://github.com/afeiship/next-fetch-with-random-ua",
   "author": {

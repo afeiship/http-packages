@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch",
-  "version": "1.2.22",
+  "version": "1.2.23",
   "description": "Fetch for browser or node.",
   "homepage": "https://js.work",
   "author": {
@@ -45,8 +45,8 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/enhanced-fetch": "^1.0.23",
-    "@jswork/next-abstract-request": "^1.0.39",
+    "@jswork/enhanced-fetch": "^1.0.24",
+    "@jswork/next-abstract-request": "^1.0.40",
     "@jswork/next-param": "^1.0.8"
   },
   "gitHead": "20d3ab65ef3d91c29962a0d70d0ffe94c852079c"

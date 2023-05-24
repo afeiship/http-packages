@@ -1,6 +1,6 @@
 {
   "name": "@jswork/normalize-mina-options",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Normalize weapp request options.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
