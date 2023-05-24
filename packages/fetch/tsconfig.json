@@ -9,7 +9,11 @@
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "moduleResolution": "node",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "types": [
+      "miniprogram-api-typings",
+      "node"
+    ]
   },
   "include": [
     "src"
