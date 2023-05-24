@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-uniapp-request",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Uniapp request wrapper for next.",
   "homepage": "https://js.work",
   "author": {
@@ -45,7 +45,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/next-abstract-request": "^1.0.41",
+    "@jswork/next-abstract-request": "^1.0.42",
     "@jswork/normalize-mina-options": "^1.0.2"
   }
 }
