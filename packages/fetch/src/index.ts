@@ -20,7 +20,7 @@ if (typeof process !== 'undefined' && process?.versions?.node) {
 // other with fetch env:
 if (typeof fetch !== 'undefined') stdFetch = fetch;
 
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
   module.exports = stdFetch;
 }
 

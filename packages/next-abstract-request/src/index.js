@@ -82,7 +82,7 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
   }
 });
 
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
   module.exports = NxAbstractRequest;
 }
 

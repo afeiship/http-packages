@@ -19,7 +19,7 @@ const normalizeMinaOptions = (inOptions: MinaOptions) => {
 };
 
 // for commonjs es5 require
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
   module.exports = normalizeMinaOptions;
 }
 

@@ -11,7 +11,7 @@
       return options.delay ? fetchRes.then(nxDelay(options.delay)) : fetchRes;
     };
   };
-  if (typeof module !== 'undefined' && module.exports) {
+  if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
     module.exports = nx.fetchWithDelay;
   }
 })();

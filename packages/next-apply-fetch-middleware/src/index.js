@@ -10,7 +10,7 @@ nx.applyFetchMiddleware = function (inMiddlewares) {
   };
 };
 
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
   module.exports = nx.applyFetchMiddleware;
 }
 
