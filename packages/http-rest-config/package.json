@@ -13,8 +13,8 @@
   "license": "MIT",
   "dependencies": {
     "@jswork/http-data-parser": "^1.0.8",
-    "@jswork/next-difference": "^1.0.1",
-    "@jswork/next-tmpl": "^1.0.6"
+    "@jswork/next-difference": "^1.0.2",
+    "@jswork/next-tmpl": "^1.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
