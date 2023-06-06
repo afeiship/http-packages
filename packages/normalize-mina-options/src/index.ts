@@ -8,12 +8,12 @@ const normalizeMinaOptions = (inOptions: MinaOptions) => {
   const responseType = options.responseType;
 
   headers['content-type'] = headers['Content-Type'];
-  options.data = options.body;
+  // options.data = options.body;
   options.header = headers;
   options.responseType = responseType === 'json' ? 'text' : responseType;
   delete headers['Content-Type'];
   delete options.headers;
-  delete options.body;
+  // delete options.body;
 
   return options;
 };
