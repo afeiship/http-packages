@@ -2,13 +2,23 @@ import nx from '@jswork/next';
 import '@jswork/next-abstract-request';
 import normalizeMinaOptions from '@jswork/normalize-mina-options';
 
+const GET_STYLE_ACTION = ['get', 'delete', 'head', 'options'];
+const isGetStyle = (inMethod) => GET_STYLE_ACTION.includes(inMethod);
+
 const NxUniappRequest = nx.declare('nx.UniappRequest', {
   extends: nx.AbstractRequest,
   methods: {
     initClient: function () {
       this.httpRequest = function (inOptions) {
         const opts = normalizeMinaOptions({ minaFramework: 'uniapp', ...inOptions });
-        return uni.request(opts)
+        const method = opts.method.toLowerCase();
+        const isGET = isGetStyle(method);
+        const params = opts.params;
+        const hasParam = params && typeof params !== 'undefined';
+        const url = isGET && hasParam ? nx.param(params, opts.url) : opts.url;
+
+        return uni
+          .request({ ...opts, url })
           .then((res) => {
             return {
               status: res.statusCode,
