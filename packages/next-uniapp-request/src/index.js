@@ -2,7 +2,7 @@ import nx from '@jswork/next';
 import '@jswork/next-abstract-request';
 import normalizeMinaOptions from '@jswork/normalize-mina-options';
 
-const GET_STYLE_ACTION = ['get', 'delete', 'head', 'options'];
+const GET_STYLE_ACTION = ['get', 'head', 'options'];
 const isGetStyle = (inMethod) => GET_STYLE_ACTION.includes(inMethod);
 
 const NxUniappRequest = nx.declare('nx.UniappRequest', {

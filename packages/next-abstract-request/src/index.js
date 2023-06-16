@@ -8,7 +8,7 @@ import '@jswork/next-content-type';
 import '@jswork/next-data-transform';
 
 const MSG_IMPL = 'Must be implement.';
-const GET_STYLE_ACTION = ['get', 'delete', 'head', 'options'];
+const GET_STYLE_ACTION = ['get', 'head', 'options'];
 const isGetStyle = (inMethod) => GET_STYLE_ACTION.includes(inMethod);
 
 const defaults = {
