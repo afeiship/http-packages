@@ -1,8 +1,6 @@
 // https://jamesthom.as/2021/05/setting-up-esbuild-for-typescript-libraries/
 // https://souporserious.com/bundling-typescript-with-esbuild-for-npm/
-interface Data {
-  [key: string]: any;
-}
+type Data = Record<string, any>;
 
 const TMPL_RE = /\{([^}]+)\}/g;
 
