@@ -1,7 +1,6 @@
 {
   "version": "independent",
   "npmClient": "yarn",
-  "useWorkspaces": true,
   "packages": ["packages/*"],
   "ignoreChanges": ["CHANGELOG.md", "**/__tests__/**"],
   "ignore": ["packages/websites"],
