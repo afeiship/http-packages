@@ -10,10 +10,9 @@ const NxUniappRequest = nx.declare('nx.UniappRequest', {
     initClient: function () {
       this.httpRequest = function (inOptions) {
         const opts = normalizeMinaOptions({ minaFramework: 'uniapp', ...inOptions });
-        const isGET = isGetStyle(opts.method);
         const params = opts.params;
         const hasParam = params && typeof params !== 'undefined';
-        const url = isGET && hasParam ? nx.param(params, opts.url) : opts.url;
+        const url = isGetStyle(opts.method) && hasParam ? nx.param(params, opts.url) : opts.url;
 
         return uni
           .request({ ...opts, url })
