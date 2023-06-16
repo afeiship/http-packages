@@ -9,7 +9,7 @@ import '@jswork/next-data-transform';
 
 const MSG_IMPL = 'Must be implement.';
 const GET_STYLE_ACTION = ['get', 'head', 'options'];
-const isGetStyle = (inMethod) => GET_STYLE_ACTION.includes(inMethod);
+const isGetStyle = (inMethod) => GET_STYLE_ACTION.includes(inMethod.toLowerCase());
 
 const defaults = {
   slim: false,
@@ -22,7 +22,7 @@ const defaults = {
 };
 
 const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
-  statics: nx.mix(null, nx.stubSingleton()),
+  statics: nx.mix(null, { isGetStyle }, nx.stubSingleton()),
   methods: {
     init: function (inOptions) {
       this.opts = nx.mix(null, defaults, this.defaults(), inOptions);
