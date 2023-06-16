@@ -61,6 +61,9 @@ const httpRestConfig = (inHttpClient, inConfig): any => {
         const options = nx.mix({ dataType }, _opts, inOptions);
         const url = baseURL + subpath + apiPath;
 
+        // for restful
+        options.$id = apiKey;
+
         return inHttpClient[method](url, data, options);
       };
     });
