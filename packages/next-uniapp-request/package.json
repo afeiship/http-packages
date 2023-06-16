@@ -47,5 +47,6 @@
   "dependencies": {
     "@jswork/next-abstract-request": "^1.0.46",
     "@jswork/normalize-mina-options": "^1.0.3"
-  }
+  },
+  "gitHead": "8fefa41757ab2beb0a6073487d18956898dd635a"
 }

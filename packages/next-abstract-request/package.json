@@ -45,7 +45,7 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "gitHead": "20d3ab65ef3d91c29962a0d70d0ffe94c852079c",
+  "gitHead": "8fefa41757ab2beb0a6073487d18956898dd635a",
   "dependencies": {
     "@jswork/next-content-type": "^1.0.10",
     "@jswork/next-data-transform": "^1.0.18",
