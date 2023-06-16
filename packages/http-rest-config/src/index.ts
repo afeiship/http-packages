@@ -62,7 +62,7 @@ const httpRestConfig = (inHttpClient, inConfig): any => {
         const url = baseURL + subpath + apiPath;
 
         // for restful
-        options.$id = apiKey;
+        options.$name = apiKey;
 
         return inHttpClient[method](url, data, options);
       };
