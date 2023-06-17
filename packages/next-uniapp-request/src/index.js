@@ -11,10 +11,10 @@ const NxUniappRequest = nx.declare('nx.UniappRequest', {
         const { url: _url, params: _params, $query, $body } = opts;
         const params = $query || _params;
         const url = nx.param(params, url);
-        if ($body) opts.data = $body;
+        const data = $body || opts.data;
 
         return uni
-          .request({ ...opts, url })
+          .request({ ...opts, data, url })
           .then((res) => {
             return {
               status: res.statusCode,
