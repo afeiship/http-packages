@@ -7,8 +7,11 @@ const NxAxios = nx.declare('nx.Axios', {
   methods: {
     initClient: function () {
       this.httpRequest = function (inOptions) {
+        const { url, params, data, $query, $body, ...opts } = inOptions;
+        const _url = nx.param($query || params, url);
+
         return axios
-          .request(inOptions)
+          .request({ url: _url, data: $body || data, ...opts })
           .then((res) => {
             return {
               status: res.status,
