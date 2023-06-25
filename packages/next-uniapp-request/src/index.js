@@ -10,7 +10,7 @@ const NxUniappRequest = nx.declare('nx.UniappRequest', {
         const opts = normalizeMinaOptions({ minaFramework: 'uniapp', ...inOptions });
         const { url: _url, params: _params, $query, $body } = opts;
         const params = $query || _params;
-        const url = nx.param(params, url);
+        const url = nx.param(params, _url);
         const data = $body || opts.data;
 
         return uni
