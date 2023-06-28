@@ -8,9 +8,9 @@ const NxUniappRequest = nx.declare('nx.UniappRequest', {
     initClient: function () {
       this.httpRequest = function (inOptions) {
         const opts = normalizeMinaOptions({ minaFramework: 'uniapp', ...inOptions });
-        const { url: _url, params: _params, $query, $body } = opts;
+        const { url: _url, params: _params, $url, $query, $body } = opts;
         const params = $query || _params;
-        const url = nx.param(params, _url);
+        const url = $url || nx.param(params, _url);
         const data = $body || opts.data;
 
         return uni
