@@ -7,13 +7,22 @@ const normalizeMinaOptions = (inOptions: MinaOptions) => {
   const headers = options.headers;
   const responseType = options.responseType;
 
-  headers['content-type'] = headers['Content-Type'];
-  // options.data = options.body;
-  options.header = headers;
+  // normalize content-type to lower case
+  if (headers) {
+    const contentType = headers['Content-Type'];
+    if (contentType) headers['content-type'] = contentType;
+    options.header = headers;
+
+    // cleanup
+    delete options.headers;
+    delete headers['Content-Type'];
+  }
+
+  // responseType: 'text' | 'arraybuffer' | 'json'
   options.responseType = responseType === 'json' ? 'text' : responseType;
-  delete headers['Content-Type'];
-  delete options.headers;
-  // delete options.body;
+
+  // cleanup
+  if (!options.responseType) delete options.responseType;
 
   return options;
 };
