@@ -11,6 +11,7 @@ const NxDataTransform = nx.declare('nx.DataTransform', {
       return nx.param(inData);
     },
     __multipart__: function (inData) {
+      if (typeof FormData === 'undefined') return inData;
       if (inData instanceof FormData) return inData;
       const fd = new FormData();
       nx.forIn(inData, function (key, value) {
