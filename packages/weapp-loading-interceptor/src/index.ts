@@ -11,7 +11,7 @@ const defaults: Options = {
   interval: 500,
   ignoreKey: 'ignoreLoading',
   onShow: (opts) => {
-    wx.showLoading({ title: '加载中' });
+    wx.showLoading({ title: '加载中', ...opts });
   },
   onHide: (opts) => {
     wx.hideLoading();
