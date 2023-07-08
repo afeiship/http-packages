@@ -38,7 +38,7 @@ class WhenLoading {
     const { onShow, ignoreKey } = this.options;
     const isIgnore = inOptions[ignoreKey!];
     this.loadingTimer && clearTimeout(this.loadingTimer);
-    if (this.requestCount === 0 && !isIgnore) onShow!(inOptions);
+    if (this.requestCount === 0 && !isIgnore) onShow!(inOptions?.loadingOptions);
     this.requestCount++;
     return inOptions;
   }
