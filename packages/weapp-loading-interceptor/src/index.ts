@@ -11,7 +11,7 @@ const defaults: Options = {
   interval: 500,
   ignoreKey: 'ignoreLoading',
   onShow: (opts) => {
-    wx.showLoading({ title: '加载中', ...opts });
+    wx.showLoading({ title: '加载中', ...opts?.loadingOptions });
   },
   onHide: (opts) => {
     wx.hideLoading();
@@ -38,7 +38,7 @@ class WhenLoading {
     const { onShow, ignoreKey } = this.options;
     const isIgnore = inOptions[ignoreKey!];
     this.loadingTimer && clearTimeout(this.loadingTimer);
-    if (this.requestCount === 0 && !isIgnore) onShow!(inOptions?.loadingOptions);
+    if (this.requestCount === 0 && !isIgnore) onShow!(inOptions);
     this.requestCount++;
     return inOptions;
   }
