@@ -17,7 +17,7 @@ const NxDataTransform = nx.declare('nx.DataTransform', {
       nx.forIn(inData, function (key, value) {
         fd.append(key, value);
       });
-      return data;
+      return fd;
     },
     'json,urlencoded,multipart': function (inName) {
       return function (inData) {
