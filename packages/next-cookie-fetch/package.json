@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-cookie-fetch",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Node fetch meet cookie.",
   "homepage": "https://github.com/afeiship/next-cookie-fetch",
   "author": {

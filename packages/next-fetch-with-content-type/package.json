@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch-with-content-type",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Request middleware for contentType.",
   "homepage": "https://github.com/afeiship/next-fetch-with-content-type",
   "author": {
@@ -43,7 +43,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/next-content-type": "^1.0.10"
+    "@jswork/next-content-type": "^1.0.11"
   },
   "keywords": [
     "next",
