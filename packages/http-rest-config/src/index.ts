@@ -3,6 +3,8 @@ import dp from '@jswork/http-data-parser';
 import '@jswork/next-tmpl';
 import '@jswork/next-difference';
 
+declare var wx: any;
+
 const STD_TEMPLATES = {
   index: ['get', '@'],
   show: ['get', '@/{id}'],

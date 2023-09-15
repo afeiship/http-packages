@@ -12,6 +12,7 @@ gulpfile.js
 .prettierrc
 .prettierignore
 .release-it.json
+.ncurc.json
 typedoc.js
 tsconfig.json
 jest.config.js

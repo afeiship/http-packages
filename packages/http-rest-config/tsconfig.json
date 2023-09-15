@@ -3,16 +3,12 @@
     "target": "es5",
     "strict": true,
     "skipLibCheck": true,
-    "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "pretty": true,
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "moduleResolution": "node",
-    "noImplicitAny": false,
-    "types": [
-      "miniprogram-api-typings"
-    ]
+    "noImplicitAny": false
   },
   "include": [
     "src"

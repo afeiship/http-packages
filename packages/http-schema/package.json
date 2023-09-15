@@ -17,7 +17,7 @@
     "@babel/preset-typescript": "^7.21.0",
     "@jswork/gulp-pkg-header": "^1.0.8",
     "@jswork/gulp-registry": "^1.0.23",
-    "@jswork/next": "^1.1.7",
+    "@jswork/next": "^1.1.16",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.5",
     "babel-jest": "^29.5.0",
