@@ -18,5 +18,6 @@ const httpSchema = (inConfig, inOptions?) => {
 if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
   module.exports = httpSchema;
 }
+
 // for es6
 export default httpSchema;
