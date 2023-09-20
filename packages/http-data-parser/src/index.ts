@@ -1,6 +1,6 @@
 // https://jamesthom.as/2021/05/setting-up-esbuild-for-typescript-libraries/
 // https://souporserious.com/bundling-typescript-with-esbuild-for-npm/
-type Data = Record<string, any>;
+type Data = Record<string, any> | Array<any>;
 
 const TMPL_RE = /\{([^}]+)\}/g;
 
@@ -22,6 +22,7 @@ function slice2data(inKeys, inData: Data) {
   const data = {};
 
   if (!inData || isEmpty(inData)) return [null, null];
+  if (Array.isArray(inData)) return [null, inData];
   Object.keys(inData).forEach((key) => {
     const target = inKeys.includes(key) ? tmpl : data;
     target[key] = inData[key];
@@ -32,5 +33,6 @@ function slice2data(inKeys, inData: Data) {
 
 export default (inUrlTmpl: string, inData: Data) => {
   const keys = tmplKeys(inUrlTmpl);
+  if (Array.isArray(inData)) return [null, inData];
   return slice2data(keys, inData);
 };

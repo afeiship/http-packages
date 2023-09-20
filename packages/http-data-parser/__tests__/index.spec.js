@@ -91,4 +91,16 @@ describe('test group', () => {
       '/api/vi/system/login/afei/108?version=1.0.0&age=108'
     );
   });
+
+  test('pure array data', () => {
+    var url = '/api/vi/pureapi';
+    var data = ['afei', 108, '1.0.0', 'x', 'y'];
+
+    var res = dp(url, data);
+
+    expect(res).toEqual([
+      null,
+      ['afei', 108, '1.0.0', 'x', 'y']
+    ]);
+  });
 });
