@@ -4,6 +4,7 @@ declare global {
     NProgress: {
       start: () => void;
       done: () => void;
+      remove: () => void;
     }
   }
 }
