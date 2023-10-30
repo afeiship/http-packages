@@ -12,22 +12,22 @@ npm install @jswork/nprogress-interceptor
 ```
 
 ## usage
+1. import css/js:
+```html
+<link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" />
+<script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+```
+
+2. Use with `nx.$api`:
 ```js
 import createLoaingIntercepotrs from '@jswork/nprogress-interceptor';
 
-const weappLoadingIntercepotrs = createLoaingIntercepotrs({
-  onShow: (opts) => {
-    wx.showLoading({ title: '加载中', mask: true });
-  },
-  onHide: (opts) => {
-    wx.hideLoading();
-  },
-});
+const loadingIntercepotrs = createLoaingIntercepotrs();
 
 const opts = {
   adapter: 'Axios',
   slim: true,
-  interceptors: [...interceptorRequest, ...interceptorResponse, ...weappLoadingIntercepotrs],
+  interceptors: [...interceptorRequest, ...interceptorResponse, ...loadingIntercepotrs],
   transformResponse(inResponse) {
     return inResponse.data;
   },
