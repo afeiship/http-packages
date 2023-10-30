@@ -15,7 +15,25 @@ npm install @jswork/weapp-loading-interceptor
 ```js
 import weappLoadingInterceptor from '@jswork/weapp-loading-interceptor';
 
-// usage goes here.
+const weappLoadingIntercepotrs = createLoaingIntercepotrs({
+  onShow: (opts) => {
+    wx.showLoading({ title: '加载中', mask: true });
+  },
+  onHide: (opts) => {
+    wx.hideLoading();
+  },
+});
+
+const opts = {
+  adapter: 'UniappRequest',
+  slim: true,
+  interceptors: [...interceptorRequest, ...interceptorResponse, ...weappLoadingIntercepotrs],
+  transformResponse(inResponse) {
+    return inResponse.data;
+  },
+};
+
+nx.$api = httpSchema(schema, opts);
 ```
 
 ## license
