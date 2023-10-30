@@ -35,7 +35,7 @@ class WhenLoading {
   private requestCount = 0;
   private loadingTimer;
 
-  constructor(inOptions: Options) {
+  constructor(inOptions?: Options) {
     this.options = Object.assign({}, defaults, inOptions);
   }
 
@@ -65,7 +65,7 @@ class WhenLoading {
   }
 }
 
-const createInterceptors = (options) => {
+const createInterceptors = (options?:Options) => {
   const instance = new WhenLoading(options);
   return instance.create();
 };
