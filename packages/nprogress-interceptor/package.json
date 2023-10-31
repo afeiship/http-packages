@@ -1,6 +1,6 @@
 {
   "name": "@jswork/nprogress-interceptor",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Interceptor for nprogress.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
