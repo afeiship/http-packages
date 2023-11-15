@@ -23,11 +23,11 @@ const NxUniappRequest = nx.declare('nx.UniappRequest', {
             };
           })
           .catch((err) => {
-            return {
+            return Promise.reject({
               status: err.statusCode,
               data: err.data,
               original: err
-            };
+            });
           });
       };
     }
