@@ -21,11 +21,11 @@ const NxAxios = nx.declare('nx.Axios', {
             };
           })
           .catch((err) => {
-            return {
+            return Promise.reject({
               status: err.response.status,
               data: err.response.data,
               original: err
-            };
+            });
           });
       };
     }

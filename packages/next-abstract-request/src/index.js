@@ -13,6 +13,7 @@ const isGetStyle = (inMethod) => GET_STYLE_ACTION.includes(inMethod.toLowerCase(
 
 const defaults = {
   slim: false,
+  resolveAble: false,
   dataType: 'json',
   responseType: 'json',
   interceptors: [],
@@ -67,9 +68,7 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
           return slim ? { status, data } : result;
         })
         .catch((err) => {
-          // compose error:
-          const errorComposeConfig = interceptor.compose(err, 'error');
-          return transformError(errorComposeConfig);
+          return lastRequestComposeConfig.resolveAble ? Promise.resolve(err) : Promise.reject(err);
         });
     },
     'get,post,put,patch,delete,head,options': function (inMethod) {
