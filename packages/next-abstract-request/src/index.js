@@ -38,7 +38,7 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
     },
     request: function (inMethod, inUrl, inData, inOptions) {
       // transformRequest, transformResponse only use once
-      const { slim, dataType, transformRequest, transformResponse, ...options } = {
+      const { slim, resolveAble, dataType, transformRequest, transformResponse, ...options } = {
         ...this.opts,
         ...inOptions
       };
@@ -60,14 +60,11 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
         .then((res) => {
           const compose4response = { config: requestComposeConfig, ...res };
           const composedResponse = interceptor.compose(compose4response, 'response');
-          const result = transformResponse(composedResponse);
-          const hasTransform = transformResponse !== nx.stubValue;
-          if (hasTransform) return result;
-          return this._handleResponse(err, lastRequestComposeConfig);
+          return this._handleResponse(composedResponse, this.opts);
         })
         .catch((err) => {
-          const { resolveAble } = lastRequestComposeConfig;
-          const result = this._handleResponse(err, lastRequestComposeConfig);
+          const { resolveAble } = this.opts;
+          const result = this._handleResponse(err, this.opts);
           return resolveAble ? Promise.resolve(result) : Promise.reject(result);
         });
     },
@@ -79,9 +76,12 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       };
     },
     _handleResponse: function (inResponse, inOptions) {
-      const { slim } = inOptions;
-      const { status, data } = inResponse;
-      return slim ? { status, data } : inResponse;
+      const { slim, transformResponse } = inOptions;
+      const result = transformResponse(inResponse);
+      const hasTransform = transformResponse !== nx.stubValue;
+      if (hasTransform) return result;
+      const { status, data } = reuslt;
+      return slim ? { status, data } : reuslt;
     }
   }
 });
