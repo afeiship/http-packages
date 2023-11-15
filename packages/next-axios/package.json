@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-axios",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Axios common features based on next toolkit.",
   "homepage": "https://js.work",
   "author": {
@@ -46,7 +46,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/next-abstract-request": "^1.1.3"
+    "@jswork/next-abstract-request": "^1.1.4"
   },
   "gitHead": "8fefa41757ab2beb0a6073487d18956898dd635a"
 }
