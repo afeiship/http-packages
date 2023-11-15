@@ -18,8 +18,7 @@ const defaults = {
   responseType: 'json',
   interceptors: [],
   transformRequest: nx.stubValue,
-  transformResponse: nx.stubValue,
-  transformError: nx.stubValue
+  transformResponse: nx.stubValue
 };
 
 const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
@@ -39,7 +38,7 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
     },
     request: function (inMethod, inUrl, inData, inOptions) {
       // transformRequest, transformResponse only use once
-      const { slim, dataType, transformRequest, transformResponse, transformError, ...options } = {
+      const { slim, dataType, transformRequest, transformResponse, ...options } = {
         ...this.opts,
         ...inOptions
       };
