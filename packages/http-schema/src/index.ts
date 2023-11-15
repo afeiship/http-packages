@@ -10,8 +10,8 @@ const isFetchAdapterNil = (inAdapter) => {
 const httpSchema = (inConfig, inOptions?) => {
   const { adapter, ...options } = { ...defaults, ...inOptions } satisfies { adapter: string };
   if (isFetchAdapterNil(adapter)) nx.error(FETCH_IMPORT_MSG);
-  const http = nx[adapter].getInstance(options);
-  return httpRestConfig(http, inConfig);
+  nx.$http = nx[adapter].getInstance(options);
+  return httpRestConfig(nx.$http, inConfig);
 };
 
 // for commonjs es5

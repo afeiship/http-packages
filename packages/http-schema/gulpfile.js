@@ -6,4 +6,8 @@ const task2 = new TsScripts();
 
 [task1, task2].forEach(gulp.registry);
 
-gulp.task('default', gulp.series(['clean', 'ts:scripts']));
+gulp.task('cp:types', () => {
+  return gulp.src('src/@types/*').pipe(gulp.dest('dist/@types'));
+});
+
+gulp.task('default', gulp.series(['clean', 'ts:scripts', 'cp:types']));
