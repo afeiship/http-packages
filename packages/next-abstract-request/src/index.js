@@ -63,11 +63,12 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
           const result = transformResponse(composedResponse);
           const hasTransform = transformResponse !== nx.stubValue;
           if (hasTransform) return result;
-          const { status, data } = result;
-          return slim ? { status, data } : result;
+          return this._handleResponse(err, lastRequestComposeConfig);
         })
         .catch((err) => {
-          return lastRequestComposeConfig.resolveAble ? Promise.resolve(err) : Promise.reject(err);
+          const { resolveAble } = lastRequestComposeConfig;
+          const result = this._handleResponse(err, lastRequestComposeConfig);
+          return resolveAble ? Promise.resolve(result) : Promise.reject(result);
         });
     },
     'get,post,put,patch,delete,head,options': function (inMethod) {
@@ -76,6 +77,11 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
         const args = nx.parseRequestArgs(inputArgs, true);
         return this.request.apply(this, args);
       };
+    },
+    _handleResponse: function (inResponse, inOptions) {
+      const { slim } = inOptions;
+      const { status, data } = inResponse;
+      return slim ? { status, data } : inResponse;
     }
   }
 });
