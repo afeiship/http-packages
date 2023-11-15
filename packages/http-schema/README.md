@@ -20,6 +20,11 @@ yarn add node-fetch @jswork/next-fetch
 yarn add @jswork/next-fetch
 ```
 
+## types
+```ts
+/// <reference types="@jswork/http-schema/dist/@types/type.d.ts" />
+```
+
 ## usage
 ```js
 import httpSchema from '@jswork/http-schema';
