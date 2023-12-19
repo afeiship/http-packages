@@ -82,8 +82,8 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       const result = transformResponse(inResponse);
       const hasTransform = transformResponse !== nx.stubValue;
       if (hasTransform) return result;
-      const { status, data } = reuslt;
-      return slim ? { status, data } : reuslt;
+      const { status, data } = result;
+      return slim ? { status, data } : result;
     }
   }
 });
