@@ -16,7 +16,7 @@
     "publish": "npm run build && lerna publish --no-private"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.1"
+    "@changesets/cli": "^2.27.1"
   },
   "homepage": "https://js.work",
   "repository": {
