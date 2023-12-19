@@ -56,15 +56,17 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
         data: nx.DataTransform.transform(dataType, requestComposeConfig.data)
       };
 
+      const handleComposite = (target) => {
+        const compose4response = { config: requestComposeConfig, ...target };
+        const composedResponse = interceptor.compose(compose4response, 'response');
+        return this._handleResponse(composedResponse, this.opts);
+      };
+
       return this.httpRequest(lastRequestComposeConfig)
-        .then((res) => {
-          const compose4response = { config: requestComposeConfig, ...res };
-          const composedResponse = interceptor.compose(compose4response, 'response');
-          return this._handleResponse(composedResponse, this.opts);
-        })
+        .then(handleComposite)
         .catch((err) => {
           const { resolveAble } = this.opts;
-          const result = this._handleResponse(err, this.opts);
+          const result = handleComposite(err);
           return resolveAble ? Promise.resolve(result) : Promise.reject(result);
         });
     },
