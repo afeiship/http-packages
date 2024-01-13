@@ -10,11 +10,7 @@
     "skipDefaultLibCheck": true,
     "moduleResolution": "node",
     "noImplicitAny": false,
-    "types": [
-      "miniprogram-api-typings"
-    ]
+    "types": ["miniprogram-api-typings"]
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src", "node_modules/@jswork"]
 }

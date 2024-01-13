@@ -1,17 +1,29 @@
 import nx from '@jswork/next';
 import httpRestConfig from '@jswork/http-rest-config';
 
-const defaults = { adapter: 'Axios' };
+interface HttpSchemaOptions {
+  adapter?: string;
+  harmony?: boolean;
+  [key: string]: any;
+}
+
+const defaults: HttpSchemaOptions = { adapter: 'Axios', harmony: false };
 const FETCH_IMPORT_MSG = 'Please import @jswork/next-fetch first.';
 const isFetchAdapterNil = (inAdapter) => {
   return inAdapter === 'Fetch' && typeof nx[inAdapter] === 'undefined';
 };
 
-const httpSchema = (inConfig, inOptions?) => {
-  const { adapter, ...options } = { ...defaults, ...inOptions } satisfies { adapter: string };
+const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
+  const { adapter, harmony, ...options } = { ...defaults, ...inOptions } as HttpSchemaOptions;
   if (isFetchAdapterNil(adapter)) nx.error(FETCH_IMPORT_MSG);
-  nx.$http = nx[adapter].getInstance(options);
-  return httpRestConfig(nx.$http, inConfig);
+  const httpClient = nx[adapter!].getInstance(options);
+  const context = httpRestConfig(httpClient, inConfig);
+
+  if (harmony) {
+    nx.$api = context;
+    nx.$http = httpClient;
+  }
+  return context;
 };
 
 // for commonjs es5
