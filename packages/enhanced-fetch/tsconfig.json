@@ -10,11 +10,8 @@
     "skipDefaultLibCheck": true,
     "moduleResolution": "node",
     "noImplicitAny": false,
-    "types": [
-      "miniprogram-api-typings"
-    ]
+    "types": ["miniprogram-api-typings"],
+    "lib": ["es2015", "es2017", "dom"]
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

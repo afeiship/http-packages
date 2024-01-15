@@ -8,12 +8,13 @@ export const middlewareResponseType: MiddleWareFunction = (inFetch) => (inUrl, i
   return inFetch(inUrl, options).then((original) => {
     const { ok, status } = original;
     const resType = ok ? responseType : 'text';
-    return original[resType]()
+    const stubResponse = status === 204 ? Promise.resolve(null) : original[resType]();
+    return stubResponse
       .then((data) => {
         return { status, data, original };
       })
       .catch((error) => {
-        throw new Error(error);
+        return { status, data: error, original };
       });
   });
 };
