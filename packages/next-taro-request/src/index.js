@@ -1,5 +1,6 @@
 import nx from '@jswork/next';
 import '@jswork/next-abstract-request';
+import Taro from '@tarojs/taro';
 import normalizeMinaOptions from '@jswork/normalize-mina-options';
 
 const NxTaroRequest = nx.declare('nx.TaroRequest', {
@@ -12,6 +13,10 @@ const NxTaroRequest = nx.declare('nx.TaroRequest', {
         const params = $query || _params;
         const url = $url || nx.param(params, _url);
         const data = $body || opts.data;
+
+        if (typeof Taro === 'undefined') {
+          throw new Error('Please install @tarojs/taro first!');
+        }
 
         return Taro
           .request({ ...opts, data, url })
