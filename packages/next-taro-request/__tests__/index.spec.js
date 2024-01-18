@@ -1,8 +1,9 @@
-(function () {
-  require('../src');
+require('../src');
 
-  describe('api.basic test', () => {
-    test('nx.taroRequest', function () {
-    });
+jest.setTimeout(60 * 1000);
+
+describe('api.basic test', () => {
+  test('nx.boilerplatePackage', function () {
+    console.log('hello next');
   });
-})();
+});
