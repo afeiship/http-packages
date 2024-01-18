@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-taro-request",
-  "version": "1.1.21",
+  "version": "1.2.0",
   "description": "Taro request for next.",
   "homepage": "https://github.com/afeiship/next-taro-request",
   "author": {
@@ -47,11 +47,9 @@
     "request",
     "http"
   ],
-  "peerDependencies": {
-    "@tarojs/taro": "^3.2.8"
-  },
   "dependencies": {
-    "@jswork/next-json": "^1.0.2"
+    "@jswork/next-abstract-request": "^1.1.5",
+    "@jswork/normalize-mina-options": "^1.0.5"
   },
   "gitHead": "5995e004fbc20bb63e28c70fa66bb741b99f75d9"
 }
