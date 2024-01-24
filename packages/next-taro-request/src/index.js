@@ -21,6 +21,15 @@ const NxTaroRequest = nx.declare('nx.TaroRequest', {
         return Taro
           .request({ ...opts, data, url })
           .then((res) => {
+            // 小程序中的正常错误代码都会跑到这里来
+            if (res.statusCode >= 400) {
+              return Promise.reject({
+                status: res.statusCode,
+                data: res.data,
+                original: res
+              });
+            }
+
             return {
               status: res.statusCode,
               data: res.data,
