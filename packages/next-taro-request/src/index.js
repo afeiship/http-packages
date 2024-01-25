@@ -21,24 +21,16 @@ const NxTaroRequest = nx.declare('nx.TaroRequest', {
         return Taro
           .request({ ...opts, data, url })
           .then((res) => {
+            const status = res.statusCode || res.status;
+            const resobj = { status, data: res.data, original: res };
             // 小程序中的正常错误代码都会跑到这里来
-            if (res.statusCode >= 400) {
-              return Promise.reject({
-                status: res.statusCode,
-                data: res.data,
-                original: res
-              });
-            }
-
-            return {
-              status: res.statusCode,
-              data: res.data,
-              original: res
-            };
+            if (status >= 400) return Promise.reject(resobj);
+            return resobj;
           })
           .catch((err) => {
+            const status = res.statusCode || res.status;
             return Promise.reject({
-              status: err.statusCode,
+              status,
               data: err.data,
               original: err
             });
