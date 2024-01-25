@@ -28,7 +28,7 @@ const NxTaroRequest = nx.declare('nx.TaroRequest', {
             return resobj;
           })
           .catch((err) => {
-            const status = res.statusCode || res.status;
+            const status = err.statusCode || err.status;
             return Promise.reject({
               status,
               data: err.data,
