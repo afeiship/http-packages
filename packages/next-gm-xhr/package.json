@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-gm-xhr",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "GM_xmlhttpRequest for next.",
   "homepage": "https://js.work",
   "author": {
