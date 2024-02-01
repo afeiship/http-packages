@@ -1,0 +1,52 @@
+{
+  "name": "@jswork/next-gm-xhr",
+  "version": "1.1.0",
+  "description": "GM_xmlhttpRequest for next.",
+  "homepage": "https://js.work",
+  "author": {
+    "name": "afei",
+    "email": "1290657123@qq.com"
+  },
+  "scripts": {
+    "build": "gulp",
+    "test": "jest",
+    "start": "node ./express.js",
+    "release": "release-it"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
+    "@jswork/gulp-pkg-header": "^1.0.8",
+    "@jswork/gulp-registry": "^1.0.22",
+    "@jswork/next": "^1.1.8",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-prettier": "^4.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-replace": "^1.1.4",
+    "gulp-uglify": "^3.0.2",
+    "jest": "^29.5.0",
+    "jest-location-mock": "^1.0.9",
+    "uglify-save-license": "^0.4.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env"
+      ]
+    ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "dependencies": {
+    "@jswork/next-abstract-request": "^1.1.5",
+    "@jswork/next-json": "^1.0.6",
+    "@jswork/next-param": "^1.0.12"
+  }
+}
