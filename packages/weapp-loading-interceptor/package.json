@@ -1,6 +1,6 @@
 {
   "name": "@jswork/weapp-loading-interceptor",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Loading interceptor for weapp.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
