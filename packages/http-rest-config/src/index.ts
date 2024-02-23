@@ -30,7 +30,7 @@ const normalizeResource = (inResources, inTemplates) => {
 
     current.forEach((item) => {
       const key = `${name}_${item}`;
-      const tmpl = templates[item];
+      const tmpl = templates[item].slice(0);
       tmpl[1] = tmpl[1].replace('@', `/${name}`);
       items[key] = tmpl;
     });
