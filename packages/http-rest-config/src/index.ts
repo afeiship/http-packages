@@ -17,7 +17,8 @@ const normalizeResource = (inResources, inTemplates) => {
   if (!inResources?.length) return [];
   const templates = inTemplates || STD_TEMPLATES;
   const STD_KEYS = Object.keys(STD_TEMPLATES);
-  return inResources.map((resource) => {
+  return inResources.map((res) => {
+    const resource = typeof res === 'string' ? { name: res } : res;
     const { name, only, except, ...others } = resource;
     const items = {};
     const hasOnly = !!only?.length;

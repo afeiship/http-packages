@@ -3,20 +3,20 @@ var httpRestConfig = require('../src');
 describe('test group', () => {
   let apiService, http;
 
-  beforeEach(function () {
+  beforeEach(function() {
     apiService = {};
     http = {
-      get: function (inUrl, inData, inOptions) {
+      get: function(inUrl, inData, inOptions) {
         return { url: inUrl, data: inData };
       },
-      post: function (inUrl, inData, inOptions) {
+      post: function(inUrl, inData, inOptions) {
         return {
           url: inUrl,
           data: inData,
         };
       },
-      put: function (inUrl, inData, inOptions) {},
-      delete: function (inUrl, inData, inOptions) {
+      put: function(inUrl, inData, inOptions) { },
+      delete: function(inUrl, inData, inOptions) {
         return {
           url: inUrl,
           data: inData,
@@ -29,6 +29,7 @@ describe('test group', () => {
     baseURL: 'http://dev.demo.com',
     request: ['/api/vi', 'json'],
     resources: [
+      'tags',
       { host: 'http://dev2.demo.com', prefix: 'v1_', name: 'users', only: ['index'] },
       { prefix: 'v2_', name: 'posts' },
       { name: 'roles', except: ['destroy'] },
@@ -57,6 +58,15 @@ describe('test group', () => {
       },
     ],
   };
+
+  test("resource: pure string tags(index/show/create/update/destroy)", () => {
+    apiService = httpRestConfig(http, config);
+    expect(apiService.tags_index).toBeDefined();
+    expect(apiService.tags_show).toBeDefined();
+    expect(apiService.tags_create).toBeDefined();
+    expect(apiService.tags_update).toBeDefined();
+    expect(apiService.tags_destroy).toBeDefined();
+  })
 
   test('resource: all(index/show/create/update/destroy)', () => {
     apiService = httpRestConfig(http, config);
