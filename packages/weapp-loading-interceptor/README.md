@@ -13,9 +13,9 @@ npm install @jswork/weapp-loading-interceptor
 
 ## usage
 ```js
-import weappLoadingInterceptor from '@jswork/weapp-loading-interceptor';
+import createInterceptors from '@jswork/weapp-loading-interceptor';
 
-const weappLoadingIntercepotrs = createLoaingIntercepotrs({
+const weappLoadingIntercepotrs = createInterceptors({
   onShow: (opts) => {
     wx.showLoading({ title: '加载中', mask: true });
   },

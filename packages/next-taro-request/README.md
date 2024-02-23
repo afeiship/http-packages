@@ -8,7 +8,7 @@
 
 ## installation
 ```bash
-npm install -S @jswork/next-taro-request
+yarn add @jswork/next-taro-request
 ```
 
 ## usage

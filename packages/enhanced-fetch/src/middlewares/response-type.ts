@@ -5,15 +5,15 @@ const defaults = { responseType: 'json', slim: false };
 export const middlewareResponseType: MiddleWareFunction = (inFetch) => (inUrl, inInit?) => {
   const { responseType, ...options } = { ...defaults, ...inInit };
   if (!responseType) return inFetch(inUrl, options);
-  return inFetch(inUrl, options).then((original) => {
+  return inFetch(inUrl, options).then((original: Response) => {
     const { ok, status } = original;
-    const resType = ok ? responseType : 'text';
-    const stubResponse = status === 204 ? Promise.resolve(null) : original[resType]();
+    const stubResponse = status === 204 ? Promise.resolve(null) : original[responseType]();
     return stubResponse
-      .then((data) => {
+      .then((data: any) => {
+        if (!ok) return Promise.reject(data);
         return { status, data, original };
       })
-      .catch((error) => {
+      .catch((error: any) => {
         return { status, data: error, original };
       });
   });
