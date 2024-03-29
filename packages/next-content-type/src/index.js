@@ -14,7 +14,7 @@ const TYPES = {
 };
 
 nx.contentType = function (inKey) {
-  return TYPES[inKey] || TYPES.urlencoded;
+  return TYPES[inKey];
 };
 
 if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
