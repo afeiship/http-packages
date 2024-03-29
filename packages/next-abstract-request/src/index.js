@@ -51,9 +51,10 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
       const requestConfig = { url: inUrl, method: inMethod, headers, ...payload, ...options };
       const requestTransformConfig = transformRequest(requestConfig);
       const requestComposeConfig = interceptor.compose(requestTransformConfig, 'request');
+      const transformType = dataType === 'auto' ? 'multipart' : dataType;
       const lastRequestComposeConfig = {
         ...requestComposeConfig,
-        data: nx.DataTransform.transform(dataType, requestComposeConfig.data)
+        data: nx.DataTransform.transform(transformType, requestComposeConfig.data)
       };
 
       const handleComposite = (target) => {
