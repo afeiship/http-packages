@@ -1,5 +1,6 @@
 // https://jestjs.io/docs/en/configuration
-export default {
+/** @type {import('ts-jest').JestConfigWithTsJest} */
+module.exports = {
   verbose: true,
   // use jsdom env
   // testEnvironment: 'jsdom',

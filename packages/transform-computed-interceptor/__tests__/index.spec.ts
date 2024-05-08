@@ -1,7 +1,7 @@
 import fn from '../src';
 
 describe('api.basic', () => {
-  test('normail single value case', () => {
+  test('Unwrap computed properties', () => {
     const requestFn = fn[0].fn;
     const mockOpts = {
       data: {
@@ -14,8 +14,9 @@ describe('api.basic', () => {
       },
     };
 
-    requestFn(mockOpts);
-    // expect(mockOpts.data.name).toBe('aric');
-    // expect(mockOpts.data.age).toBe(25);
+    const res = requestFn(mockOpts);
+    expect(res).toBe(mockOpts);
+    expect(res.data.name).toBe('aric');
+    expect(res.data.age).toBe(25);
   });
 });
