@@ -24,25 +24,35 @@
  * If absent, the default unfolding into multiple fields will be performed.
  */
 
-const defaultGetters = (computed: Record<string, any>) => {
+export type ComputedPayload = Record<string, any> & {
+  __computed__: Record<string, any>;
+  __getters__?: (data: Record<string, any>) => Record<string, any>;
+};
+
+const shallowMerge = (target: ComputedPayload) => {
   let result = {};
-  for (let key in computed) {
-    const value = computed[key];
-    if (value && typeof value === 'object') {
-      result = { ...result, ...value };
-    } else {
+  for (let key in target) {
+    const value = target[key];
+    if (Array.isArray(value)) {
       result[key] = value;
+    } else {
+      if (value && typeof value === 'object') {
+        result = { ...result, ...value };
+      } else {
+        result[key] = value;
+      }
     }
   }
   return result;
 };
 
+const defaults = { __getters__: shallowMerge };
+
 const transformComputed = (opts) => {
   const { data } = opts;
   if (data?.__computed__) {
-    const { __computed__: computed, __getters__, ...rest } = data;
-    const getters = __getters__ || defaultGetters;
-    const computedData = getters(computed);
+    const { __computed__, __getters__, ...rest } = { ...defaults, ...data } as ComputedPayload;
+    const computedData = __getters__!(__computed__);
     opts.data = { ...rest, ...computedData };
     delete opts.data.__computed__;
   }
