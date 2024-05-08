@@ -1,24 +1,27 @@
 /**
- * 适用场景:
- * 页面中的一些 form 产生的表单数据为一个 object，存在于 __computed__ 属性中，需要将其展开为多个字段，并将其添加到 data 中。
- * 例如：
+ * Use case:
+ * This method is used when form data, presented as an object within the __computed__ attribute needs to be expanded into multiple fields and added to the data object.
+ * For instance, consider the below payload:
  * payload: {
  *   id: 1,
  *   email: 'xxx@xxx.xxx',
  *   __computed__: {
- *     name: '张三',
+ *     name: 'John',
  *     age: 20,
  *    }
  *  }
- *   希望将 __computed__ 中的数据展开为 name 和 age 两个字段，并添加到 data 中，最终的 payload 如下：
- *   payload: {
- *      id: 1,
- *      email: 'xxx@xxx.xxx',
- *      name: '张三',
- *      age: 20,
- *    }
+ * The objective is to expand the data within the __computed__ attribute into separate fields i.e., name, and age, and add these to the main data object.
+ * The final payload would appear as:
+ * payload: {
+ *    id: 1,
+ *    email: 'xxx@xxx.xxx',
+ *    name: 'John',
+ *    age: 20,
+ *  }
  *
- * 使用: data 中存在 __computed__ 和 __getters__ 属性，__getters__(这个是选填) 属性可自定义展开方式，默认为展开为多个字段。
+ * Usage: the data object includes __computed__ and optionally __getters__ attributes.
+ * The __getters__ attribute, if present, can offer a customised way to unfold the data.
+ * If absent, the default unfolding into multiple fields will be performed.
  */
 
 const defaultGetters = (computed: Record<string, any>) => {
