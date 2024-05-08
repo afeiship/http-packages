@@ -6,6 +6,10 @@
   "module": "./dist/index.esm.js",
   "browser": "./dist/index.umd.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "global.d.ts"
+  ],
   "scripts": {
     "build": "tsup",
     "postbuild": "rollup -c rollup.config.mjs",
