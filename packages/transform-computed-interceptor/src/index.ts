@@ -23,10 +23,12 @@
  * The __getters__ attribute, if present, can offer a customised way to unfold the data.
  * If absent, the default unfolding into multiple fields will be performed.
  */
+import { del } from '@jswork/next';
 
 export type ComputedPayload = Record<string, any> & {
   __computed__: Record<string, any>;
-  __getters__?: (data: Record<string, any>) => Record<string, any>;
+  __getters__?: (data: Record<string, any>, fullData: any) => Record<string, any>;
+  __ui__?: Record<string, any>;
 };
 
 const shallowMerge = (target: ComputedPayload) => {
@@ -52,10 +54,13 @@ const transformComputed = (opts) => {
   const { data } = opts;
   if (data?.__computed__) {
     const { __computed__, __getters__, ...rest } = { ...defaults, ...data } as ComputedPayload;
-    const computedData = __getters__!(__computed__);
+    const computedData = __getters__?.(__computed__, data);
     opts.data = { ...rest, ...computedData };
     delete opts.data.__computed__;
+    delete opts.data.__getters__;
   }
+
+  delete opts.data.__ui__;
   return opts;
 };
 
