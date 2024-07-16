@@ -20,7 +20,7 @@ describe('api.basic', () => {
     expect(res.data.age).toBe(25);
   });
 
-  test('Computed with __getters__', () => {
+  test('Computed with customized __getters__', () => {
     const requestFn = fn[0].fn;
     const mockOpts = {
       data: {
