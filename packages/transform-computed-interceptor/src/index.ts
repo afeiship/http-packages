@@ -23,7 +23,6 @@
  * The __getters__ attribute, if present, can offer a customised way to unfold the data.
  * If absent, the default unfolding into multiple fields will be performed.
  */
-import { del } from '@jswork/next';
 
 export type ComputedPayload = Record<string, any> & {
   __computed__: Record<string, any>;
