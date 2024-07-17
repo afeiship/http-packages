@@ -59,7 +59,7 @@ const transformComputed = (opts) => {
     delete opts.data.__getters__;
   }
 
-  delete opts.data.__ui__;
+  delete opts.data?.__ui__;
   return opts;
 };
 
