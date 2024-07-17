@@ -27,7 +27,6 @@
 export type ComputedPayload = Record<string, any> & {
   __computed__: Record<string, any>;
   __getters__?: (data: Record<string, any>, fullData: any) => Record<string, any>;
-  __ui__?: Record<string, any>;
 };
 
 const shallowMerge = (target: ComputedPayload) => {
@@ -59,7 +58,6 @@ const transformComputed = (opts) => {
     delete opts.data.__getters__;
   }
 
-  delete opts.data?.__ui__;
   return opts;
 };
 
