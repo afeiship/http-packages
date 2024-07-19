@@ -75,6 +75,7 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
         options.$key = key;
         options.$name = name;
 
+        const context = httpClient[method](url, data, options);
         const dynamicArgs = {
           key,
           name,
@@ -86,9 +87,10 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
           data,
           options,
           httpClient,
+          context,
         };
 
-        return dynamicApi ? dynamicApi(dynamicArgs) : httpClient[method](url, data, options);
+        return dynamicApi ? dynamicApi(dynamicArgs) : context;
       };
     });
   });
