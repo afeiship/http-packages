@@ -6,7 +6,7 @@ import '@jswork/next-difference';
 declare var wx: any;
 
 interface RestHttpConfig {
-  dynamicApi?: (args: any) => any;
+  transformApi?: (args: any) => any;
 }
 
 const STD_TEMPLATES = {
@@ -46,7 +46,7 @@ const normalizeResource = (inResources, inTemplates) => {
 const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any => {
   const apiConfig = {};
   const { items, resources, templates } = inConfig;
-  const { dynamicApi } = { ...inOptions };
+  const { transformApi } = { ...inOptions };
 
   // api resources
   const resourceItems = normalizeResource(resources, templates);
@@ -76,7 +76,7 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
         options.$name = name;
 
         const context = httpClient[method](url, data, options);
-        const dynamicArgs = {
+        const transformArgs = {
           key,
           name,
           prefix,
@@ -90,7 +90,7 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
           context,
         };
 
-        return dynamicApi ? dynamicApi(dynamicArgs) : context;
+        return transformApi ? transformApi(transformArgs) : context;
       };
     });
   });
