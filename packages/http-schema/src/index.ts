@@ -4,23 +4,28 @@ import httpRestConfig from '@jswork/http-rest-config';
 interface HttpSchemaOptions {
   adapter?: string;
   harmony?: boolean;
+  dynamicFn?: ((inConfig: any) => any) | null;
+
   [key: string]: any;
 }
 
-const defaults: HttpSchemaOptions = { adapter: 'Axios', harmony: false };
+const defaults: HttpSchemaOptions = { adapter: 'Axios', harmony: false, dynamicFn: null };
 const FETCH_IMPORT_MSG = 'Please import @jswork/next-fetch first.';
 const isFetchAdapterNil = (inAdapter) => {
   return inAdapter === 'Fetch' && typeof nx[inAdapter] === 'undefined';
 };
 
 const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
-  const { adapter, harmony, ...options } = { ...defaults, ...inOptions } as HttpSchemaOptions;
+  const { adapter, harmony, dynamicFn, ...options } = {
+    ...defaults,
+    ...inOptions,
+  } as HttpSchemaOptions;
   if (isFetchAdapterNil(adapter)) nx.error(FETCH_IMPORT_MSG);
   const httpClient = nx[adapter!].getInstance(options);
   const context = httpRestConfig(httpClient, inConfig);
 
   if (harmony) {
-    nx.$api = context;
+    nx.$api = dynamicFn ? dynamicFn(context) : context;
     nx.$http = httpClient;
   }
   return context;
