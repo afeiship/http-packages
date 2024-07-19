@@ -47,18 +47,18 @@ const httpRestConfig = (inHttpClient, inConfig): any => {
   const resourceItems = normalizeResource(resources, templates);
   const target = items.concat(resourceItems);
 
-  target.forEach(function(item) {
+  target.forEach(function (item) {
     const request = item.request || inConfig.request;
     const prefix = item.prefix || inConfig.prefix || '';
     const suffix = item.suffix || inConfig.suffix || '';
     const baseURL = item.baseURL || inConfig.baseURL || `${location.protocol}//${location.host}`;
 
     // api items
-    nx.each(item.items, function(key, _item) {
+    nx.each(item.items, function (key, _item) {
       const [_method, _path, _opts] = _item;
       const apiKey = prefix + key + suffix;
 
-      apiConfig[apiKey] = function(inData, inOptions) {
+      apiConfig[apiKey] = function (inData, inOptions) {
         const method = String(_method).toLowerCase();
         const [subpath, dataType] = request;
         const [params, data] = dp(_path, inData);
@@ -67,6 +67,7 @@ const httpRestConfig = (inHttpClient, inConfig): any => {
         const url = baseURL + subpath + apiPath;
 
         // for restful
+        options.$key = key;
         options.$name = apiKey;
 
         return inHttpClient[method](url, data, options);
