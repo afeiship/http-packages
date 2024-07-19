@@ -5,6 +5,7 @@ interface HttpSchemaOptions {
   adapter?: string;
   harmony?: boolean;
   transformApi?: (args: TransformApiArgs) => Promise<any>;
+  dynamicApi?: (apis: Record<string, any>, ...args) => Promise<any>;
 
   [key: string]: any;
 }
@@ -16,7 +17,7 @@ const isFetchAdapterNil = (inAdapter) => {
 };
 
 const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
-  const { adapter, harmony, transformApi, ...options } = {
+  const { adapter, harmony, transformApi, dynamicApi, ...options } = {
     ...defaults,
     ...inOptions,
   } as HttpSchemaOptions;
@@ -24,9 +25,13 @@ const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
   const httpClient = nx[adapter!].getInstance(options);
   const httpRestOpts = transformApi ? { transformApi } : undefined;
   const context = httpRestConfig(httpClient, inConfig, httpRestOpts);
+  const dynamicFn = (...args) => {
+    return dynamicApi?.(context, ...args);
+  };
 
   if (harmony) {
     nx.$api = context;
+    nx.$dapi = dynamicFn;
     nx.$http = httpClient;
   }
   return context;
