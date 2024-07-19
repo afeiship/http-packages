@@ -1,6 +1,6 @@
 {
   "name": "@jswork/http-schema",
-  "version": "2.2.8",
+  "version": "2.2.9",
   "description": "Http schema based on next-fetch.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -66,6 +66,6 @@
   ],
   "gitHead": "bf8a963c2a91aa44a181fe0d837b97d713299f5a",
   "dependencies": {
-    "@jswork/http-rest-config": "^2.0.23"
+    "@jswork/http-rest-config": "^2.0.24"
   }
 }
