@@ -76,6 +76,8 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
         options.$name = name;
 
         const dynamicArgs = {
+          key,
+          name,
           prefix,
           suffix,
           method,
