@@ -1,6 +1,6 @@
 {
   "name": "@jswork/http-schema",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "Http schema based on next-fetch.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
