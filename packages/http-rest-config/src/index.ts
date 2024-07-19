@@ -39,9 +39,9 @@ const normalizeResource = (inResources, inTemplates) => {
   });
 };
 
-const httpRestConfig = (inHttpClient, inConfig): any => {
+const httpRestConfig = (httpClient, inConfig): any => {
   const apiConfig = {};
-  const { items, resources, templates } = inConfig;
+  const { items, resources, templates, dynamicApi } = inConfig;
 
   // api resources
   const resourceItems = normalizeResource(resources, templates);
@@ -56,9 +56,9 @@ const httpRestConfig = (inHttpClient, inConfig): any => {
     // api items
     nx.each(item.items, function (key, _item) {
       const [_method, _path, _opts] = _item;
-      const apiKey = prefix + key + suffix;
+      const name = prefix + key + suffix;
 
-      apiConfig[apiKey] = function (inData, inOptions) {
+      apiConfig[name] = function (inData, inOptions) {
         const method = String(_method).toLowerCase();
         const [subpath, dataType] = request;
         const [params, data] = dp(_path, inData);
@@ -68,9 +68,20 @@ const httpRestConfig = (inHttpClient, inConfig): any => {
 
         // for restful
         options.$key = key;
-        options.$name = apiKey;
+        options.$name = name;
 
-        return inHttpClient[method](url, data, options);
+        const dynamicArgs = {
+          prefix,
+          suffix,
+          method,
+          params,
+          url,
+          data,
+          options,
+          httpClient,
+        };
+
+        return dynamicApi ? dynamicApi(dynamicArgs) : httpClient[method](url, data, options);
       };
     });
   });
