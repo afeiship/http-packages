@@ -4,7 +4,7 @@ import httpRestConfig from '@jswork/http-rest-config';
 interface HttpSchemaOptions {
   adapter?: string;
   harmony?: boolean;
-  dynamicApi?: (args: any) => any;
+  transformApi?: (args: any) => any;
 
   [key: string]: any;
 }
@@ -16,13 +16,13 @@ const isFetchAdapterNil = (inAdapter) => {
 };
 
 const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
-  const { adapter, harmony, dynamicApi, ...options } = {
+  const { adapter, harmony, transformApi, ...options } = {
     ...defaults,
     ...inOptions,
   } as HttpSchemaOptions;
   if (isFetchAdapterNil(adapter)) nx.error(FETCH_IMPORT_MSG);
   const httpClient = nx[adapter!].getInstance(options);
-  const httpRestOpts = dynamicApi ? { dynamicApi } : undefined;
+  const httpRestOpts = transformApi ? { transformApi } : undefined;
   const context = httpRestConfig(httpClient, inConfig, httpRestOpts);
 
   if (harmony) {
