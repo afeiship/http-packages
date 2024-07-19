@@ -12,13 +12,13 @@ interface TransformApiArgs {
   data: any;
   options: any;
   httpClient: any;
-  context: any;
+  context: Promise<any>;
 }
 
 interface HttpSchemaOptions {
   adapter?: string;
   harmony?: boolean;
-  transformApi?: (args: TransformApiArgs) => any;
+  transformApi?: (args: TransformApiArgs) => Promise<any>;
 
   [key: string]: any;
 }
