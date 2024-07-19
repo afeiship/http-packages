@@ -1,10 +1,24 @@
 import nx from '@jswork/next';
 import httpRestConfig from '@jswork/http-rest-config';
 
+interface TransformApiArgs {
+  key: string;
+  name: string;
+  prefix: string;
+  suffix: string;
+  method: string;
+  params: any;
+  url: string;
+  data: any;
+  options: any;
+  httpClient: any;
+  context: any;
+}
+
 interface HttpSchemaOptions {
   adapter?: string;
   harmony?: boolean;
-  transformApi?: (args: any) => any;
+  transformApi?: (args: TransformApiArgs) => any;
 
   [key: string]: any;
 }
