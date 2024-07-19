@@ -5,8 +5,22 @@ import '@jswork/next-difference';
 
 declare var wx: any;
 
-interface RestHttpConfig {
-  transformApi?: (args: any) => any;
+export interface TransformApiArgs {
+  key: string;
+  name: string;
+  prefix: string;
+  suffix: string;
+  method: string;
+  params: any;
+  url: string;
+  data: any;
+  options: any;
+  httpClient: any;
+  context: Promise<any>;
+}
+
+export interface RestHttpConfig {
+  transformApi?: (args: TransformApiArgs) => Promise<any>;
 }
 
 const STD_TEMPLATES = {
@@ -75,7 +89,7 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
         options.$key = key;
         options.$name = name;
 
-        const context = httpClient[method](url, data, options);
+        const context = httpClient[method](url, data, options) as Promise<any>;
         const transformArgs = {
           key,
           name,
