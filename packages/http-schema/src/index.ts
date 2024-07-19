@@ -25,9 +25,7 @@ const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
   const httpClient = nx[adapter!].getInstance(options);
   const httpRestOpts = transformApi ? { transformApi } : undefined;
   const context = httpRestConfig(httpClient, inConfig, httpRestOpts);
-  const dynamicFn = (...args) => {
-    return dynamicApi?.(context, ...args);
-  };
+  const dynamicFn = (...args) => dynamicApi?.(context, ...args);
 
   if (harmony) {
     nx.$api = context;
