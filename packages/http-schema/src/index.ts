@@ -26,10 +26,14 @@ const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
   const httpRestOpts = transformApi ? { transformApi } : undefined;
   const context = httpRestConfig(httpClient, inConfig, httpRestOpts);
   const dynamicFn = (...args: any[]) => dynamicApi?.(context, ...args) ?? Promise.resolve();
+  const dynamicFnGenerator = (...args: any[]) => {
+    return () => dynamicFn(...args);
+  };
 
   if (harmony) {
     nx.$api = context;
     nx.$dapi = dynamicFn;
+    nx.$dapiFn = dynamicFnGenerator;
     nx.$http = httpClient;
   }
   return context;
