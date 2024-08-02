@@ -75,6 +75,7 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
     // api items
     nx.each(item.items, function (key, _item) {
       const [_method, _path, _opts] = _item;
+      const { tags, ...opts } = _opts;
       const name = prefix + key + suffix;
 
       apiConfig[name] = function (inData, inOptions) {
@@ -82,12 +83,13 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
         const [subpath, dataType] = request;
         const [params, data] = dp(_path, inData);
         const apiPath = nx.tmpl(_path, params);
-        const options = nx.mix({ dataType }, _opts, inOptions);
+        const options = nx.mix({ dataType }, opts, inOptions);
         const url = baseURL + subpath + apiPath;
 
         // for restful
         options.$key = key;
         options.$name = name;
+        options.$tags = tags;
 
         const context = httpClient[method](url, data, options) as Promise<any>;
         const transformArgs = {
