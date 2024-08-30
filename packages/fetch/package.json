@@ -34,6 +34,10 @@
     "node-fetch": "2.6.7",
     "typescript": "^4.9.5"
   },
+  "peerDependencies": {
+    "form-data": "*",
+    "node-fetch": "2.6.7"
+  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
