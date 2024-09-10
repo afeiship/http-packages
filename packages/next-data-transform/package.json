@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-data-transform",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Data transform for next.",
   "homepage": "https://js.work",
   "author": {
@@ -19,9 +19,9 @@
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
-    "@jswork/gulp-pkg-header": "^1.0.8",
-    "@jswork/gulp-registry": "^1.0.43",
-    "@jswork/next": "^1.1.16",
+    "@jswork/gulp-pkg-header": "^1.0.11",
+    "@jswork/gulp-registry": "^1.0.45",
+    "@jswork/next": "^1.2.2",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
