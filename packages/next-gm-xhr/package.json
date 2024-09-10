@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-gm-xhr",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "GM_xmlhttpRequest for next.",
   "homepage": "https://js.work",
   "author": {
@@ -45,7 +45,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/next-abstract-request": "^1.1.8",
+    "@jswork/next-abstract-request": "^1.1.9",
     "@jswork/next-json": "^1.0.6",
     "@jswork/next-param": "^1.0.12"
   }

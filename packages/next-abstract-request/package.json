@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-abstract-request",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Standard abstract request.",
   "homepage": "https://js.work",
   "author": {
@@ -48,7 +48,7 @@
   "gitHead": "8fefa41757ab2beb0a6073487d18956898dd635a",
   "dependencies": {
     "@jswork/next-content-type": "^1.0.12",
-    "@jswork/next-data-transform": "^1.0.22",
+    "@jswork/next-data-transform": "^1.0.23",
     "@jswork/next-interceptor": "^1.1.2",
     "@jswork/next-parse-request-args": "^1.0.9",
     "@jswork/next-stub-singleton": "^1.0.7"
