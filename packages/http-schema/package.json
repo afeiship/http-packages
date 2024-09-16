@@ -64,7 +64,7 @@
     "http",
     "schema"
   ],
-  "gitHead": "2d90ab4e5ec61fbad09b5ab8538bb2bb01d89cb9",
+  "gitHead": "8b1deeacbb51260637c58b0e46035599892264ae",
   "dependencies": {
     "@jswork/http-rest-config": "^2.0.30"
   }

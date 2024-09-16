@@ -21,6 +21,7 @@ export interface TransformApiArgs {
 
 export interface RestHttpConfig {
   transformApi?: (args: TransformApiArgs) => Promise<any>;
+  priority?: number;
 }
 
 const STD_TEMPLATES = {
