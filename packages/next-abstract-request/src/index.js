@@ -14,6 +14,7 @@ const isGetStyle = (inMethod) => GET_STYLE_ACTION.includes(inMethod.toLowerCase(
 const defaults = {
   slim: false,
   resolveAble: false,
+  priority: 1000,
   dataType: 'json',
   responseType: 'json',
   interceptors: [],

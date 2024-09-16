@@ -4,6 +4,7 @@ import httpRestConfig, { TransformApiArgs } from '@jswork/http-rest-config';
 interface HttpSchemaOptions {
   adapter?: string;
   harmony?: boolean;
+  priority?: number;
   transformApi?: (args: TransformApiArgs) => Promise<any>;
   dynamicApi?: (apis: Record<string, any>, ...args) => Promise<any>;
 
@@ -26,7 +27,10 @@ const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
   const httpRestOpts = transformApi ? { transformApi } : undefined;
   const context = httpRestConfig(httpClient, inConfig, httpRestOpts);
   const dynamicFn = (...args: any[]) => dynamicApi?.(context, ...args) ?? Promise.resolve(null);
-  const dynamicFnGenerator = (...args: any[]) => () => dynamicFn(...args);
+  const dynamicFnGenerator =
+    (...args: any[]) =>
+    () =>
+      dynamicFn(...args);
 
   if (harmony) {
     nx.$api = context;
