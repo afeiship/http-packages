@@ -71,7 +71,8 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
     const request = item.request || inConfig.request;
     const prefix = item.prefix || inConfig.prefix || '';
     const suffix = item.suffix || inConfig.suffix || '';
-    const baseURL = item.baseURL || inConfig.baseURL || `${location.protocol}//${location.host}`;
+    // const baseURL = item.baseURL || inConfig.baseURL || `${location.protocol}//${location.host}`;
+    const baseURL = item.baseURL || inConfig.baseURL;
 
     // api items
     nx.each(item.items, function (key, _item) {
