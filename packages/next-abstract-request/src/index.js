@@ -63,6 +63,8 @@ const NxAbstractRequest = nx.declare('nx.AbstractRequest', {
         return this._handleResponse(composedResponse, this.opts);
       };
 
+      if (lastRequestComposeConfig.data === null) delete lastRequestComposeConfig.data;
+
       return this.httpRequest(lastRequestComposeConfig)
         .then(handleComposite)
         .catch((err) => {
