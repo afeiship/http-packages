@@ -20,7 +20,6 @@ function isEmpty(obj) {
 function slice2data(inKeys, inData: Data) {
   const tmpl = {};
   const data = {};
-
   if (!inData || isEmpty(inData)) return [null, null];
   if (Array.isArray(inData)) return [null, inData];
   Object.keys(inData).forEach((key) => {
@@ -34,5 +33,6 @@ function slice2data(inKeys, inData: Data) {
 export default (inUrlTmpl: string, inData: Data) => {
   const keys = tmplKeys(inUrlTmpl);
   if (Array.isArray(inData)) return [null, inData];
+  if(inData instanceof FormData) return [null, inData];
   return slice2data(keys, inData);
 };
