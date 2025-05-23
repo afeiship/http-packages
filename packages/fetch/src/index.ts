@@ -2,7 +2,6 @@ declare global {
   namespace NodeJS {
     interface Global {
       fetch: (input: RequestInfo, init?: RequestInit) => Promise<Response>;
-      FormData: typeof FormData;
     }
   }
 }
