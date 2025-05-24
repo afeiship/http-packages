@@ -15,9 +15,11 @@ yarn add @jswork/fetch-mp
 ```js
 import fetchMp from '@jswork/fetch-mp';
 
-fetchMp(1024);
-
-// [1000, 0, 20, 4]
+fetchMp("https://api.github.com/users/afeiship")
+  .then(r => r.json())
+  .then(res => {
+    console.log('res: ', res)
+  })
 ```
 
 ## license
