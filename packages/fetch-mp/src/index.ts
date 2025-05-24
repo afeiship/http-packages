@@ -1,7 +1,5 @@
 import normalizeMinaOptions from '@jswork/normalize-mina-options';
 
-declare const wx: any;
-
 function generateResponse(res: any) {
   let header = res.header || {};
   let config = res.config || {};
@@ -43,14 +41,11 @@ function generateResponse(res: any) {
 const fetchMp = (url: string, options: any): Promise<any> => {
   const normalizeOptions = { ...options, minaFramework: 'mina' };
   const minaOptions = normalizeMinaOptions(normalizeOptions);
-  const { method, data, headers: header, ...rest } = minaOptions;
+
   return new Promise((resolve, reject) => {
     wx.request({
       url,
-      method,
-      data,
-      header,
-      ...rest,
+      ...minaOptions,
       success: (res: any) => {
         resolve(generateResponse(res));
       },

@@ -40,6 +40,7 @@
     "num"
   ],
   "dependencies": {
-    "@jswork/normalize-mina-options": "^1.0.5"
+    "@jswork/normalize-mina-options": "^1.0.5",
+    "@types/wechat-miniprogram": "^3.4.8"
   }
 }
