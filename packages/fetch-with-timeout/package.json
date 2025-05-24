@@ -1,0 +1,43 @@
+{
+  "name": "fetch-with-timeout",
+  "version": "1.0.0",
+  "description": "Fetch with timeout support, enhancing request control and compatibility.",
+  "npmClient": "pnpm",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "global.d.ts"
+  ],
+  "prettier": "@jswork/style-guide/prettier",
+  "scripts": {
+    "build": "tsup",
+    "test": "bun test",
+    "release": "release-it"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@jswork/style-guide": "^1.0.3",
+    "@jswork/tsup-banner": "^1.0.4",
+    "@swc/core": "^1.5.5",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.11",
+    "esbuild-plugin-replace": "^1.4.0",
+    "esbuild-plugin-umd-wrapper": "^3.0.0",
+    "prettier": "^3.3.3",
+    "tsup": "^8.2.4",
+    "typescript": "^4.9.5"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "homepage": "https://js.work",
+  "keywords": [
+    "fetch-with-timeout",
+    "number",
+    "num"
+  ]
+}
