@@ -42,5 +42,6 @@
   "dependencies": {
     "@jswork/normalize-mina-options": "^1.0.5",
     "@types/wechat-miniprogram": "^3.4.8"
-  }
+  },
+  "gitHead": "17de3434550b1cd15245ecfa851351f789d1ef34"
 }
