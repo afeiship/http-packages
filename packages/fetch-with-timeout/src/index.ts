@@ -13,7 +13,7 @@ export class TimeoutError extends Error {
 function fetchWithTimeout(url: string, options: FetchOptions = {}): Promise<Response> {
   const { timeout, timeoutMessage, ...fetchOptions } = options;
 
-  if (timeout !== undefined && (typeof timeout !== 'number' || timeout <= 0)) {
+  if (timeout !== undefined && timeout <= 0) {
     throw new Error('Timeout must be a positive number');
   }
 
