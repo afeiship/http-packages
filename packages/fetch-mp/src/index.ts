@@ -43,12 +43,14 @@ function generateResponse(res: any) {
 const fetchMp = (url: string, options: any): Promise<any> => {
   const normalizeOptions = { ...options, minaFramework: 'mina' };
   const minaOptions = normalizeMinaOptions(normalizeOptions);
+  const { method, data, headers: header, ...rest } = minaOptions;
   return new Promise((resolve, reject) => {
     wx.request({
       url,
-      method: minaOptions.method,
-      data: minaOptions.data,
-      header: minaOptions.headers,
+      method,
+      data,
+      header,
+      ...rest,
       success: (res: any) => {
         resolve(generateResponse(res));
       },
