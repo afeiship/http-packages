@@ -36,8 +36,8 @@
   "homepage": "https://js.work",
   "keywords": [
     "fetch-mp",
-    "number",
-    "num"
+    "fetch",
+    "wechat"
   ],
   "dependencies": {
     "@jswork/normalize-mina-options": "^1.0.5",
