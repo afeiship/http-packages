@@ -6,8 +6,8 @@ import normalizeMinaOptions from '@jswork/normalize-mina-options';
 const NxTaroRequest = nx.declare('nx.TaroRequest', {
   extends: nx.AbstractRequest,
   methods: {
-    initClient: function() {
-      this.httpRequest = function(inOptions) {
+    initClient: function () {
+      this.httpRequest = function (inOptions) {
         const opts = normalizeMinaOptions({ minaFramework: 'taro', ...inOptions });
         const { url: _url, params: _params, $url, $query, $body } = opts;
         const params = $query || _params;
@@ -18,8 +18,7 @@ const NxTaroRequest = nx.declare('nx.TaroRequest', {
           throw new Error('Please install @tarojs/taro first!');
         }
 
-        return Taro
-          .request({ ...opts, data, url })
+        return Taro.request({ ...opts, data, url })
           .then((res) => {
             const status = res.statusCode || res.status;
             const resobj = { status, data: res.data, original: res };
