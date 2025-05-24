@@ -1,18 +1,42 @@
-import fn from '../src';
+import fetchWithTimeout, { TimeoutError } from '../src';
 
-describe('Normal test cases', () => {
-  test('number is equal 0/10/100/1000/10000', () => {
-    expect(fn(0)).toEqual([0]);
-    expect(fn(10)).toEqual([10, 0]);
-    expect(fn(30)).toEqual([30, 0]);
-    expect(fn(40)).toEqual([40, 0]);
-    expect(fn(50)).toEqual([50, 0]);
-    expect(fn(60)).toEqual([60, 0]);
-    expect(fn(70)).toEqual([70, 0]);
-    expect(fn(80)).toEqual([80, 0]);
-    expect(fn(90)).toEqual([90, 0]);
-    expect(fn(100)).toEqual([100, 0, 0]);
-    expect(fn(1000)).toEqual([1000, 0, 0, 0]);
-    expect(fn(10000)).toEqual([10000, 0, 0, 0, 0]);
+describe('fetchWithTimeout', () => {
+  let originalFetch: typeof fetch;
+
+  beforeEach(() => {
+    originalFetch = global.fetch;
+  });
+
+  afterEach(() => {
+    global.fetch = originalFetch;
+    jest.useRealTimers();
+  });
+
+  describe('参数验证', () => {
+    test('当 timeout 为负数时应该抛出错误', () => {
+      expect(() => {
+        fetchWithTimeout('https://httpbin.org/delay/0.1 ', { timeout: -1 });
+      }).toThrow('Timeout must be a positive number');
+    });
+
+    test('当 timeout 为 0 时应该抛出错误', () => {
+      expect(() => {
+        fetchWithTimeout('https://httpbin.org/delay/0.1 ', { timeout: 0 });
+      }).toThrow('Timeout must be a positive number');
+    });
+
+    test('当未设置 timeout 时应该直接使用原生 fetch', async () => {
+      const mockResponse = new Response('success');
+      global.fetch = jest.fn().mockResolvedValue(mockResponse);
+
+      // 调用 fetchWithTimeout，未设置 timeout
+      const response = await fetchWithTimeout('https://api.example.com ');
+
+      // 断言返回值是否为模拟的响应
+      expect(response).toBe(mockResponse);
+
+      // 断言 fetch 是否被正确调用
+      expect(global.fetch).toHaveBeenCalledWith('https://api.example.com ', {});
+    });
   });
 });
