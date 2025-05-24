@@ -1,9 +1,21 @@
 interface FetchOptions extends RequestInit {
   timeout?: number; // 单位：毫秒
+  timeoutMessage?: string; // 超时错误的提示信息
+}
+
+export class TimeoutError extends Error {
+  constructor(message: string = 'Request timed out') {
+    super(message);
+    this.name = 'TimeoutError';
+  }
 }
 
 function fetchWithTimeout(url: string, options: FetchOptions = {}): Promise<Response> {
-  const { timeout, ...fetchOptions } = options;
+  const { timeout, timeoutMessage, ...fetchOptions } = options;
+
+  if (timeout !== undefined && (typeof timeout !== 'number' || timeout <= 0)) {
+    throw new Error('Timeout must be a positive number');
+  }
 
   // 如果未设置 timeout，则直接调用原生 fetch
   if (!timeout) {
@@ -13,7 +25,7 @@ function fetchWithTimeout(url: string, options: FetchOptions = {}): Promise<Resp
   // 创建一个超时的 Promise
   const timeoutPromise = new Promise<Response>((_, reject) => {
     setTimeout(() => {
-      reject(new Error('Request timed out')); // 英文提示
+      reject(new TimeoutError(timeoutMessage));
     }, timeout);
   });
 
