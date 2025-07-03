@@ -42,6 +42,8 @@ const fetchMp = (url: string, options: any): Promise<any> => {
   const normalizeOptions = { ...options, minaFramework: 'mina' };
   const minaOptions = normalizeMinaOptions(normalizeOptions);
 
+  if (typeof wx === 'undefined' || !wx.request) return Promise.resolve();
+
   return new Promise((resolve, reject) => {
     wx.request({
       url,
