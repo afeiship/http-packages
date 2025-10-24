@@ -72,7 +72,7 @@ export class ApiResourceNormalizer {
         config.resName
       );
       // 显式声明为 string[]，因为动作可能包含自定义字符串
-      let actions: string[] = [...STD_KEYS];
+      let actions: string[] = this.isBuiltIn ? [...STD_KEYS] : Object.keys(this.templates);
 
       if (config.only?.length) {
         if (config.only.includes('*')) {
