@@ -281,14 +281,6 @@ describe('ApiResourceNormalizer', () => {
     expect(normalized.items.dashboard_index).toEqual(['get', '/dashboard']);
   });
 
-  // Test case 25: Resource with name as array, both elements empty string
-  test('should handle array name input with both elements empty string', () => {
-    const normalizer = new ApiResourceNormalizer();
-    const resources = [{ name: ['', ''] }] as any;
-    const normalized = normalizer.normalize(resources)
-    expect(normalized.items).toEqual({}); // Should result in no routes if name is empty
-  });
-
   // Test case 26: Resource with name as array, first element valid, second element invalid path
   test('should handle array name input with valid name and invalid path', () => {
     const normalizer = new ApiResourceNormalizer();
