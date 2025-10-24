@@ -50,6 +50,17 @@ const TEMPLATE_HOOKS = {
   postify: POSTIFY_TEMPLATES,
 };
 
+// /api/org/tenant/backend/staff  => /api/org/tenant/backend/ + staff
+const getApiPath = (respath: string) => {
+  const paths = respath.split('/');
+  const last = paths.pop();
+
+  return {
+    name: last,
+    subpath: paths.join('/'),
+  };
+};
+
 const normalizeResource = (inResources, inTemplates: TemplateType) => {
   if (!inResources?.length) return [];
   const isPredicatable = typeof inTemplates === 'string';
@@ -67,9 +78,10 @@ const normalizeResource = (inResources, inTemplates: TemplateType) => {
     current = hasExcept ? nx.difference(current, except) : current;
 
     current.forEach((item) => {
-      const key = `${name}_${item}`;
+      const { name: _name, subpath } = getApiPath(name);
+      const key = `${_name}_${item}`;
       const tmpl = templates[item].slice(0);
-      tmpl[1] = tmpl[1].replace('@', `/${name}`);
+      tmpl[1] = tmpl[1].replace('@', `${subpath}/${_name}`);
       items[key] = tmpl;
     });
 
