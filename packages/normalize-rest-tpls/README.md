@@ -29,6 +29,69 @@ const result = normalizer.normalize([
 ]);
 
 console.log(result.items);
+{
+  items: {
+    // posts
+    posts_index: ['get', '/posts'],
+    posts_show: ['get', '/posts/{id}'],
+    posts_create: ['post', '/posts'],
+    posts_update: ['put', '/posts/{id}'],
+    posts_destroy: ['delete', '/posts/{id}'],
+
+    // params
+    params_index: ['get', '/sys/super/backend/params'],
+    params_show: ['get', '/sys/super/backend/params/{id}'],
+    params_create: ['post', '/sys/super/backend/params'],
+    params_update: ['put', '/sys/super/backend/params/{id}'],
+    params_destroy: ['delete', '/sys/super/backend/params/{id}'],
+
+    // admin_users
+    admin_users_index: ['get', '/sys/super/backend/adminUsers'],
+    admin_users_show: ['get', '/sys/super/backend/adminUsers/{id}'],
+    admin_users_create: ['post', '/sys/super/backend/adminUsers'],
+    admin_users_update: ['put', '/sys/super/backend/adminUsers/{id}'],
+    admin_users_destroy: ['delete', '/sys/super/backend/adminUsers/{id}'],
+
+    // admin_roles
+    admin_roles_index: ['get', '/sys/super/backend/adminRole'],
+    admin_roles_show: ['get', '/sys/super/backend/adminRole/{id}'],
+    admin_roles_create: ['post', '/sys/super/backend/adminRole'],
+    admin_roles_update: ['put', '/sys/super/backend/adminRole/{id}'],
+    admin_roles_destroy: ['delete', '/sys/super/backend/adminRole/{id}'],
+
+    // orders
+    orders_index: ['get', '/orders'],
+    orders_show: ['get', '/orders/{id}'],
+    orders_cancel: ['post', '/orders/{id}/cancel'],
+
+    // users
+    users_index: ['get', '/users'],
+    users_show: ['get', '/users/{id}'],
+    users_create: ['post', '/users'],
+    users_update: ['put', '/users/{id}'],
+    users_destroy: ['delete', '/users/{id}'],
+    users_enable: ['post', '/users/{id}/enable'],
+    users_disable: ['post', '/users/{id}/disable'],
+
+    // roles
+    roles_index: ['get', '/roles'],
+    roles_show: ['get', '/roles/{id}'],
+
+    // permissions
+    permissions_index: ['get', '/sys/super/backend/imc/permissions'],
+    permissions_show: ['get', '/sys/super/backend/imc/permissions/{id}'],
+    permissions_create: ['post', '/sys/super/backend/imc/permissions'],
+    permissions_update: ['put', '/sys/super/backend/imc/permissions/{id}'],
+    permissions_destroy: ['delete', '/sys/super/backend/imc/permissions/{id}'],
+
+    // team_members
+    team_members_index: ['get', '/sys/super/backend/imc/imcTeamMember'],
+    team_members_show: ['get', '/sys/super/backend/imc/imcTeamMember/{id}'],
+    team_members_create: ['post', '/sys/super/backend/imc/imcTeamMember'],
+    team_members_update: ['put', '/sys/super/backend/imc/imcTeamMember/{id}'],
+    team_members_destroy: ['delete', '/sys/super/backend/imc/imcTeamMember/{id}'],
+  }
+}
 ```
 
 ## license
