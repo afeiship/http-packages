@@ -97,9 +97,10 @@ export class ApiResourceNormalizer {
         if (!template) continue;
 
         const [method, pathTemplate] = template;
-        const basePath =
-          subpath === '/' ? `/${actualResourceName}` : `${subpath}/${actualResourceName}`;
-        let finalPath = pathTemplate.replace('@', basePath).replace(/^\/+/, '/');
+        const normalizedSubpath = subpath ? `/${subpath}` : '';
+        const normalizedResourceName = actualResourceName;
+        const basePath = `${normalizedSubpath}/${normalizedResourceName}`.replace(/\/\/+/g, '/');
+        let finalPath = pathTemplate.replace('@', basePath).replace(/\/\/+/g, '/');
 
         const key = `${nameSnakeCase}_${action}`;
         allItems[key] = [method as HttpMethod, finalPath];
