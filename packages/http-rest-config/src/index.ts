@@ -62,6 +62,10 @@ function toSnakeCase(str) {
 
 // /api/org/tenant/backend/staff  => /api/org/tenant/backend/ + staff
 const getApiPath = (respath: string | string[]) => {
+  // name: 真实的路径中的资源名
+  // nameSnakeCase: 转换为小写的 nx.$api.snake_name 的 key 名称
+  // subpath: 真实的路径中的父路径
+
   if (Array.isArray(respath)) {
     const { name, subpath } = getApiPath(respath[1]);
     return {
