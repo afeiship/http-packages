@@ -53,13 +53,12 @@ const TEMPLATE_HOOKS = {
 // /api/org/tenant/backend/staff  => /api/org/tenant/backend/ + staff
 const getApiPath = (respath: string) => {
   const paths = respath.split('/');
-  const last = paths.pop();
+  const name = paths.pop();
   const subpath = paths.join('/');
-  const _subpath = subpath.startsWith('/') ? subpath.substring(1) : subpath;
 
   return {
-    name: last,
-    subpath: _subpath,
+    name,
+    subpath,
   };
 };
 
