@@ -1,4 +1,5 @@
 // src/ApiResourceNormalizer.ts
+// AI: https://chat.qwen.ai/c/8b7d2be1-4daf-4b0a-b3da-3397efb33fd3
 
 import type {
   TemplateType,
