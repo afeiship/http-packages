@@ -9,25 +9,24 @@ interface HttpSchemaOptions {
   transformApi?: (args: TransformApiArgs) => Promise<any>;
   dynamicApi?: (apis: Record<string, any>, ...args) => Promise<any>;
   templates?: TemplateType;
-  nameAlias?: Record<string, string>;
 
   [key: string]: any;
 }
 
-const defaults: HttpSchemaOptions = { adapter: 'Axios', nameAlias: {}, harmony: false };
+const defaults: HttpSchemaOptions = { adapter: 'Axios', harmony: false };
 const FETCH_IMPORT_MSG = 'Please import @jswork/next-fetch first.';
 const isFetchAdapterNil = (inAdapter) => {
   return inAdapter === 'Fetch' && typeof nx[inAdapter] === 'undefined';
 };
 
 const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
-  const { adapter, harmony, transformApi, dynamicApi, templates, nameAlias, ...options } = {
+  const { adapter, harmony, transformApi, dynamicApi, templates, ...options } = {
     ...defaults,
     ...inOptions,
   } as HttpSchemaOptions;
   if (isFetchAdapterNil(adapter)) nx.error(FETCH_IMPORT_MSG);
   const httpClient = nx[adapter!].getInstance(options);
-  const context = httpRestConfig(httpClient, inConfig, { templates, transformApi, nameAlias });
+  const context = httpRestConfig(httpClient, inConfig, { templates, transformApi });
   const dynamicFn = (...args: any[]) => dynamicApi?.(context, ...args) ?? Promise.resolve(null);
   const dynamicFnGenerator =
     (...args: any[]) =>

@@ -25,7 +25,6 @@ export interface RestHttpConfig {
   transformApi?: (args: TransformApiArgs) => Promise<any>;
   priority?: number;
   templates?: TemplateType;
-  nameAlias?: Record<string, string>;
 }
 
 // public recommed templates
@@ -77,10 +76,8 @@ const getApiPath = (respath: string) => {
 const normalizeResource = (
   inResources,
   inTemplates: TemplateType,
-  inOptions?: { nameAlias?: Record<string, string> }
 ) => {
   if (!inResources?.length) return [];
-  const { nameAlias } = inOptions || {};
   const isPredicatable = typeof inTemplates === 'string';
   const templates = isPredicatable ? TEMPLATE_HOOKS[inTemplates] : inTemplates || RAILS_TEMPLATES;
   const STD_KEYS = Object.keys(RAILS_TEMPLATES);
@@ -97,8 +94,7 @@ const normalizeResource = (
 
     current.forEach((item) => {
       const { name: _name, nameSnakeCase, subpath } = getApiPath(name);
-      const aliasedName = nameAlias?.[nameSnakeCase] || nameSnakeCase;
-      const key = `${aliasedName}_${item}`;
+      const key = `${nameSnakeCase}_${item}`;
       const tmpl = templates[item].slice(0);
       tmpl[1] = tmpl[1].replace('@', `${subpath}/${_name}`);
       items[key] = tmpl;
@@ -110,13 +106,12 @@ const normalizeResource = (
 
 const defaultRestOptions: RestHttpConfig = {
   templates: 'rails',
-  nameAlias: {},
 };
 
 const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any => {
   const apiConfig = {};
   const { items, resources } = inConfig;
-  const { transformApi, templates, nameAlias } = { ...defaultRestOptions, ...inOptions };
+  const { transformApi, templates } = { ...defaultRestOptions, ...inOptions };
 
   // api resources
   const resourceItems = normalizeResource(resources, templates!);
@@ -129,7 +124,7 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
     // const baseURL = item.baseURL || inConfig.baseURL || `${location.protocol}//${location.host}`;
     const baseURL = item.baseURL || inConfig.baseURL;
     const resources = item.resources || [];
-    const resItems = normalizeResource(resources, templates, { nameAlias });
+    const resItems = normalizeResource(resources, templates);
     const resourceItems = resItems.map((item) => item.items);
     const mergedItems = Object.assign({}, item.items, ...resourceItems);
 
