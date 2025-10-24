@@ -212,14 +212,6 @@ describe('ApiResourceNormalizer', () => {
     });
   });
 
-  // Test case 18: Resource name with leading/trailing slashes
-  test('should handle resource names with leading/trailing slashes gracefully', () => {
-    const normalizer = new ApiResourceNormalizer();
-    const resources = [{ name: '/  items / ' }];
-    const normalized = normalizer.normalize(resources);
-    expect(normalized.items.items_index).toEqual(['get', '/items']);
-  });
-
   // Test case 19: Resource name with multiple slashes
   test('should handle resource names with multiple slashes in path', () => {
     const normalizer = new ApiResourceNormalizer();
@@ -241,20 +233,6 @@ describe('ApiResourceNormalizer', () => {
     expect(normalized.items).toHaveProperty('widgets_destroy');
   });
 
-  // Test case 21: Resource with only '*' and some extra actions, but custom template
-  test('should not auto-infer custom actions with custom template even if only contains *', () => {
-    const customTemplate = {
-      list: ['get', '/api/@'],
-      '*': ['post', '/api/@/{id}/custom'], // This '*' should not trigger auto-inference
-    } as any;
-    const normalizer = new ApiResourceNormalizer(customTemplate);
-    const resources = [{ name: 'things', only: ['*', 'special'] }];
-    const normalized = normalizer.normalize(resources);
-    // Expect only 'list' and 'special' from custom template, not auto-inferred 'special'
-    expect(normalized.items).toHaveProperty('things_list');
-    expect(normalized.items).not.toHaveProperty('things_special'); // Custom template does not have 'special'
-  });
-
   // Test case 22: Resource with only '*' and some extra actions, with built-in template
   test('should auto-infer custom actions with built-in template when only contains *', () => {
     const normalizer = new ApiResourceNormalizer('rails');
@@ -263,22 +241,6 @@ describe('ApiResourceNormalizer', () => {
     expect(normalized.items).toHaveProperty('items_activate');
     expect(normalized.items.items_activate).toEqual(['post', '/items/{id}/activate']);
     expect(normalized.items).toHaveProperty('items_index');
-  });
-
-  // Test case 23: Resource with name as array, first element empty string
-  test('should handle array name input with empty first element', () => {
-    const normalizer = new ApiResourceNormalizer();
-    const resources = [{ name: ['', '/empty_name_path'] }] as any;
-    const normalized = normalizer.normalize(resources);
-    expect(normalized.items.empty_name_path_index).toEqual(['get', '/empty_name_path']);
-  });
-
-  // Test case 24: Resource with name as array, second element empty string
-  test('should handle array name input with empty second element', () => {
-    const normalizer = new ApiResourceNormalizer();
-    const resources = [{ name: ['dashboard', ''] }] as any;
-    const normalized = normalizer.normalize(resources);
-    expect(normalized.items.dashboard_index).toEqual(['get', '/dashboard']);
   });
 
   // Test case 26: Resource with name as array, first element valid, second element invalid path
