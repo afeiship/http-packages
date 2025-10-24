@@ -39,7 +39,7 @@ describe('ApiResourceNormalizer', () => {
   });
 
   // Test case 3: Custom template
-  test.only('should normalize resources with a custom template', () => {
+  test('should normalize resources with a custom template', () => {
     const customTemplate = {
       list: ['get', '/api/@'],
       add: ['post', '/api/@'],
@@ -78,7 +78,7 @@ describe('ApiResourceNormalizer', () => {
     expect(normalized).toEqual({
       items: {
         users_index: ['get', '/users'],
-        users_show: ['get', '/users/:id'],
+        users_show: ['get', '/users/{id}'],
       },
     });
   });
@@ -91,8 +91,8 @@ describe('ApiResourceNormalizer', () => {
     expect(normalized).toEqual({
       items: {
         posts_index: ['get', '/posts'],
-        posts_show: ['get', '/posts/:id'],
-        posts_update: ['put', '/posts/:id'],
+        posts_show: ['get', '/posts/{id}'],
+        posts_update: ['put', '/posts/{id}'],
       },
     });
   });
@@ -103,7 +103,7 @@ describe('ApiResourceNormalizer', () => {
     const resources = [{ name: 'products', only: ['*', 'archive'] }];
     const normalized = normalizer.normalize(resources);
     expect(normalized.items).toHaveProperty('products_archive');
-    expect(normalized.items.products_archive).toEqual(['post', '/products/:id/archive']);
+    expect(normalized.items.products_archive).toEqual(['post', '/products/{id}/archive']);
     expect(normalized.items).toHaveProperty('products_index');
   });
 
@@ -113,7 +113,7 @@ describe('ApiResourceNormalizer', () => {
     const resources = [{ name: 'items', subpath: '/admin' }] as any;
     const normalized = normalizer.normalize(resources);
     expect(normalized.items.items_index).toEqual(['get', '/admin/items']);
-    expect(normalized.items.items_show).toEqual(['get', '/admin/items/:id']);
+    expect(normalized.items.items_show).toEqual(['get', '/admin/items/{id}']);
   });
 
   // Test case 10: Resource with resName
@@ -122,7 +122,7 @@ describe('ApiResourceNormalizer', () => {
     const resources = [{ name: 'users', resName: 'members' }];
     const normalized = normalizer.normalize(resources);
     expect(normalized.items.users_index).toEqual(['get', '/members']);
-    expect(normalized.items.users_show).toEqual(['get', '/members/:id']);
+    expect(normalized.items.users_show).toEqual(['get', '/members/{id}']);
   });
 
   // Test case 11: Resource with array name input and subpath/resName
@@ -133,7 +133,7 @@ describe('ApiResourceNormalizer', () => {
     ] as any;
     const normalized = normalizer.normalize(resources);
     expect(normalized.items.products_index).toEqual(['get', '/shop/merchandise']);
-    expect(normalized.items.products_show).toEqual(['get', '/shop/merchandise/:id']);
+    expect(normalized.items.products_show).toEqual(['get', '/shop/merchandise/{id}']);
   });
 
   // Test case 12: Resource with name starting with '/' and explicit subpath/resName
@@ -142,7 +142,7 @@ describe('ApiResourceNormalizer', () => {
     const resources = [{ name: '/api/v2/items', subpath: '/data', resName: 'elements' }];
     const normalized = normalizer.normalize(resources);
     expect(normalized.items.items_index).toEqual(['get', '/data/elements']);
-    expect(normalized.items.items_show).toEqual(['get', '/data/elements/:id']);
+    expect(normalized.items.items_show).toEqual(['get', '/data/elements/{id}']);
   });
 
   // Test case 13: Resource with name starting with '/' and no explicit subpath/resName
@@ -151,7 +151,7 @@ describe('ApiResourceNormalizer', () => {
     const resources = [{ name: '/api/v3/widgets' }];
     const normalized = normalizer.normalize(resources);
     expect(normalized.items.widgets_index).toEqual(['get', '/api/v3/widgets']);
-    expect(normalized.items.widgets_show).toEqual(['get', '/api/v3/widgets/:id']);
+    expect(normalized.items.widgets_show).toEqual(['get', '/api/v3/widgets/{id}']);
   });
 
   // Test case 14: Resource with name as string and explicit subpath/resName
@@ -160,7 +160,7 @@ describe('ApiResourceNormalizer', () => {
     const resources = [{ name: 'books', subpath: '/library', resName: 'volumes' }];
     const normalized = normalizer.normalize(resources);
     expect(normalized.items.books_index).toEqual(['get', '/library/volumes']);
-    expect(normalized.items.books_show).toEqual(['get', '/library/volumes/:id']);
+    expect(normalized.items.books_show).toEqual(['get', '/library/volumes/{id}']);
   });
 
   // Test case 15: Resource with name as string and no explicit subpath/resName
@@ -169,7 +169,7 @@ describe('ApiResourceNormalizer', () => {
     const resources = [{ name: 'authors' }];
     const normalized = normalizer.normalize(resources);
     expect(normalized.items.authors_index).toEqual(['get', '/authors']);
-    expect(normalized.items.authors_show).toEqual(['get', '/authors/:id']);
+    expect(normalized.items.authors_show).toEqual(['get', '/authors/{id}']);
   });
 
   // Test case 16: Multiple resources with mixed configurations
@@ -185,14 +185,14 @@ describe('ApiResourceNormalizer', () => {
       items: {
         users_index: ['get', '/users'],
         posts_index: ['get', '/blog/posts'],
-        posts_show: ['get', '/blog/posts/:id'],
+        posts_show: ['get', '/blog/posts/{id}'],
         posts_create: ['post', '/blog/posts'],
-        posts_update: ['put', '/blog/posts/:id'],
+        posts_update: ['put', '/blog/posts/{id}'],
         comments_index: ['get', '/feedback'],
-        comments_show: ['get', '/feedback/:id'],
+        comments_show: ['get', '/feedback/{id}'],
         comments_create: ['post', '/feedback'],
-        comments_update: ['put', '/feedback/:id'],
-        comments_destroy: ['delete', '/feedback/:id'],
+        comments_update: ['put', '/feedback/{id}'],
+        comments_destroy: ['delete', '/feedback/{id}'],
       },
     });
   });
@@ -245,7 +245,7 @@ describe('ApiResourceNormalizer', () => {
   test('should not auto-infer custom actions with custom template even if only contains *', () => {
     const customTemplate = {
       list: ['get', '/api/@'],
-      '*': ['post', '/api/@/:id/custom'], // This '*' should not trigger auto-inference
+      '*': ['post', '/api/@/{id}/custom'], // This '*' should not trigger auto-inference
     } as any;
     const normalizer = new ApiResourceNormalizer(customTemplate);
     const resources = [{ name: 'things', only: ['*', 'special'] }];
@@ -261,7 +261,7 @@ describe('ApiResourceNormalizer', () => {
     const resources = [{ name: 'items', only: ['*', 'activate'] }];
     const normalized = normalizer.normalize(resources);
     expect(normalized.items).toHaveProperty('items_activate');
-    expect(normalized.items.items_activate).toEqual(['post', '/items/:id/activate']);
+    expect(normalized.items.items_activate).toEqual(['post', '/items/{id}/activate']);
     expect(normalized.items).toHaveProperty('items_index');
   });
 
