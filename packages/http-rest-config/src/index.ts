@@ -61,22 +61,27 @@ function toSnakeCase(str) {
 }
 
 // /api/org/tenant/backend/staff  => /api/org/tenant/backend/ + staff
-const getApiPath = (respath: string) => {
-  const paths = respath.split('/');
-  const name = paths.pop();
-  const subpath = paths.join('/');
+const getApiPath = (respath: string | string[]) => {
+  if (Array.isArray(respath)) {
+    return {
+      name: respath[0],
+      nameSnakeCase: toSnakeCase(respath[0]),
+      subpath: respath[1],
+    };
+  } else {
+    const paths = respath.split('/');
+    const name = paths.pop();
+    const subpath = paths.join('/');
 
-  return {
-    name,
-    nameSnakeCase: toSnakeCase(name),
-    subpath,
-  };
+    return {
+      name,
+      nameSnakeCase: toSnakeCase(name),
+      subpath,
+    };
+  }
 };
 
-const normalizeResource = (
-  inResources,
-  inTemplates: TemplateType,
-) => {
+const normalizeResource = (inResources, inTemplates: TemplateType) => {
   if (!inResources?.length) return [];
   const isPredicatable = typeof inTemplates === 'string';
   const templates = isPredicatable ? TEMPLATE_HOOKS[inTemplates] : inTemplates || RAILS_TEMPLATES;
