@@ -54,10 +54,12 @@ const TEMPLATE_HOOKS = {
 const getApiPath = (respath: string) => {
   const paths = respath.split('/');
   const last = paths.pop();
+  const subpath = paths.join('/');
+  const _subpath = subpath.startsWith('/') ? subpath.substring(1) : subpath;
 
   return {
     name: last,
-    subpath: paths.join('/'),
+    subpath: _subpath,
   };
 };
 
