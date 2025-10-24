@@ -50,6 +50,16 @@ const TEMPLATE_HOOKS = {
   postify: POSTIFY_TEMPLATES,
 };
 
+function toSnakeCase(str) {
+  // 先处理大写字母前插入下划线（但避免在已有下划线后重复插入）
+  return str
+    .replace(/([a-z])([A-Z])/g, '$1_$2') // 小写+大写 → 小写_大写
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1_$2') // 连续大写后接小写的情况，如 XMLHttp → XML_Http
+    .toLowerCase() // 全部转为小写
+    .replace(/_+/g, '_') // 合并多个连续下划线为一个
+    .replace(/^_+|_+$/g, ''); // 去除首尾下划线
+}
+
 // /api/org/tenant/backend/staff  => /api/org/tenant/backend/ + staff
 const getApiPath = (respath: string) => {
   const paths = respath.split('/');
@@ -58,6 +68,7 @@ const getApiPath = (respath: string) => {
 
   return {
     name,
+    nameSnakeCase: toSnakeCase(name),
     subpath,
   };
 };
@@ -79,8 +90,8 @@ const normalizeResource = (inResources, inTemplates: TemplateType) => {
     current = hasExcept ? nx.difference(current, except) : current;
 
     current.forEach((item) => {
-      const { name: _name, subpath } = getApiPath(name);
-      const key = `${_name}_${item}`;
+      const { name: _name, nameSnakeCase, subpath } = getApiPath(name);
+      const key = `${nameSnakeCase}_${item}`;
       const tmpl = templates[item].slice(0);
       tmpl[1] = tmpl[1].replace('@', `${subpath}/${_name}`);
       items[key] = tmpl;
