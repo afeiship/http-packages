@@ -20,14 +20,13 @@ const isFetchAdapterNil = (inAdapter) => {
 };
 
 const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
-  const { adapter, harmony, transformApi, dynamicApi, ...options } = {
+  const { adapter, harmony, transformApi, dynamicApi, templates, ...options } = {
     ...defaults,
     ...inOptions,
   } as HttpSchemaOptions;
   if (isFetchAdapterNil(adapter)) nx.error(FETCH_IMPORT_MSG);
   const httpClient = nx[adapter!].getInstance(options);
-  const httpRestOpts = transformApi ? { transformApi } : undefined;
-  const context = httpRestConfig(httpClient, inConfig, httpRestOpts);
+  const context = httpRestConfig(httpClient, inConfig, { templates, transformApi });
   const dynamicFn = (...args: any[]) => dynamicApi?.(context, ...args) ?? Promise.resolve(null);
   const dynamicFnGenerator =
     (...args: any[]) =>
