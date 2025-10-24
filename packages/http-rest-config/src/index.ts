@@ -24,6 +24,7 @@ export interface RestHttpConfig {
   priority?: number;
 }
 
+// public recommed templates
 const RAILS_TEMPLATES = {
   index: ['get', '@'],
   show: ['get', '@/{id}'],
@@ -32,6 +33,7 @@ const RAILS_TEMPLATES = {
   destroy: ['delete', '@/{id}'],
 } as const;
 
+// private
 const POSTIFY_TEMPLATES = {
   index: ['post', '@/page'],
   show: ['post', '@/editInit'],
