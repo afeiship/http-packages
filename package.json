@@ -13,7 +13,8 @@
     "lerna:bootstrap": "lerna bootstrap",
     "build": "lerna run build --since main --no-private",
     "build:all": "lerna run build",
-    "publish": "npm run build && lerna publish --no-private"
+    "publish": "npm run build && lerna publish --no-private",
+    "test": "lerna run test"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1"
