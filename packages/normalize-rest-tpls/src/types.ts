@@ -11,6 +11,8 @@ export type ResourceNameInput = string | [string, string];
 
 export interface ResourceConfig {
   name?: ResourceNameInput;
+  prefix?: string;
+  suffix?: string;
   only?: readonly string[];
   except?: readonly string[];
   subpath?: string; // 显式父路径

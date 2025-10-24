@@ -64,7 +64,10 @@ export class ApiResourceNormalizer {
 
     for (const input of resources) {
       const config = this.normalizeToConfig(input);
+
       if (!config.name) continue;
+      const prefix = config.prefix ?? '';
+      const suffix = config.suffix ?? '';
 
       const { nameSnakeCase, actualResourceName, subpath } = parseNameInput(
         config.name,
@@ -102,7 +105,7 @@ export class ApiResourceNormalizer {
         const basePath = `${normalizedSubpath}/${normalizedResourceName}`.replace(/\/\/+/g, '/');
         let finalPath = pathTemplate.replace('@', basePath).replace(/\/\/+/g, '/');
 
-        const key = `${nameSnakeCase}_${action}`;
+        const key = `${prefix}${nameSnakeCase}_${action}${suffix}`;
         allItems[key] = [method as HttpMethod, finalPath];
       }
     }

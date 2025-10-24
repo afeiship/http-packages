@@ -1,5 +1,6 @@
 import nx from '@jswork/next';
 import dp from '@jswork/http-data-parser';
+import ApiResourceNormalizer from '@jswork/normalize-rest-tpls';
 import '@jswork/next-tmpl';
 import '@jswork/next-difference';
 
@@ -27,91 +28,9 @@ export interface RestHttpConfig {
   templates?: TemplateType;
 }
 
-// public recommed templates
-const RAILS_TEMPLATES = {
-  index: ['get', '@'],
-  show: ['get', '@/{id}'],
-  create: ['post', '@'],
-  update: ['put', '@/{id}'],
-  destroy: ['delete', '@/{id}'],
-} as const;
-
-// private
-const POSTIFY_TEMPLATES = {
-  index: ['post', '@/page'],
-  show: ['post', '@/editInit'],
-  create: ['post', '@/add'],
-  update: ['post', '@/edit'],
-  destroy: ['post', '@/delete'],
-} as const;
-
-const TEMPLATE_HOOKS = {
-  rails: RAILS_TEMPLATES,
-  postify: POSTIFY_TEMPLATES,
-};
-
-function toSnakeCase(str) {
-  // 先处理大写字母前插入下划线（但避免在已有下划线后重复插入）
-  return str
-    .replace(/([a-z])([A-Z])/g, '$1_$2') // 小写+大写 → 小写_大写
-    .replace(/([A-Z])([A-Z][a-z])/g, '$1_$2') // 连续大写后接小写的情况，如 XMLHttp → XML_Http
-    .toLowerCase() // 全部转为小写
-    .replace(/_+/g, '_') // 合并多个连续下划线为一个
-    .replace(/^_+|_+$/g, ''); // 去除首尾下划线
-}
-
-// /api/org/tenant/backend/staff  => /api/org/tenant/backend/ + staff
-const getApiPath = (respath: string | string[]) => {
-  // name: 真实的路径中的资源名
-  // nameSnakeCase: 转换为小写的 nx.$api.snake_name 的 key 名称
-  // subpath: 真实的路径中的父路径
-
-  if (Array.isArray(respath)) {
-    const { name, subpath } = getApiPath(respath[1]);
-    return {
-      name,
-      nameSnakeCase: respath[0],
-      subpath,
-    };
-  } else {
-    const paths = respath.split('/');
-    const name = paths.pop();
-    const subpath = paths.join('/');
-
-    return {
-      name,
-      nameSnakeCase: toSnakeCase(name),
-      subpath,
-    };
-  }
-};
-
 const normalizeResource = (inResources, inTemplates: TemplateType) => {
-  if (!inResources?.length) return [];
-  const isPredicatable = typeof inTemplates === 'string';
-  const templates = isPredicatable ? TEMPLATE_HOOKS[inTemplates] : inTemplates || RAILS_TEMPLATES;
-  const STD_KEYS = Object.keys(RAILS_TEMPLATES);
-  return inResources.map((res) => {
-    const resource = typeof res === 'string' || Array.isArray(res) ? { name: res } : res;
-    const { name, only, except, ...others } = resource;
-    const items = {};
-    const hasOnly = !!only?.length;
-    const hasExcept = !!except?.length;
-    let current = [...STD_KEYS];
-
-    current = hasOnly ? only : current;
-    current = hasExcept ? nx.difference(current, except) : current;
-
-    current.forEach((item) => {
-      const { name: _name, nameSnakeCase, subpath } = getApiPath(name);
-      const key = `${nameSnakeCase}_${item}`;
-      const tmpl = templates[item].slice(0);
-      tmpl[1] = tmpl[1].replace('@', `${subpath}/${_name}`);
-      items[key] = tmpl;
-    });
-
-    return { ...others, items };
-  });
+  const apiResourceNormalizer = new ApiResourceNormalizer(inTemplates);
+  return apiResourceNormalizer.normalize(inResources);
 };
 
 const defaultRestOptions: RestHttpConfig = {
@@ -135,8 +54,9 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
     const baseURL = item.baseURL || inConfig.baseURL;
     const resources = item.resources || [];
     const resItems = normalizeResource(resources, templates);
-    const resourceItems = resItems.map((item) => item.items);
-    const mergedItems = Object.assign({}, item.items, ...resourceItems);
+    const mergedItems = Object.assign({}, item.items, resItems.items);
+
+
 
     // api items
     nx.each(mergedItems, function (key, _item) {
