@@ -66,6 +66,6 @@
   ],
   "gitHead": "8b1deeacbb51260637c58b0e46035599892264ae",
   "dependencies": {
-    "@jswork/http-rest-config": "^2.0.33"
+    "@jswork/http-rest-config": "*"
   }
 }

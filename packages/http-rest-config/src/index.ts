@@ -24,7 +24,7 @@ export interface RestHttpConfig {
   priority?: number;
 }
 
-const STD_TEMPLATES = {
+const RAILS_TEMPLATES = {
   index: ['get', '@'],
   show: ['get', '@/{id}'],
   create: ['post', '@'],
@@ -32,10 +32,26 @@ const STD_TEMPLATES = {
   destroy: ['delete', '@/{id}'],
 } as const;
 
-const normalizeResource = (inResources, inTemplates) => {
+const POSTIFY_TEMPLATES = {
+  index: ['post', '@/page'],
+  show: ['post', '@/editInit'],
+  create: ['post', '@/add'],
+  update: ['post', '@/edit'],
+  destroy: ['post', '@/delete'],
+} as const;
+
+const TEMPLATE_HOOKS = {
+  rails: RAILS_TEMPLATES,
+  postify: POSTIFY_TEMPLATES,
+};
+
+export type TemplateType = 'rails' | 'postify' | Record<string, any>;
+
+const normalizeResource = (inResources, inTemplates: TemplateType) => {
   if (!inResources?.length) return [];
-  const templates = inTemplates || STD_TEMPLATES;
-  const STD_KEYS = Object.keys(STD_TEMPLATES);
+  const isPredicatable = typeof inTemplates === 'string';
+  const templates = isPredicatable ? TEMPLATE_HOOKS[inTemplates] : inTemplates || RAILS_TEMPLATES;
+  const STD_KEYS = Object.keys(RAILS_TEMPLATES);
   return inResources.map((res) => {
     const resource = typeof res === 'string' ? { name: res } : res;
     const { name, only, except, ...others } = resource;

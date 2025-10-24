@@ -1,5 +1,6 @@
 import nx from '@jswork/next';
 import httpRestConfig, { TransformApiArgs } from '@jswork/http-rest-config';
+import type { TemplateType } from '@jswork/http-rest-config';
 
 interface HttpSchemaOptions {
   adapter?: string;
@@ -7,6 +8,7 @@ interface HttpSchemaOptions {
   priority?: number;
   transformApi?: (args: TransformApiArgs) => Promise<any>;
   dynamicApi?: (apis: Record<string, any>, ...args) => Promise<any>;
+  tempaltes?: TemplateType;
 
   [key: string]: any;
 }
