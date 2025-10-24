@@ -19,9 +19,12 @@ export interface TransformApiArgs {
   context: Promise<any>;
 }
 
+export type TemplateType = 'rails' | 'postify' | Record<string, any> | undefined;
+
 export interface RestHttpConfig {
   transformApi?: (args: TransformApiArgs) => Promise<any>;
   priority?: number;
+  templates?: TemplateType;
 }
 
 // public recommed templates
@@ -46,8 +49,6 @@ const TEMPLATE_HOOKS = {
   rails: RAILS_TEMPLATES,
   postify: POSTIFY_TEMPLATES,
 };
-
-export type TemplateType = 'rails' | 'postify' | Record<string, any>;
 
 const normalizeResource = (inResources, inTemplates: TemplateType) => {
   if (!inResources?.length) return [];
@@ -76,13 +77,17 @@ const normalizeResource = (inResources, inTemplates: TemplateType) => {
   });
 };
 
+const defaultRestOptions: RestHttpConfig = {
+  templates: 'rails',
+};
+
 const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any => {
   const apiConfig = {};
-  const { items, resources, templates } = inConfig;
-  const { transformApi } = { ...inOptions };
+  const { items, resources } = inConfig;
+  const { transformApi, templates } = { ...defaultRestOptions, ...inOptions };
 
   // api resources
-  const resourceItems = normalizeResource(resources, templates);
+  const resourceItems = normalizeResource(resources, templates!);
   const target = items.concat(resourceItems);
 
   target.forEach(function (item) {
