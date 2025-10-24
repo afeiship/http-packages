@@ -97,14 +97,12 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
     // const baseURL = item.baseURL || inConfig.baseURL || `${location.protocol}//${location.host}`;
     const baseURL = item.baseURL || inConfig.baseURL;
     const resources = item.resources || [];
-    var resItems = normalizeResource(resources, templates);
-    var totalItems = resItems.map((item) => item.items);
-    var totalMerged = totalItems.reduce((acc, val) => {
-      return Object.assign(acc, val);
-    }, item.items);
+    const resItems = normalizeResource(resources, templates);
+    const resourceItems = resItems.map((item) => item.items);
+    const mergedItems = Object.assign({}, item.items, ...resourceItems);
 
     // api items
-    nx.each(totalMerged, function (key, _item) {
+    nx.each(mergedItems, function (key, _item) {
       const [_method, _path, _opts] = _item;
       const { tags, ...opts } = _opts || {};
       const name = prefix + key + suffix;
