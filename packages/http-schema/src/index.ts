@@ -8,7 +8,7 @@ interface HttpSchemaOptions {
   priority?: number;
   transformApi?: (args: TransformApiArgs) => Promise<any>;
   dynamicApi?: (apis: Record<string, any>, ...args) => Promise<any>;
-  tempaltes?: TemplateType;
+  templates?: TemplateType;
 
   [key: string]: any;
 }
