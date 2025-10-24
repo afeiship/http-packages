@@ -258,4 +258,15 @@ describe('ApiResourceNormalizer', () => {
     const normalized = normalizer.normalize(resources);
     expect(normalized.items.analytics_index).toEqual(['get', '/data/analytics']);
   });
+
+  // Test case 28: Resource with prefix and suffix
+  test('should apply prefix and suffix correctly to generated keys', () => {
+    const normalizer = new ApiResourceNormalizer();
+    const resources = [{ name: 'products', prefix: 'api_', suffix: '_v1' }];
+    const normalized = normalizer.normalize(resources);
+    expect(normalized.items).toHaveProperty('api_products_index_v1');
+    expect(normalized.items.api_products_index_v1).toEqual(['get', '/products']);
+    expect(normalized.items).toHaveProperty('api_products_show_v1');
+    expect(normalized.items.api_products_show_v1).toEqual(['get', '/products/{id}']);
+  });
 });
