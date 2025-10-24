@@ -63,10 +63,11 @@ function toSnakeCase(str) {
 // /api/org/tenant/backend/staff  => /api/org/tenant/backend/ + staff
 const getApiPath = (respath: string | string[]) => {
   if (Array.isArray(respath)) {
+    const { name, subpath } = getApiPath(respath[1]);
     return {
-      name: respath[0],
-      nameSnakeCase: toSnakeCase(respath[0]),
-      subpath: respath[1],
+      name,
+      nameSnakeCase: respath[0],
+      subpath,
     };
   } else {
     const paths = respath.split('/');
@@ -87,7 +88,7 @@ const normalizeResource = (inResources, inTemplates: TemplateType) => {
   const templates = isPredicatable ? TEMPLATE_HOOKS[inTemplates] : inTemplates || RAILS_TEMPLATES;
   const STD_KEYS = Object.keys(RAILS_TEMPLATES);
   return inResources.map((res) => {
-    const resource = typeof res === 'string' ? { name: res } : res;
+    const resource = typeof res === 'string' || Array.isArray(res) ? { name: res } : res;
     const { name, only, except, ...others } = resource;
     const items = {};
     const hasOnly = !!only?.length;
