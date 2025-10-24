@@ -24,7 +24,7 @@ const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
     ...defaults,
     ...inOptions,
   } as HttpSchemaOptions;
-  if (isFetchAdapterNil(adapter)) nx.error(FETCH_IMPORT_MSG);
+  if (isFetchAdapterNil(adapter)) new Error(FETCH_IMPORT_MSG);
   const httpClient = nx[adapter!].getInstance(options);
   const context = httpRestConfig(httpClient, inConfig, { templates, transformApi });
   const dynamicFn = (...args: any[]) => dynamicApi?.(context, ...args) ?? Promise.resolve(null);
