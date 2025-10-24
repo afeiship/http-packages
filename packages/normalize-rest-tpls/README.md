@@ -13,11 +13,22 @@ yarn add @jswork/normalize-rest-tpls
 
 ## usage
 ```js
-import normalizeRestTpls from '@jswork/normalize-rest-tpls';
+import ApiResourceNormalizer from '@jswork/normalize-rest-tpls';
 
-normalizeRestTpls(1024);
+const normalizer = new ApiResourceNormalizer('rails');
+const result = normalizer.normalize([
+  'posts',
+  '/sys/super/backend/params',
+  '/sys/super/backend/adminUsers',
+  ['admin_roles', '/sys/super/backend/adminRole'],
+  { name: 'orders', only: ['index', 'show', 'cancel'] },
+  { name: 'users', only: ['*', 'disable', 'enable'] },
+  { name: 'roles', only: ['index', 'show'] },
+  { name: 'permissions', subpath: '/sys/super/backend/imc' },
+  { name: 'team_members', resName: 'imcTeamMember', subpath: '/sys/super/backend/imc' },
+]);
 
-// [1000, 0, 20, 4]
+console.log(result.items);
 ```
 
 ## license
