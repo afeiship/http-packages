@@ -54,9 +54,7 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
     const baseURL = item.baseURL || inConfig.baseURL;
     const resources = item.resources || [];
     const resItems = normalizeResource(resources, templates);
-    const mergedItems = Object.assign({}, item.items, resItems.items);
-
-
+    const mergedItems = Object.assign({}, resItems.items, item.items);
 
     // api items
     nx.each(mergedItems, function (key, _item) {
