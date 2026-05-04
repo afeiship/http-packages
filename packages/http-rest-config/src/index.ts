@@ -99,8 +99,8 @@ const httpRestConfig = (httpClient, inConfig, inOptions?: RestHttpConfig): any =
 };
 
 // for commonjs es5 require
-if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
-  module.exports = httpRestConfig;
-}
+// if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
+//   module.exports = httpRestConfig;
+// }
 
 export default httpRestConfig;

@@ -43,9 +43,9 @@ const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
 };
 
 // for commonjs es5
-if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
-  module.exports = httpSchema;
-}
+// if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
+//   module.exports = httpSchema;
+// }
 
 // for es6
 export default httpSchema;

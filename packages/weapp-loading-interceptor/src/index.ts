@@ -59,8 +59,8 @@ const createInterceptors = (options) => {
 };
 
 // for commonjs es5 require
-if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
-  module.exports = createInterceptors;
-}
+// if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
+//   module.exports = createInterceptors;
+// }
 
 export default createInterceptors;
