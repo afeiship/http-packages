@@ -39,8 +39,8 @@ const NxTaroRequest = nx.declare('nx.TaroRequest', {
   }
 });
 
-if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
-  module.exports = NxTaroRequest;
-}
+// if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
+//   module.exports = NxTaroRequest;
+// }
 
 export default NxTaroRequest;

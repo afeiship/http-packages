@@ -34,8 +34,8 @@ const NxUniappRequest = nx.declare('nx.UniappRequest', {
   }
 });
 
-if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
-  module.exports = NxUniappRequest;
-}
+// if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
+//   module.exports = NxUniappRequest;
+// }
 
 export default NxUniappRequest;

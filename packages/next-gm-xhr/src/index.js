@@ -45,8 +45,8 @@ const NxGmXhr = nx.declare('nx.GmXhr', {
   }
 });
 
-if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
-  module.exports = NxGmXhr;
-}
+// if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
+//   module.exports = NxGmXhr;
+// }
 
 export default NxGmXhr;

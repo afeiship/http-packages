@@ -48,8 +48,8 @@ nx.parseRequestArgs = function (inArguments, inIsArray) {
   return !inIsArray ? options : [method, url, data, opts];
 };
 
-if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
-  module.exports = nx.parseRequestArgs;
-}
+// if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
+//   module.exports = nx.parseRequestArgs;
+// }
 
 export default nx.parseRequestArgs;

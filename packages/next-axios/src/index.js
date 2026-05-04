@@ -33,8 +33,8 @@ const NxAxios = nx.declare('nx.Axios', {
   }
 });
 
-if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
-  module.exports = NxAxios;
-}
+// if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
+//   module.exports = NxAxios;
+// }
 
 export default NxAxios;

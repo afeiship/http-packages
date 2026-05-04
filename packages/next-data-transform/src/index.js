@@ -32,8 +32,8 @@ const NxDataTransform = nx.declare('nx.DataTransform', {
   }
 });
 
-if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
-  module.exports = NxDataTransform;
-}
+// if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
+//   module.exports = NxDataTransform;
+// }
 
 export default NxDataTransform;

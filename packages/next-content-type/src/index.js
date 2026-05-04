@@ -17,8 +17,8 @@ nx.contentType = function (inKey) {
   return TYPES[inKey];
 };
 
-if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
-  module.exports = nx.contentType;
-}
+// if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
+//   module.exports = nx.contentType;
+// }
 
 export default nx.contentType;
