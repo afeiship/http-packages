@@ -13,17 +13,17 @@
   "license": "MIT",
   "dependencies": {
     "@jswork/http-data-parser": "^1.0.11",
-    "@jswork/next-difference": "^1.0.2",
-    "@jswork/next-tmpl": "^1.0.7",
+    "@jswork/next-difference": "^1.0.4",
+    "@jswork/next-tmpl": "^1.0.8",
     "@jswork/normalize-rest-tpls": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.21.0",
-    "@jswork/gulp-pkg-header": "^1.0.8",
-    "@jswork/gulp-registry": "^1.0.43",
-    "@jswork/next": "^1.1.16",
+    "@jswork/gulp-pkg-header": "^1.0.15",
+    "@jswork/gulp-registry": "^1.0.45",
+    "@jswork/next": "^1.5.2",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.5",
     "babel-jest": "^29.5.0",
