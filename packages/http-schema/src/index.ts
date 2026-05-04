@@ -42,7 +42,7 @@ const httpSchema = (inConfig, inOptions?: HttpSchemaOptions) => {
   return context;
 };
 
-// for commonjs es5
+// for commonjs es5 - not required
 // if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
 //   module.exports = httpSchema;
 // }

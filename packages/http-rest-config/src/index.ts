@@ -4,7 +4,7 @@ import ApiResourceNormalizer from '@jswork/normalize-rest-tpls';
 import '@jswork/next-tmpl';
 import '@jswork/next-difference';
 
-declare var wx: any;
+// declare var wx: any;
 
 export interface TransformApiArgs {
   key: string;
