@@ -1,6 +1,6 @@
 {
   "name": "@jswork/fetch-mp",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Fetch for wechat mini program.",
   "npmClient": "pnpm",
   "main": "dist/index.cjs.js",
@@ -40,7 +40,7 @@
     "wechat"
   ],
   "dependencies": {
-    "@jswork/normalize-mina-options": "^1.0.5",
+    "@jswork/normalize-mina-options": "^1.0.6",
     "@types/wechat-miniprogram": "^3.4.8"
   },
   "gitHead": "dd8c02f147bd4d724031c2ff9ef07fe0cc498d23"
