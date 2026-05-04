@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-taro-request",
-  "version": "1.2.24",
+  "version": "1.2.25",
   "description": "Taro request for next.",
   "homepage": "https://js.work",
   "author": {
@@ -45,7 +45,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@jswork/next-abstract-request": "^1.1.16",
+    "@jswork/next-abstract-request": "^1.1.17",
     "@jswork/normalize-mina-options": "^1.0.6"
   },
   "gitHead": "17de3434550b1cd15245ecfa851351f789d1ef34"
