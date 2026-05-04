@@ -19,9 +19,9 @@
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
-    "@jswork/gulp-pkg-header": "^1.0.8",
-    "@jswork/gulp-registry": "^1.0.43",
-    "@jswork/next": "^1.1.16",
+    "@jswork/gulp-pkg-header": "^1.0.15",
+    "@jswork/gulp-registry": "^1.0.45",
+    "@jswork/next": "^1.5.2",
     "axios": "^1.3.5",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@jswork/next-abstract-request": "^1.1.15",
-    "@jswork/next-param": "^1.0.12"
+    "@jswork/next-param": "^1.0.14"
   },
   "gitHead": "3488eb4c767663458d5016ac2b334837b5389141"
 }
